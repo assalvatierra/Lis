@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CoreDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CoreDBStoreContainer">
+    <EntitySet Name="ModInformations" EntityType="CoreDB.Store.ModInformations" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="ModInformations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Version" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="CoreDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="CoreDBContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ModInformations" EntityType="CoreDB.ModInformation" />
+          <EntitySet Name="userGroups" EntityType="CoreDB.userGroup" />
+          <EntitySet Name="userGroupAdmins" EntityType="CoreDB.userGroupAdmin" />
+          <AssociationSet Name="userGroupuserGroupAdmin" Association="CoreDB.userGroupuserGroupAdmin">
+            <End Role="userGroup" EntitySet="userGroups" />
+            <End Role="userGroupAdmin" EntitySet="userGroupAdmins" />
+          </AssociationSet>
+          <EntitySet Name="users" EntityType="CoreDB.user" />
+          <AssociationSet Name="userGroupuserGroupMember" Association="CoreDB.userGroupuserGroupMember">
+            <End Role="userGroup" EntitySet="userGroups" />
+            <End Role="userGroupMember" EntitySet="users" />
+          </AssociationSet>
+          <EntitySet Name="userTypes" EntityType="CoreDB.userType" />
+          <EntitySet Name="userUserTypes" EntityType="CoreDB.userUserType" />
+          <AssociationSet Name="userTypeuserUserType" Association="CoreDB.userTypeuserUserType">
+            <End Role="userType" EntitySet="userTypes" />
+            <End Role="userUserType" EntitySet="userUserTypes" />
+          </AssociationSet>
+          <AssociationSet Name="useruserUserType" Association="CoreDB.useruserUserType">
+            <End Role="user" EntitySet="users" />
+            <End Role="userUserType" EntitySet="userUserTypes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ModInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Version" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="userGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="userGroupAdmins" Relationship="CoreDB.userGroupuserGroupAdmin" FromRole="userGroup" ToRole="userGroupAdmin" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="userGroupMembers" Relationship="CoreDB.userGroupuserGroupMember" FromRole="userGroup" ToRole="userGroupMember" />
+        </EntityType>
+        <EntityType Name="userGroupAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="userGroup" Relationship="CoreDB.userGroupuserGroupAdmin" FromRole="userGroupAdmin" ToRole="userGroup" />
+          <Property Name="userGroupId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="userGroupuserGroupAdmin">
+          <End Type="CoreDB.userGroup" Role="userGroup" Multiplicity="1" />
+          <End Type="CoreDB.userGroupAdmin" Role="userGroupAdmin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userGroupAdmin">
+              <PropertyRef Name="userGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="userGroup" Relationship="CoreDB.userGroupuserGroupMember" FromRole="userGroupMember" ToRole="userGroup" />
+          <Property Name="userGroupId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" />
+          <NavigationProperty Name="userUserTypes" Relationship="CoreDB.useruserUserType" FromRole="user" ToRole="userUserType" />
+        </EntityType>
+        <Association Name="userGroupuserGroupMember">
+          <End Type="CoreDB.userGroup" Role="userGroup" Multiplicity="1" />
+          <End Type="CoreDB.user" Role="userGroupMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userGroupMember">
+              <PropertyRef Name="userGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="userType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="userUserTypes" Relationship="CoreDB.userTypeuserUserType" FromRole="userType" ToRole="userUserType" />
+        </EntityType>
+        <EntityType Name="userUserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="userType" Relationship="CoreDB.userTypeuserUserType" FromRole="userUserType" ToRole="userType" />
+          <Property Name="userTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="CoreDB.useruserUserType" FromRole="userUserType" ToRole="user" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="userTypeuserUserType">
+          <End Type="CoreDB.userType" Role="userType" Multiplicity="1" />
+          <End Type="CoreDB.userUserType" Role="userUserType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userUserType">
+              <PropertyRef Name="userTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="useruserUserType">
+          <End Type="CoreDB.user" Role="user" Multiplicity="1" />
+          <End Type="CoreDB.userUserType" Role="userUserType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="userUserType">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoreDBStoreContainer" CdmEntityContainer="CoreDBContainer">
+    <EntitySetMapping Name="ModInformations">
+      <EntityTypeMapping TypeName="IsTypeOf(CoreDB.ModInformation)">
+        <MappingFragment StoreEntitySet="ModInformations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="81fbfd59a0274e96858072bab9f3f458" Name="Diagram1" >
+        <EntityTypeShape EntityType="CoreDB.ModInformation" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="CoreDB.userGroup" Width="1.5" PointX="2.5" PointY="0.5" />
+        <EntityTypeShape EntityType="CoreDB.userGroupAdmin" Width="1.5" PointX="4.75" PointY="0.5" />
+        <AssociationConnector Association="CoreDB.userGroupuserGroupAdmin" />
+        <EntityTypeShape EntityType="CoreDB.user" Width="1.5" PointX="2.5" PointY="2.875" />
+        <AssociationConnector Association="CoreDB.userGroupuserGroupMember" />
+        <EntityTypeShape EntityType="CoreDB.userType" Width="1.5" PointX="6.875" PointY="2.875" />
+        <EntityTypeShape EntityType="CoreDB.userUserType" Width="1.5" PointX="4.75" PointY="2.875" />
+        <AssociationConnector Association="CoreDB.userTypeuserUserType" />
+        <AssociationConnector Association="CoreDB.useruserUserType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
