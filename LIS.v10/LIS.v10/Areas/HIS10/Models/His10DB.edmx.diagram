@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bfe074423cf5494dbae538c3c271abc3" Name="Diagram1" >
+        <EntityTypeShape EntityType="His10DB.HisEntity" Width="1.5" PointX="3" PointY="0.625" />
+        <EntityTypeShape EntityType="His10DB.HisProfile" Width="1.5" PointX="8.375" PointY="0.625" />
+        <EntityTypeShape EntityType="His10DB.HisCategory" Width="1.5" PointX="0.5" PointY="0.625" />
+        <EntityTypeShape EntityType="His10DB.HisEntCat" Width="1.5" PointX="0.5" PointY="3.5" />
+        <EntityTypeShape EntityType="His10DB.HisOrder" Width="1.5" PointX="8.375" PointY="2.875" />
+        <EntityTypeShape EntityType="His10DB.HisOrderType" Width="1.5" PointX="10.875" PointY="0.625" />
+        <EntityTypeShape EntityType="His10DB.HisPhysician" Width="1.5" PointX="5.5" PointY="5.625" />
+        <EntityTypeShape EntityType="His10DB.HisEntPhysician" Width="1.5" PointX="3.125" PointY="5.125" />
+        <AssociationConnector Association="His10DB.HisPhysicianHisEntPhysician" />
+        <AssociationConnector Association="His10DB.HisOrderTypeHisOrder" />
+        <AssociationConnector Association="His10DB.HisProfileHisOrder" />
+        <AssociationConnector Association="His10DB.HisPhysicianHisOrder" />
+        <EntityTypeShape EntityType="His10DB.HisInstrument" Width="1.5" PointX="5.5" PointY="3.25" />
+        <AssociationConnector Association="His10DB.HisInstrumentHisOrder" />
+        <AssociationConnector Association="His10DB.HisEntityHisInstrument" />
+        <AssociationConnector Association="His10DB.HisCategoryHisEntCat" />
+        <AssociationConnector Association="His10DB.HisEntityHisEntCat" />
+        <AssociationConnector Association="His10DB.HisEntityHisEntPhysician" />
+        <EntityTypeShape EntityType="His10DB.HisResultField" Width="1.5" PointX="11" PointY="5.125" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

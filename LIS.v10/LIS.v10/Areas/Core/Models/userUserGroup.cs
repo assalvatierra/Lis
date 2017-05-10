@@ -7,16 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LIS.v10.Models
+namespace LIS.v10.Areas.Core.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AppInformation
+    public partial class userUserGroup
     {
         public int Id { get; set; }
-        public string Key { get; set; }
-        public string Data { get; set; }
-        public string Remarks { get; set; }
+        public int userGroupId { get; set; }
+        public int userId { get; set; }
+    
+        public virtual userGroup userGroup { get; set; }
+        public virtual user user { get; set; }
     }
 }

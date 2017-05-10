@@ -8,7 +8,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" />
-    <Property Name="Version" Type="String" Nullable="false" />
+    <Property Name="Key" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="Data" Type="String" Nullable="false" MaxLength="250" />
+    <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
   </EntityType>
 </Schema>

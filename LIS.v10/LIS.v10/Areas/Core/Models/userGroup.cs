@@ -18,7 +18,7 @@ namespace LIS.v10.Areas.Core.Models
         public userGroup()
         {
             this.userGroupAdmins = new HashSet<userGroupAdmin>();
-            this.userGroupMembers = new HashSet<user>();
+            this.userUserGroups = new HashSet<userUserGroup>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace LIS.v10.Areas.Core.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userGroupAdmin> userGroupAdmins { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> userGroupMembers { get; set; }
+        public virtual ICollection<userUserGroup> userUserGroups { get; set; }
     }
 }

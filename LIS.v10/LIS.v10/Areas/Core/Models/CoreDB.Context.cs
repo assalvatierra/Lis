@@ -31,5 +31,6 @@ namespace LIS.v10.Areas.Core.Models
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<userType> userTypes { get; set; }
         public virtual DbSet<userUserType> userUserTypes { get; set; }
+        public virtual DbSet<userUserGroup> userUserGroups { get; set; }
     }
 }

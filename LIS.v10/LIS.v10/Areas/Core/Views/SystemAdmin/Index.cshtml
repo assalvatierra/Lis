@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "System Admin Page";
+}
+
+<div class="jumbotron">
+    <h2>System Admin Panel</h2>
+    <p class="lead">Welcome Administrator</p>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>User Admin</h2>
+        <p>
+            User Administration
+        </p>
+        <p>
+            @Html.ActionLink("User", "Index", "users", new { area = "core" },new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Hospital Administration</h2>
+        <p>Add more hospitals</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Other settings</h2>
+        <p>System settings</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>

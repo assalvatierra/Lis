@@ -13,9 +13,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Version" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Remarks" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Data" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -29,9 +29,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Version" Type="String" Nullable="false" />
-          <Property Name="Remarks" Type="String" Nullable="false" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="10" />
+          <Property Name="Data" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -43,8 +43,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(LisDB.AppInformation)">
         <MappingFragment StoreEntitySet="AppInformations">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
         </MappingFragment>
       </EntityTypeMapping>

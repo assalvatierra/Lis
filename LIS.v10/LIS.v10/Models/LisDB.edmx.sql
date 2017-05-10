@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/09/2017 16:19:11
+-- Date Created: 05/10/2017 11:09:43
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Models\LisDB.edmx
 -- --------------------------------------------------
 
@@ -33,9 +33,9 @@ GO
 -- Creating table 'AppInformations'
 CREATE TABLE [dbo].[AppInformations] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
-    [Version] nvarchar(max)  NOT NULL,
-    [Remarks] nvarchar(max)  NOT NULL
+    [Key] nvarchar(10)  NOT NULL,
+    [Data] nvarchar(250)  NOT NULL,
+    [Remarks] nvarchar(250)  NULL
 );
 GO
 

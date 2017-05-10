@@ -18,14 +18,20 @@ namespace LIS.v10.Areas.Core.Models
         public user()
         {
             this.userUserTypes = new HashSet<userUserType>();
+            this.userUserGroups = new HashSet<userUserGroup>();
         }
     
         public int Id { get; set; }
-        public int userGroupId { get; set; }
         public string UserId { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string Remarks { get; set; }
+        public string Status { get; set; }
     
-        public virtual userGroup userGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userUserType> userUserTypes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<userUserGroup> userUserGroups { get; set; }
     }
 }

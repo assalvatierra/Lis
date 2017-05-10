@@ -3,20 +3,21 @@
 }
 
 <div class="jumbotron">
-    <h1>LIS v1.0</h1>
-    <p class="lead">Laboratory Information System Version 1.0</p>
+    <h1>@ViewBag.AppName</h1>
+    <p class="lead">@ViewBag.AppDescription</p>
+    <p>@ViewBag.AppVersion</p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>System Admin</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            System Administration by Root Account Only
         </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p>
+            @Html.ActionLink("Admin Panel", "index", "SystemAdmin", new { area = "Core" }, new { @class = "btn btn-default" })
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>

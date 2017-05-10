@@ -197,6 +197,8 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Core\Controllers\SystemAdminController.cs" />
+    <Compile Include="Areas\Core\Controllers\usersController.cs" />
     <Compile Include="Areas\Core\CoreAreaRegistration.cs" />
     <Compile Include="Areas\Core\Models\CoreDB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -228,8 +230,17 @@
     <Compile Include="Areas\Core\Models\userType.cs">
       <DependentUpon>CoreDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Core\Models\userUserGroup.cs">
+      <DependentUpon>CoreDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Core\Models\userUserType.cs">
       <DependentUpon>CoreDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\HIS10AreaRegistration.cs" />
+    <Compile Include="Areas\HIS10\Models\His10DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>His10DB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -279,6 +290,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Initdata.sql" />
     <Content Include="Models\LisDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>LisDB.Context.cs</LastGenOutput>
@@ -309,6 +321,22 @@
     </EntityDeploy>
     <Content Include="Areas\Core\Models\CoreDB.edmx.diagram">
       <DependentUpon>CoreDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Core\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Core\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Core\Views\users\Create.cshtml" />
+    <Content Include="Areas\Core\Views\users\Delete.cshtml" />
+    <Content Include="Areas\Core\Views\users\Details.cshtml" />
+    <Content Include="Areas\Core\Views\users\Edit.cshtml" />
+    <Content Include="Areas\Core\Views\users\Index.cshtml" />
+    <Content Include="Areas\Core\Views\SystemAdmin\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\web.config" />
+    <EntityDeploy Include="Areas\HIS10\Models\His10DB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>His10DB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Areas\HIS10\Models\His10DB.edmx.diagram">
+      <DependentUpon>His10DB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -359,8 +387,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Core\Controllers\" />
-    <Folder Include="Areas\Core\Views\Shared\" />
+    <Folder Include="Areas\HIS10\Controllers\" />
+    <Folder Include="Areas\HIS10\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
