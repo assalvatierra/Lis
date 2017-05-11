@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfe074423cf5494dbae538c3c271abc3" Name="Diagram1" >
+      <Diagram DiagramId="bfe074423cf5494dbae538c3c271abc3" Name="Diagram1" ZoomLevel="86" >
         <EntityTypeShape EntityType="His10DB.HisEntity" Width="1.5" PointX="3" PointY="0.625" />
         <EntityTypeShape EntityType="His10DB.HisProfile" Width="1.5" PointX="8.375" PointY="0.625" />
         <EntityTypeShape EntityType="His10DB.HisCategory" Width="1.5" PointX="0.5" PointY="0.625" />
@@ -23,7 +23,11 @@
         <AssociationConnector Association="His10DB.HisCategoryHisEntCat" />
         <AssociationConnector Association="His10DB.HisEntityHisEntCat" />
         <AssociationConnector Association="His10DB.HisEntityHisEntPhysician" />
-        <EntityTypeShape EntityType="His10DB.HisResultField" Width="1.5" PointX="11" PointY="5.125" />
+        <EntityTypeShape EntityType="His10DB.HisResultField" Width="1.5" PointX="12.375" PointY="3" />
+        <EntityTypeShape EntityType="His10DB.HisResult" Width="1.5" PointX="11" PointY="5.125" />
+        <AssociationConnector Association="His10DB.HisOrderHisResult" />
+        <AssociationConnector Association="His10DB.HisOrderTypeHisResultField" />
+        <AssociationConnector Association="His10DB.HisResultFieldHisResult" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

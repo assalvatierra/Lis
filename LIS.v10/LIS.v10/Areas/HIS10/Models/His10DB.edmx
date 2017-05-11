@@ -59,6 +59,19 @@
             <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
           </AssociationSet>
           <EntitySet Name="HisResultFields" EntityType="His10DB.HisResultField" />
+          <EntitySet Name="HisResults" EntityType="His10DB.HisResult" />
+          <AssociationSet Name="HisOrderHisResult" Association="His10DB.HisOrderHisResult">
+            <End Role="HisOrder" EntitySet="HisOrders" />
+            <End Role="HisResult" EntitySet="HisResults" />
+          </AssociationSet>
+          <AssociationSet Name="HisOrderTypeHisResultField" Association="His10DB.HisOrderTypeHisResultField">
+            <End Role="HisOrderType" EntitySet="HisOrderTypes" />
+            <End Role="HisResultField" EntitySet="HisResultFields" />
+          </AssociationSet>
+          <AssociationSet Name="HisResultFieldHisResult" Association="His10DB.HisResultFieldHisResult">
+            <End Role="HisResultField" EntitySet="HisResultFields" />
+            <End Role="HisResult" EntitySet="HisResults" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HisEntity">
           <Key>
@@ -106,6 +119,7 @@
           <Property Name="HisPhysicianId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HisInstrument" Relationship="His10DB.HisInstrumentHisOrder" FromRole="HisOrder" ToRole="HisInstrument" />
           <Property Name="HisInstrumentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisResults" Relationship="His10DB.HisOrderHisResult" FromRole="HisOrder" ToRole="HisResult" />
         </EntityType>
         <EntityType Name="HisOrderType">
           <Key>
@@ -113,6 +127,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="HisOrders" Relationship="His10DB.HisOrderTypeHisOrder" FromRole="HisOrderType" ToRole="HisOrder" />
+          <NavigationProperty Name="HisResultFields" Relationship="His10DB.HisOrderTypeHisResultField" FromRole="HisOrderType" ToRole="HisResultField" />
         </EntityType>
         <EntityType Name="HisPhysician">
           <Key>
@@ -254,7 +269,56 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisOrderType" Relationship="His10DB.HisOrderTypeHisResultField" FromRole="HisResultField" ToRole="HisOrderType" />
+          <Property Name="HisOrderTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisResults" Relationship="His10DB.HisResultFieldHisResult" FromRole="HisResultField" ToRole="HisResult" />
         </EntityType>
+        <EntityType Name="HisResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisOrder" Relationship="His10DB.HisOrderHisResult" FromRole="HisResult" ToRole="HisOrder" />
+          <Property Name="HisOrderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisResultField" Relationship="His10DB.HisResultFieldHisResult" FromRole="HisResult" ToRole="HisResultField" />
+          <Property Name="HisResultFieldId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="HisOrderHisResult">
+          <End Type="His10DB.HisOrder" Role="HisOrder" Multiplicity="1" />
+          <End Type="His10DB.HisResult" Role="HisResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisResult">
+              <PropertyRef Name="HisOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisOrderTypeHisResultField">
+          <End Type="His10DB.HisOrderType" Role="HisOrderType" Multiplicity="1" />
+          <End Type="His10DB.HisResultField" Role="HisResultField" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisOrderType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisResultField">
+              <PropertyRef Name="HisOrderTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisResultFieldHisResult">
+          <End Type="His10DB.HisResultField" Role="HisResultField" Multiplicity="1" />
+          <End Type="His10DB.HisResult" Role="HisResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisResultField">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisResult">
+              <PropertyRef Name="HisResultFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
