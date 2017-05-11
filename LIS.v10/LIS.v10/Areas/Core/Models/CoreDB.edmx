@@ -63,6 +63,9 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fullname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Remarks" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="userTypes">
     <Key>
@@ -226,9 +229,7 @@
           <Property Name="UserId" Type="String" Nullable="false" />
           <NavigationProperty Name="userUserTypes" Relationship="CoreDB.useruserUserType" FromRole="user" ToRole="userUserType" />
           <NavigationProperty Name="userUserGroups" Relationship="CoreDB.useruserUserGroup" FromRole="user" ToRole="userUserGroup" />
-          <Property Name="FirstName" Type="String" Nullable="false" />
-          <Property Name="MiddleName" Type="String" Nullable="false" />
-          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Fullname" Type="String" Nullable="false" />
           <Property Name="Remarks" Type="String" Nullable="false" />
           <Property Name="Status" Type="String" Nullable="false" />
         </EntityType>
@@ -345,6 +346,9 @@
         <MappingFragment StoreEntitySet="users">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

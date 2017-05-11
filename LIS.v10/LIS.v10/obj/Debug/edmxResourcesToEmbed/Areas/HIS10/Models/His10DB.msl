@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="His10DBStoreContainer" CdmEntityContainer="His10DBContainer">
+    <EntitySetMapping Name="HisEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntity)">
+        <MappingFragment StoreEntitySet="HisEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="userGroupId" ColumnName="userGroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfiles">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfile)">
+        <MappingFragment StoreEntitySet="HisProfiles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisCategories">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisCategory)">
+        <MappingFragment StoreEntitySet="HisCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisEntCats">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntCat)">
+        <MappingFragment StoreEntitySet="HisEntCats">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisCategoryId" ColumnName="HisCategoryId" />
+          <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisOrders">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisOrder)">
+        <MappingFragment StoreEntitySet="HisOrders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SpecimenId" ColumnName="SpecimenId" />
+          <ScalarProperty Name="HisOrderTypeId" ColumnName="HisOrderTypeId" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+          <ScalarProperty Name="HisInstrumentId" ColumnName="HisInstrumentId" />
+          <ScalarProperty Name="dtRequest" ColumnName="dtRequest" />
+          <ScalarProperty Name="dtProcessed" ColumnName="dtProcessed" />
+          <ScalarProperty Name="dtReleased" ColumnName="dtReleased" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisOrderTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisOrderType)">
+        <MappingFragment StoreEntitySet="HisOrderTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisPhysicians">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisPhysician)">
+        <MappingFragment StoreEntitySet="HisPhysicians">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisEntPhysicians">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntPhysician)">
+        <MappingFragment StoreEntitySet="HisEntPhysicians">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+          <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisInstruments">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisInstrument)">
+        <MappingFragment StoreEntitySet="HisInstruments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="InsCode" ColumnName="InsCode" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Specification" ColumnName="Specification" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisResultFields">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisResultField)">
+        <MappingFragment StoreEntitySet="HisResultFields">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisOrderTypeId" ColumnName="HisOrderTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisResults">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisResult)">
+        <MappingFragment StoreEntitySet="HisResults">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisOrderId" ColumnName="HisOrderId" />
+          <ScalarProperty Name="HisResultFieldId" ColumnName="HisResultFieldId" />
+          <ScalarProperty Name="Value1" ColumnName="Value1" />
+          <ScalarProperty Name="Value2" ColumnName="Value2" />
+          <ScalarProperty Name="Value3" ColumnName="Value3" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisResultRanges">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisResultRange)">
+        <MappingFragment StoreEntitySet="HisResultRanges">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisResultFieldId" ColumnName="HisResultFieldId" />
+          <ScalarProperty Name="Value1" ColumnName="Value1" />
+          <ScalarProperty Name="umval1" ColumnName="umval1" />
+          <ScalarProperty Name="Value2" ColumnName="Value2" />
+          <ScalarProperty Name="umVal2" ColumnName="umVal2" />
+          <ScalarProperty Name="Value3" ColumnName="Value3" />
+          <ScalarProperty Name="umVal3" ColumnName="umVal3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisOrderRemarks">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisOrderRemarks)">
+        <MappingFragment StoreEntitySet="HisOrderRemarks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisOrderId" ColumnName="HisOrderId" />
+          <ScalarProperty Name="dtAdded" ColumnName="dtAdded" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfileDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileDetails)">
+        <MappingFragment StoreEntitySet="HisProfileDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

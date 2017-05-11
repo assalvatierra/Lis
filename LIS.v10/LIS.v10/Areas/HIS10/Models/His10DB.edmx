@@ -4,11 +4,400 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="His10DB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
-        <EntityContainer Name="His10DBTargetContainer" >
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="His10DB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="His10DBStoreContainer">
+    <EntitySet Name="HisEntities" EntityType="His10DB.Store.HisEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisProfiles" EntityType="His10DB.Store.HisProfiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisCategories" EntityType="His10DB.Store.HisCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisEntCats" EntityType="His10DB.Store.HisEntCats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisOrders" EntityType="His10DB.Store.HisOrders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisOrderTypes" EntityType="His10DB.Store.HisOrderTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisPhysicians" EntityType="His10DB.Store.HisPhysicians" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisEntPhysicians" EntityType="His10DB.Store.HisEntPhysicians" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisInstruments" EntityType="His10DB.Store.HisInstruments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisResultFields" EntityType="His10DB.Store.HisResultFields" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisResults" EntityType="His10DB.Store.HisResults" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisResultRanges" EntityType="His10DB.Store.HisResultRanges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisOrderRemarks" EntityType="His10DB.Store.HisOrderRemarks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisProfileDetails" EntityType="His10DB.Store.HisProfileDetails" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
+    </AssociationSet>
+    <AssociationSet Name="HisOrderTypeHisOrder" Association="His10DB.Store.HisOrderTypeHisOrder">
+      <End Role="HisOrderType" EntitySet="HisOrderTypes" />
+      <End Role="HisOrder" EntitySet="HisOrders" />
+    </AssociationSet>
+    <AssociationSet Name="HisProfileHisOrder" Association="His10DB.Store.HisProfileHisOrder">
+      <End Role="HisProfile" EntitySet="HisProfiles" />
+      <End Role="HisOrder" EntitySet="HisOrders" />
+    </AssociationSet>
+    <AssociationSet Name="HisPhysicianHisOrder" Association="His10DB.Store.HisPhysicianHisOrder">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisOrder" EntitySet="HisOrders" />
+    </AssociationSet>
+    <AssociationSet Name="HisInstrumentHisOrder" Association="His10DB.Store.HisInstrumentHisOrder">
+      <End Role="HisInstrument" EntitySet="HisInstruments" />
+      <End Role="HisOrder" EntitySet="HisOrders" />
+    </AssociationSet>
+    <AssociationSet Name="HisEntityHisInstrument" Association="His10DB.Store.HisEntityHisInstrument">
+      <End Role="HisEntity" EntitySet="HisEntities" />
+      <End Role="HisInstrument" EntitySet="HisInstruments" />
+    </AssociationSet>
+    <AssociationSet Name="HisCategoryHisEntCat" Association="His10DB.Store.HisCategoryHisEntCat">
+      <End Role="HisCategory" EntitySet="HisCategories" />
+      <End Role="HisEntCat" EntitySet="HisEntCats" />
+    </AssociationSet>
+    <AssociationSet Name="HisEntityHisEntCat" Association="His10DB.Store.HisEntityHisEntCat">
+      <End Role="HisEntity" EntitySet="HisEntities" />
+      <End Role="HisEntCat" EntitySet="HisEntCats" />
+    </AssociationSet>
+    <AssociationSet Name="HisEntityHisEntPhysician" Association="His10DB.Store.HisEntityHisEntPhysician">
+      <End Role="HisEntity" EntitySet="HisEntities" />
+      <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
+    </AssociationSet>
+    <AssociationSet Name="HisOrderHisResult" Association="His10DB.Store.HisOrderHisResult">
+      <End Role="HisOrder" EntitySet="HisOrders" />
+      <End Role="HisResult" EntitySet="HisResults" />
+    </AssociationSet>
+    <AssociationSet Name="HisOrderTypeHisResultField" Association="His10DB.Store.HisOrderTypeHisResultField">
+      <End Role="HisOrderType" EntitySet="HisOrderTypes" />
+      <End Role="HisResultField" EntitySet="HisResultFields" />
+    </AssociationSet>
+    <AssociationSet Name="HisResultFieldHisResult" Association="His10DB.Store.HisResultFieldHisResult">
+      <End Role="HisResultField" EntitySet="HisResultFields" />
+      <End Role="HisResult" EntitySet="HisResults" />
+    </AssociationSet>
+    <AssociationSet Name="HisResultFieldHisInsResultRange" Association="His10DB.Store.HisResultFieldHisInsResultRange">
+      <End Role="HisResultField" EntitySet="HisResultFields" />
+      <End Role="HisInsResultRange" EntitySet="HisResultRanges" />
+    </AssociationSet>
+    <AssociationSet Name="HisOrderHisOrderRemarks" Association="His10DB.Store.HisOrderHisOrderRemarks">
+      <End Role="HisOrder" EntitySet="HisOrders" />
+      <End Role="HisOrderRemarks" EntitySet="HisOrderRemarks" />
+    </AssociationSet>
+    <AssociationSet Name="HisProfileHisProfileDetails" Association="His10DB.Store.HisProfileHisProfileDetails">
+      <End Role="HisProfile" EntitySet="HisProfiles" />
+      <End Role="HisProfileDetails" EntitySet="HisProfileDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="HisEntities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="userGroupId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisProfiles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="HisCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="SeqNo" Type="int" Nullable="false" DefaultValue="100" />
+  </EntityType>
+  <EntityType Name="HisEntCats">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisCategoryId" Type="int" Nullable="false" />
+    <Property Name="HisEntityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SpecimenId" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="HisOrderTypeId" Type="int" Nullable="false" />
+    <Property Name="HisProfileId" Type="int" Nullable="false" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+    <Property Name="HisInstrumentId" Type="int" Nullable="false" />
+    <Property Name="dtRequest" Type="datetime" Nullable="false" />
+    <Property Name="dtProcessed" Type="datetime" Nullable="false" />
+    <Property Name="dtReleased" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisOrderTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Remarks" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisPhysicians">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="HisEntPhysicians">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+    <Property Name="HisEntityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisInstruments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisEntityId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="InsCode" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="200" />
+    <Property Name="Specification" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" DefaultValue="ACT" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="HisResultFields">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisOrderTypeId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="SeqNo" Type="int" Nullable="false" DefaultValue="100" />
+  </EntityType>
+  <EntityType Name="HisResults">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisOrderId" Type="int" Nullable="false" />
+    <Property Name="HisResultFieldId" Type="int" Nullable="false" />
+    <Property Name="Value1" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="Value2" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="Value3" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="HisResultRanges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisResultFieldId" Type="int" Nullable="false" />
+    <Property Name="Value1" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="umval1" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="Value2" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="umVal2" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="Value3" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="umVal3" Type="nvarchar" Nullable="true" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="HisOrderRemarks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisOrderId" Type="int" Nullable="false" />
+    <Property Name="dtAdded" Type="datetime" Nullable="false" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="HisProfileDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisProfileId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="HisPhysicianHisEntPhysician">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisEntPhysician" Type="His10DB.Store.HisEntPhysicians" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntPhysician">
+        <PropertyRef Name="HisPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisOrderTypeHisOrder">
+    <End Role="HisOrderType" Type="His10DB.Store.HisOrderTypes" Multiplicity="1" />
+    <End Role="HisOrder" Type="His10DB.Store.HisOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisOrderType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisOrder">
+        <PropertyRef Name="HisOrderTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisProfileHisOrder">
+    <End Role="HisProfile" Type="His10DB.Store.HisProfiles" Multiplicity="1" />
+    <End Role="HisOrder" Type="His10DB.Store.HisOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisOrder">
+        <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisPhysicianHisOrder">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisOrder" Type="His10DB.Store.HisOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisOrder">
+        <PropertyRef Name="HisPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisInstrumentHisOrder">
+    <End Role="HisInstrument" Type="His10DB.Store.HisInstruments" Multiplicity="1" />
+    <End Role="HisOrder" Type="His10DB.Store.HisOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisInstrument">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisOrder">
+        <PropertyRef Name="HisInstrumentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisEntityHisInstrument">
+    <End Role="HisEntity" Type="His10DB.Store.HisEntities" Multiplicity="1" />
+    <End Role="HisInstrument" Type="His10DB.Store.HisInstruments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisInstrument">
+        <PropertyRef Name="HisEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisCategoryHisEntCat">
+    <End Role="HisCategory" Type="His10DB.Store.HisCategories" Multiplicity="1" />
+    <End Role="HisEntCat" Type="His10DB.Store.HisEntCats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntCat">
+        <PropertyRef Name="HisCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisEntityHisEntCat">
+    <End Role="HisEntity" Type="His10DB.Store.HisEntities" Multiplicity="1" />
+    <End Role="HisEntCat" Type="His10DB.Store.HisEntCats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntCat">
+        <PropertyRef Name="HisEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisEntityHisEntPhysician">
+    <End Role="HisEntity" Type="His10DB.Store.HisEntities" Multiplicity="1" />
+    <End Role="HisEntPhysician" Type="His10DB.Store.HisEntPhysicians" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntPhysician">
+        <PropertyRef Name="HisEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisOrderHisResult">
+    <End Role="HisOrder" Type="His10DB.Store.HisOrders" Multiplicity="1" />
+    <End Role="HisResult" Type="His10DB.Store.HisResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisResult">
+        <PropertyRef Name="HisOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisOrderTypeHisResultField">
+    <End Role="HisOrderType" Type="His10DB.Store.HisOrderTypes" Multiplicity="1" />
+    <End Role="HisResultField" Type="His10DB.Store.HisResultFields" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisOrderType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisResultField">
+        <PropertyRef Name="HisOrderTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisResultFieldHisResult">
+    <End Role="HisResultField" Type="His10DB.Store.HisResultFields" Multiplicity="1" />
+    <End Role="HisResult" Type="His10DB.Store.HisResults" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisResultField">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisResult">
+        <PropertyRef Name="HisResultFieldId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisResultFieldHisInsResultRange">
+    <End Role="HisResultField" Type="His10DB.Store.HisResultFields" Multiplicity="1" />
+    <End Role="HisInsResultRange" Type="His10DB.Store.HisResultRanges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisResultField">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisInsResultRange">
+        <PropertyRef Name="HisResultFieldId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisOrderHisOrderRemarks">
+    <End Role="HisOrder" Type="His10DB.Store.HisOrders" Multiplicity="1" />
+    <End Role="HisOrderRemarks" Type="His10DB.Store.HisOrderRemarks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisOrderRemarks">
+        <PropertyRef Name="HisOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisProfileHisProfileDetails">
+    <End Role="HisProfile" Type="His10DB.Store.HisProfiles" Multiplicity="1" />
+    <End Role="HisProfileDetails" Type="His10DB.Store.HisProfileDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileDetails">
+        <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="His10DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -72,6 +461,21 @@
             <End Role="HisResultField" EntitySet="HisResultFields" />
             <End Role="HisResult" EntitySet="HisResults" />
           </AssociationSet>
+          <EntitySet Name="HisResultRanges" EntityType="His10DB.HisResultRange" />
+          <AssociationSet Name="HisResultFieldHisInsResultRange" Association="His10DB.HisResultFieldHisInsResultRange">
+            <End Role="HisResultField" EntitySet="HisResultFields" />
+            <End Role="HisInsResultRange" EntitySet="HisResultRanges" />
+          </AssociationSet>
+          <EntitySet Name="HisOrderRemarks" EntityType="His10DB.HisOrderRemarks" />
+          <AssociationSet Name="HisOrderHisOrderRemarks" Association="His10DB.HisOrderHisOrderRemarks">
+            <End Role="HisOrder" EntitySet="HisOrders" />
+            <End Role="HisOrderRemarks" EntitySet="HisOrderRemarks" />
+          </AssociationSet>
+          <EntitySet Name="HisProfileDetails" EntityType="His10DB.HisProfileDetails" />
+          <AssociationSet Name="HisProfileHisProfileDetails" Association="His10DB.HisProfileHisProfileDetails">
+            <End Role="HisProfile" EntitySet="HisProfiles" />
+            <End Role="HisProfileDetails" EntitySet="HisProfileDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HisEntity">
           <Key>
@@ -81,6 +485,9 @@
           <NavigationProperty Name="HisInstruments" Relationship="His10DB.HisEntityHisInstrument" FromRole="HisEntity" ToRole="HisInstrument" />
           <NavigationProperty Name="HisEntCats" Relationship="His10DB.HisEntityHisEntCat" FromRole="HisEntity" ToRole="HisEntCat" />
           <NavigationProperty Name="HisEntPhysicians" Relationship="His10DB.HisEntityHisEntPhysician" FromRole="HisEntity" ToRole="HisEntPhysician" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
+          <Property Name="userGroupId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="HisProfile">
           <Key>
@@ -88,6 +495,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="HisOrders" Relationship="His10DB.HisProfileHisOrder" FromRole="HisProfile" ToRole="HisOrder" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
+          <NavigationProperty Name="HisProfileDetails" Relationship="His10DB.HisProfileHisProfileDetails" FromRole="HisProfile" ToRole="HisProfileDetails" />
         </EntityType>
         <EntityType Name="HisCategory">
           <Key>
@@ -95,6 +505,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="HisEntCats" Relationship="His10DB.HisCategoryHisEntCat" FromRole="HisCategory" ToRole="HisEntCat" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
+          <Property Name="SeqNo" Type="Int32" Nullable="false" DefaultValue="100" />
         </EntityType>
         <EntityType Name="HisEntCat">
           <Key>
@@ -112,6 +525,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="HisOrderType" Relationship="His10DB.HisOrderTypeHisOrder" FromRole="HisOrder" ToRole="HisOrderType" />
+          <Property Name="SpecimenId" Type="String" Nullable="false" MaxLength="200" />
           <Property Name="HisOrderTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HisProfile" Relationship="His10DB.HisProfileHisOrder" FromRole="HisOrder" ToRole="HisProfile" />
           <Property Name="HisProfileId" Type="Int32" Nullable="false" />
@@ -120,6 +534,10 @@
           <NavigationProperty Name="HisInstrument" Relationship="His10DB.HisInstrumentHisOrder" FromRole="HisOrder" ToRole="HisInstrument" />
           <Property Name="HisInstrumentId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HisResults" Relationship="His10DB.HisOrderHisResult" FromRole="HisOrder" ToRole="HisResult" />
+          <Property Name="dtRequest" Type="DateTime" Nullable="false" />
+          <Property Name="dtProcessed" Type="DateTime" Nullable="false" />
+          <Property Name="dtReleased" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="HisOrderRemarks" Relationship="His10DB.HisOrderHisOrderRemarks" FromRole="HisOrder" ToRole="HisOrderRemarks" />
         </EntityType>
         <EntityType Name="HisOrderType">
           <Key>
@@ -128,6 +546,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="HisOrders" Relationship="His10DB.HisOrderTypeHisOrder" FromRole="HisOrderType" ToRole="HisOrder" />
           <NavigationProperty Name="HisResultFields" Relationship="His10DB.HisOrderTypeHisResultField" FromRole="HisOrderType" ToRole="HisResultField" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="200" />
+          <Property Name="Remarks" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="HisPhysician">
           <Key>
@@ -136,6 +556,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="HisEntPhysicians" Relationship="His10DB.HisPhysicianHisEntPhysician" FromRole="HisPhysician" ToRole="HisEntPhysician" />
           <NavigationProperty Name="HisOrders" Relationship="His10DB.HisPhysicianHisOrder" FromRole="HisPhysician" ToRole="HisOrder" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
         </EntityType>
         <EntityType Name="HisEntPhysician">
           <Key>
@@ -203,6 +625,12 @@
           <NavigationProperty Name="HisOrders" Relationship="His10DB.HisInstrumentHisOrder" FromRole="HisInstrument" ToRole="HisOrder" />
           <NavigationProperty Name="HisEntity" Relationship="His10DB.HisEntityHisInstrument" FromRole="HisInstrument" ToRole="HisEntity" />
           <Property Name="HisEntityId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="InsCode" Type="String" Nullable="true" MaxLength="20" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="200" />
+          <Property Name="Specification" Type="String" Nullable="false" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="5" DefaultValue="ACT" />
         </EntityType>
         <Association Name="HisInstrumentHisOrder">
           <End Type="His10DB.HisInstrument" Role="HisInstrument" Multiplicity="1" />
@@ -272,6 +700,10 @@
           <NavigationProperty Name="HisOrderType" Relationship="His10DB.HisOrderTypeHisResultField" FromRole="HisResultField" ToRole="HisOrderType" />
           <Property Name="HisOrderTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HisResults" Relationship="His10DB.HisResultFieldHisResult" FromRole="HisResultField" ToRole="HisResult" />
+          <NavigationProperty Name="HisInsResultRanges" Relationship="His10DB.HisResultFieldHisInsResultRange" FromRole="HisResultField" ToRole="HisInsResultRange" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="200" />
+          <Property Name="SeqNo" Type="Int32" Nullable="false" DefaultValue="100" />
         </EntityType>
         <EntityType Name="HisResult">
           <Key>
@@ -282,6 +714,10 @@
           <Property Name="HisOrderId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HisResultField" Relationship="His10DB.HisResultFieldHisResult" FromRole="HisResult" ToRole="HisResultField" />
           <Property Name="HisResultFieldId" Type="Int32" Nullable="false" />
+          <Property Name="Value1" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="Value2" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="Value3" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
         </EntityType>
         <Association Name="HisOrderHisResult">
           <End Type="His10DB.HisOrder" Role="HisOrder" Multiplicity="1" />
@@ -319,17 +755,232 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="HisResultRange">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisResultField" Relationship="His10DB.HisResultFieldHisInsResultRange" FromRole="HisInsResultRange" ToRole="HisResultField" />
+          <Property Name="HisResultFieldId" Type="Int32" Nullable="false" />
+          <Property Name="Value1" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="umval1" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="Value2" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="umVal2" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="Value3" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="umVal3" Type="String" Nullable="true" MaxLength="10" />
+        </EntityType>
+        <Association Name="HisResultFieldHisInsResultRange">
+          <End Type="His10DB.HisResultField" Role="HisResultField" Multiplicity="1" />
+          <End Type="His10DB.HisResultRange" Role="HisInsResultRange" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisResultField">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisInsResultRange">
+              <PropertyRef Name="HisResultFieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HisOrderRemarks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisOrder" Relationship="His10DB.HisOrderHisOrderRemarks" FromRole="HisOrderRemarks" ToRole="HisOrder" />
+          <Property Name="HisOrderId" Type="Int32" Nullable="false" />
+          <Property Name="dtAdded" Type="DateTime" Nullable="false" />
+          <Property Name="Remarks" Type="String" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <Association Name="HisOrderHisOrderRemarks">
+          <End Type="His10DB.HisOrder" Role="HisOrder" Multiplicity="1" />
+          <End Type="His10DB.HisOrderRemarks" Role="HisOrderRemarks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisOrderRemarks">
+              <PropertyRef Name="HisOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HisProfileDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisProfile" Relationship="His10DB.HisProfileHisProfileDetails" FromRole="HisProfileDetails" ToRole="HisProfile" />
+          <Property Name="HisProfileId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="HisProfileHisProfileDetails">
+          <End Type="His10DB.HisProfile" Role="HisProfile" Multiplicity="1" />
+          <End Type="His10DB.HisProfileDetails" Role="HisProfileDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileDetails">
+              <PropertyRef Name="HisProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
-        <Alias Key="Model" Value="His10DB" />
-        <Alias Key="Target" Value="His10DB.Store" />
-        <EntityContainerMapping CdmEntityContainer="His10DBContainer" StorageEntityContainer="His10DBTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="His10DBStoreContainer" CdmEntityContainer="His10DBContainer">
+    <EntitySetMapping Name="HisEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntity)">
+        <MappingFragment StoreEntitySet="HisEntities">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="userGroupId" ColumnName="userGroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfiles">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfile)">
+        <MappingFragment StoreEntitySet="HisProfiles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisCategories">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisCategory)">
+        <MappingFragment StoreEntitySet="HisCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisEntCats">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntCat)">
+        <MappingFragment StoreEntitySet="HisEntCats">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisCategoryId" ColumnName="HisCategoryId" />
+          <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisOrders">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisOrder)">
+        <MappingFragment StoreEntitySet="HisOrders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SpecimenId" ColumnName="SpecimenId" />
+          <ScalarProperty Name="HisOrderTypeId" ColumnName="HisOrderTypeId" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+          <ScalarProperty Name="HisInstrumentId" ColumnName="HisInstrumentId" />
+          <ScalarProperty Name="dtRequest" ColumnName="dtRequest" />
+          <ScalarProperty Name="dtProcessed" ColumnName="dtProcessed" />
+          <ScalarProperty Name="dtReleased" ColumnName="dtReleased" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisOrderTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisOrderType)">
+        <MappingFragment StoreEntitySet="HisOrderTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisPhysicians">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisPhysician)">
+        <MappingFragment StoreEntitySet="HisPhysicians">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisEntPhysicians">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntPhysician)">
+        <MappingFragment StoreEntitySet="HisEntPhysicians">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+          <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisInstruments">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisInstrument)">
+        <MappingFragment StoreEntitySet="HisInstruments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="InsCode" ColumnName="InsCode" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Specification" ColumnName="Specification" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisResultFields">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisResultField)">
+        <MappingFragment StoreEntitySet="HisResultFields">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisOrderTypeId" ColumnName="HisOrderTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisResults">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisResult)">
+        <MappingFragment StoreEntitySet="HisResults">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisOrderId" ColumnName="HisOrderId" />
+          <ScalarProperty Name="HisResultFieldId" ColumnName="HisResultFieldId" />
+          <ScalarProperty Name="Value1" ColumnName="Value1" />
+          <ScalarProperty Name="Value2" ColumnName="Value2" />
+          <ScalarProperty Name="Value3" ColumnName="Value3" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisResultRanges">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisResultRange)">
+        <MappingFragment StoreEntitySet="HisResultRanges">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisResultFieldId" ColumnName="HisResultFieldId" />
+          <ScalarProperty Name="Value1" ColumnName="Value1" />
+          <ScalarProperty Name="umval1" ColumnName="umval1" />
+          <ScalarProperty Name="Value2" ColumnName="Value2" />
+          <ScalarProperty Name="umVal2" ColumnName="umVal2" />
+          <ScalarProperty Name="Value3" ColumnName="Value3" />
+          <ScalarProperty Name="umVal3" ColumnName="umVal3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisOrderRemarks">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisOrderRemarks)">
+        <MappingFragment StoreEntitySet="HisOrderRemarks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisOrderId" ColumnName="HisOrderId" />
+          <ScalarProperty Name="dtAdded" ColumnName="dtAdded" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfileDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileDetails)">
+        <MappingFragment StoreEntitySet="HisProfileDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -343,6 +994,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
       </DesignerInfoPropertySet>
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->

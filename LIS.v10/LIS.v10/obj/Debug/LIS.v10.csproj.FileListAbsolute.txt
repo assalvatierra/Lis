@@ -79,4 +79,3 @@ D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\bin\Microsoft.Owin.Security.Twitter
 D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.dll
 D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.pdb
-D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.csprojResolveAssemblyReference.cache

@@ -237,10 +237,62 @@
       <DependentUpon>CoreDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\HIS10AreaRegistration.cs" />
+    <Compile Include="Areas\HIS10\Models\His10DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>His10DB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\His10DB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\HIS10\Models\His10DB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>His10DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisCategory.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisEntCat.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisEntity.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisEntPhysician.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisInstrument.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisOrder.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisOrderRemarks.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisOrderType.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisPhysician.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisProfile.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisProfileDetails.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisResult.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisResultField.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisResultRange.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -283,6 +335,17 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CoreDB.cs</LastGenOutput>
       <DependentUpon>CoreDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\HIS10\Models\His10DB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>His10DB.Context.cs</LastGenOutput>
+      <DependentUpon>His10DB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\HIS10\Models\His10DB.edmx.sql" />
+    <Content Include="Areas\HIS10\Models\His10DB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>His10DB.cs</LastGenOutput>
+      <DependentUpon>His10DB.edmx</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

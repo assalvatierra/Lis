@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/10/2017 10:58:43
+-- Date Created: 05/11/2017 18:04:02
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\Core\Models\CoreDB.edmx
 -- --------------------------------------------------
 
@@ -17,6 +17,21 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_userGroupuserGroupAdmin]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[userGroupAdmins] DROP CONSTRAINT [FK_userGroupuserGroupAdmin];
+GO
+IF OBJECT_ID(N'[dbo].[FK_userTypeuserUserType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[userUserTypes] DROP CONSTRAINT [FK_userTypeuserUserType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_useruserUserType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[userUserTypes] DROP CONSTRAINT [FK_useruserUserType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_userGroupuserUserGroup]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[userUserGroups] DROP CONSTRAINT [FK_userGroupuserUserGroup];
+GO
+IF OBJECT_ID(N'[dbo].[FK_useruserUserGroup]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[userUserGroups] DROP CONSTRAINT [FK_useruserUserGroup];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -24,6 +39,24 @@ GO
 
 IF OBJECT_ID(N'[dbo].[ModInformations]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ModInformations];
+GO
+IF OBJECT_ID(N'[dbo].[userGroups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[userGroups];
+GO
+IF OBJECT_ID(N'[dbo].[userGroupAdmins]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[userGroupAdmins];
+GO
+IF OBJECT_ID(N'[dbo].[users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[users];
+GO
+IF OBJECT_ID(N'[dbo].[userTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[userTypes];
+GO
+IF OBJECT_ID(N'[dbo].[userUserTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[userUserTypes];
+GO
+IF OBJECT_ID(N'[dbo].[userUserGroups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[userUserGroups];
 GO
 
 -- --------------------------------------------------
@@ -56,7 +89,10 @@ GO
 -- Creating table 'users'
 CREATE TABLE [dbo].[users] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [UserId] nvarchar(max)  NOT NULL
+    [UserId] nvarchar(max)  NOT NULL,
+    [Fullname] nvarchar(max)  NOT NULL,
+    [Remarks] nvarchar(max)  NOT NULL,
+    [Status] nvarchar(max)  NOT NULL
 );
 GO
 
