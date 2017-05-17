@@ -200,6 +200,7 @@
     <Property Name="umVal2" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="Value3" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="umVal3" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="InstrumentId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="HisOrderRemarks">
     <Key>
@@ -768,6 +769,7 @@
           <Property Name="umVal2" Type="String" Nullable="true" MaxLength="10" />
           <Property Name="Value3" Type="String" Nullable="true" MaxLength="10" />
           <Property Name="umVal3" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="InstrumentId" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="HisResultFieldHisInsResultRange">
           <End Type="His10DB.HisResultField" Role="HisResultField" Multiplicity="1" />
@@ -958,6 +960,7 @@
           <ScalarProperty Name="umVal2" ColumnName="umVal2" />
           <ScalarProperty Name="Value3" ColumnName="Value3" />
           <ScalarProperty Name="umVal3" ColumnName="umVal3" />
+          <ScalarProperty Name="InstrumentId" ColumnName="InstrumentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

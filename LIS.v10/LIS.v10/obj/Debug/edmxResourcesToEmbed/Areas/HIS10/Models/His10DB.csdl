@@ -367,6 +367,7 @@
     <Property Name="umVal2" Type="String" Nullable="true" MaxLength="10" />
     <Property Name="Value3" Type="String" Nullable="true" MaxLength="10" />
     <Property Name="umVal3" Type="String" Nullable="true" MaxLength="10" />
+    <Property Name="InstrumentId" Type="Int32" Nullable="true" />
   </EntityType>
   <Association Name="HisResultFieldHisInsResultRange">
     <End Type="His10DB.HisResultField" Role="HisResultField" Multiplicity="1" />

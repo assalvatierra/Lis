@@ -130,6 +130,7 @@
           <ScalarProperty Name="umVal2" ColumnName="umVal2" />
           <ScalarProperty Name="Value3" ColumnName="Value3" />
           <ScalarProperty Name="umVal3" ColumnName="umVal3" />
+          <ScalarProperty Name="InstrumentId" ColumnName="InstrumentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -22,6 +22,7 @@ namespace LIS.v10.Areas.HIS10.Models
         public string umVal2 { get; set; }
         public string Value3 { get; set; }
         public string umVal3 { get; set; }
+        public Nullable<int> InstrumentId { get; set; }
     
         public virtual HisResultField HisResultField { get; set; }
     }

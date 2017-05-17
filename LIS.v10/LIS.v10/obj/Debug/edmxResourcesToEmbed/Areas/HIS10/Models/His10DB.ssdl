@@ -195,6 +195,7 @@
     <Property Name="umVal2" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="Value3" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="umVal3" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="InstrumentId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="HisOrderRemarks">
     <Key>

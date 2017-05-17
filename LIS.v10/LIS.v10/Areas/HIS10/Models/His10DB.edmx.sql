@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/11/2017 17:35:15
+-- Date Created: 05/17/2017 11:11:18
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,98 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_HisPhysicianHisEntPhysician]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisEntPhysicians] DROP CONSTRAINT [FK_HisPhysicianHisEntPhysician];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisOrderTypeHisOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisOrders] DROP CONSTRAINT [FK_HisOrderTypeHisOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisProfileHisOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisOrders] DROP CONSTRAINT [FK_HisProfileHisOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisPhysicianHisOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisOrders] DROP CONSTRAINT [FK_HisPhysicianHisOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisInstrumentHisOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisOrders] DROP CONSTRAINT [FK_HisInstrumentHisOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisEntityHisInstrument]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisInstruments] DROP CONSTRAINT [FK_HisEntityHisInstrument];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisCategoryHisEntCat]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisEntCats] DROP CONSTRAINT [FK_HisCategoryHisEntCat];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisEntityHisEntCat]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisEntCats] DROP CONSTRAINT [FK_HisEntityHisEntCat];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisEntityHisEntPhysician]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisEntPhysicians] DROP CONSTRAINT [FK_HisEntityHisEntPhysician];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisOrderHisResult]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisResults] DROP CONSTRAINT [FK_HisOrderHisResult];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisOrderTypeHisResultField]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisResultFields] DROP CONSTRAINT [FK_HisOrderTypeHisResultField];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisResultFieldHisResult]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisResults] DROP CONSTRAINT [FK_HisResultFieldHisResult];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisResultFieldHisInsResultRange]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisResultRanges] DROP CONSTRAINT [FK_HisResultFieldHisInsResultRange];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisOrderHisOrderRemarks]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisOrderRemarks] DROP CONSTRAINT [FK_HisOrderHisOrderRemarks];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisProfileHisProfileDetails]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileDetails] DROP CONSTRAINT [FK_HisProfileHisProfileDetails];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[HisEntities]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisEntities];
+GO
+IF OBJECT_ID(N'[dbo].[HisProfiles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisProfiles];
+GO
+IF OBJECT_ID(N'[dbo].[HisCategories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisCategories];
+GO
+IF OBJECT_ID(N'[dbo].[HisEntCats]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisEntCats];
+GO
+IF OBJECT_ID(N'[dbo].[HisOrders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisOrders];
+GO
+IF OBJECT_ID(N'[dbo].[HisOrderTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisOrderTypes];
+GO
+IF OBJECT_ID(N'[dbo].[HisPhysicians]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisPhysicians];
+GO
+IF OBJECT_ID(N'[dbo].[HisEntPhysicians]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisEntPhysicians];
+GO
+IF OBJECT_ID(N'[dbo].[HisInstruments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisInstruments];
+GO
+IF OBJECT_ID(N'[dbo].[HisResultFields]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisResultFields];
+GO
+IF OBJECT_ID(N'[dbo].[HisResults]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisResults];
+GO
+IF OBJECT_ID(N'[dbo].[HisResultRanges]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisResultRanges];
+GO
+IF OBJECT_ID(N'[dbo].[HisOrderRemarks]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisOrderRemarks];
+GO
+IF OBJECT_ID(N'[dbo].[HisProfileDetails]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisProfileDetails];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -143,7 +230,8 @@ CREATE TABLE [dbo].[HisResultRanges] (
     [Value2] nvarchar(10)  NULL,
     [umVal2] nvarchar(10)  NULL,
     [Value3] nvarchar(10)  NULL,
-    [umVal3] nvarchar(10)  NULL
+    [umVal3] nvarchar(10)  NULL,
+    [InstrumentId] int  NULL
 );
 GO
 
