@@ -12,16 +12,17 @@
     <div class="col-md-4">
         <h2>User Admin</h2>
         <p>
-            User Administration
+            Users and Groups Administration
         </p>
         <p>
             @Html.ActionLink("User", "Index", "users", new { area = "core" },new { @class = "btn btn-default" })
+            @Html.ActionLink("Groups", "Index", "userGroups", new { area = "core" }, new { @class = "btn btn-default" })
         </p>
     </div>
     <div class="col-md-4">
         <h2>Hospital Administration</h2>
         <p>Add more hospitals</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <p>@Html.ActionLink("MasterList","Index", "HisEntities", new { area = "HIS10" }, new {@class = "btn btn-default" })</p>
     </div>
     <div class="col-md-4">
         <h2>Other settings</h2>

@@ -9,13 +9,14 @@ using System.Web.Mvc;
 using LIS.v10.Areas.Core.Models;
 
 //FOR ASP NET ACCOUNT REGISTRATION
-//using System.Globalization;
-//using System.Security.Claims;
-//using System.Threading.Tasks;
-//using Microsoft.AspNet.Identity;
-//using Microsoft.AspNet.Identity.Owin;
-//using Microsoft.Owin.Security;
-//using LIS.v10.Models;
+using System.Globalization;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using LIS.v10.Models;
+
 
 namespace LIS.v10.Areas.Core.Controllers
 {
@@ -23,7 +24,7 @@ namespace LIS.v10.Areas.Core.Controllers
     public class usersController : Controller
     {
         private CoreDBContainer db = new CoreDBContainer();
-        private ApplicationUserManager _userManager;
+        //private ApplicationUserManager _userManager;
 
         // GET: Core/users
         public ActionResult Index()
@@ -61,8 +62,21 @@ namespace LIS.v10.Areas.Core.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.users.Add(user);
-                db.SaveChanges();
+                ApplicationUserManager _UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+                var newuser = new ApplicationUser { UserName = "Demo", Email = "Demo.RealMed@Gmail.com" };
+                var result = _UserManager.Create(newuser, "Demo123!");
+
+                if (result.Succeeded)
+                {
+                    user.Fullname = "Demo";
+                    user.Remarks = "test";
+                    user.Status = "ACT";
+                    user.UserId = newuser.Id;
+
+                    db.users.Add(user);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
 
