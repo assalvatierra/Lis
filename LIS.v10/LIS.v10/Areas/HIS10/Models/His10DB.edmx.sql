@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/17/2017 11:11:18
+-- Date Created: 05/20/2017 14:18:29
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -62,6 +62,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_HisProfileHisProfileDetails]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisProfileDetails] DROP CONSTRAINT [FK_HisProfileHisProfileDetails];
 GO
+IF OBJECT_ID(N'[dbo].[FK_HisPhysicianHisPhysicianProfile]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisPhysicianProfiles] DROP CONSTRAINT [FK_HisPhysicianHisPhysicianProfile];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisProfileHisPhysicianProfile]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisPhysicianProfiles] DROP CONSTRAINT [FK_HisProfileHisPhysicianProfile];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -109,6 +115,9 @@ GO
 IF OBJECT_ID(N'[dbo].[HisProfileDetails]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HisProfileDetails];
 GO
+IF OBJECT_ID(N'[dbo].[HisPhysicianProfiles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisPhysicianProfiles];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -127,7 +136,8 @@ GO
 CREATE TABLE [dbo].[HisProfiles] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(100)  NOT NULL,
-    [Remarks] nvarchar(200)  NULL
+    [Remarks] nvarchar(200)  NULL,
+    [AccntUserId] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -156,9 +166,9 @@ CREATE TABLE [dbo].[HisOrders] (
     [HisProfileId] int  NOT NULL,
     [HisPhysicianId] int  NOT NULL,
     [HisInstrumentId] int  NOT NULL,
-    [dtRequest] datetime  NOT NULL,
-    [dtProcessed] datetime  NOT NULL,
-    [dtReleased] datetime  NOT NULL
+    [dtRequest] datetime  NULL,
+    [dtProcessed] datetime  NULL,
+    [dtReleased] datetime  NULL
 );
 GO
 
@@ -251,6 +261,14 @@ CREATE TABLE [dbo].[HisProfileDetails] (
 );
 GO
 
+-- Creating table 'HisPhysicianProfiles'
+CREATE TABLE [dbo].[HisPhysicianProfiles] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisPhysicianId] int  NOT NULL,
+    [HisProfileId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -336,6 +354,12 @@ GO
 -- Creating primary key on [Id] in table 'HisProfileDetails'
 ALTER TABLE [dbo].[HisProfileDetails]
 ADD CONSTRAINT [PK_HisProfileDetails]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisPhysicianProfiles'
+ALTER TABLE [dbo].[HisPhysicianProfiles]
+ADD CONSTRAINT [PK_HisPhysicianProfiles]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -565,6 +589,36 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_HisProfileHisProfileDetails'
 CREATE INDEX [IX_FK_HisProfileHisProfileDetails]
 ON [dbo].[HisProfileDetails]
+    ([HisProfileId]);
+GO
+
+-- Creating foreign key on [HisPhysicianId] in table 'HisPhysicianProfiles'
+ALTER TABLE [dbo].[HisPhysicianProfiles]
+ADD CONSTRAINT [FK_HisPhysicianHisPhysicianProfile]
+    FOREIGN KEY ([HisPhysicianId])
+    REFERENCES [dbo].[HisPhysicians]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisPhysicianHisPhysicianProfile'
+CREATE INDEX [IX_FK_HisPhysicianHisPhysicianProfile]
+ON [dbo].[HisPhysicianProfiles]
+    ([HisPhysicianId]);
+GO
+
+-- Creating foreign key on [HisProfileId] in table 'HisPhysicianProfiles'
+ALTER TABLE [dbo].[HisPhysicianProfiles]
+ADD CONSTRAINT [FK_HisProfileHisPhysicianProfile]
+    FOREIGN KEY ([HisProfileId])
+    REFERENCES [dbo].[HisProfiles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisProfileHisPhysicianProfile'
+CREATE INDEX [IX_FK_HisProfileHisPhysicianProfile]
+ON [dbo].[HisPhysicianProfiles]
     ([HisProfileId]);
 GO
 

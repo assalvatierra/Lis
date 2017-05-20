@@ -238,6 +238,12 @@
       <DependentUpon>CoreDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Controllers\HisEntitiesController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisInstrumentsController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisOrdersController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisOrderTypesController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisPhysiciansController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisProfilesController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisResultFieldsController.cs" />
     <Compile Include="Areas\HIS10\HIS10AreaRegistration.cs" />
     <Compile Include="Areas\HIS10\Models\His10DB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -279,6 +285,9 @@
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Models\HisPhysician.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisPhysicianProfile.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Models\HisProfile.cs">
@@ -389,11 +398,6 @@
     </Content>
     <Content Include="Areas\Core\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Core\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Core\Views\users\Create.cshtml" />
-    <Content Include="Areas\Core\Views\users\Delete.cshtml" />
-    <Content Include="Areas\Core\Views\users\Details.cshtml" />
-    <Content Include="Areas\Core\Views\users\Edit.cshtml" />
-    <Content Include="Areas\Core\Views\users\Index.cshtml" />
     <Content Include="Areas\Core\Views\SystemAdmin\Index.cshtml" />
     <Content Include="Areas\HIS10\Views\web.config" />
     <EntityDeploy Include="Areas\HIS10\Models\His10DB.edmx">
@@ -415,6 +419,41 @@
     <Content Include="Areas\Core\Views\userGroups\Details.cshtml" />
     <Content Include="Areas\Core\Views\userGroups\Edit.cshtml" />
     <Content Include="Areas\Core\Views\userGroups\Index.cshtml" />
+    <Content Include="Areas\Core\Views\users\Create.cshtml" />
+    <Content Include="Areas\Core\Views\users\Delete.cshtml" />
+    <Content Include="Areas\Core\Views\users\Details.cshtml" />
+    <Content Include="Areas\Core\Views\users\Edit.cshtml" />
+    <Content Include="Areas\Core\Views\users\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisProfiles\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisProfiles\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisProfiles\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisProfiles\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisProfiles\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrders\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrders\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrders\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrders\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrders\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisInstruments\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisInstruments\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisInstruments\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisInstruments\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisInstruments\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrderTypes\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrderTypes\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrderTypes\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrderTypes\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOrderTypes\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResultFields\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResultFields\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResultFields\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResultFields\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResultFields\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -77,6 +77,8 @@
     <NavigationProperty Name="userUserGroups" Relationship="CoreDB.useruserUserGroup" FromRole="user" ToRole="userUserGroup" />
     <Property Name="Fullname" Type="String" Nullable="false" />
     <Property Name="Remarks" Type="String" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
     <Property Name="Status" Type="String" Nullable="false" />
   </EntityType>
   <EntityType Name="userType">

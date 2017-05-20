@@ -33,6 +33,6 @@ namespace LIS.v10.Areas.Core.Models
         public virtual DbSet<userUserType> userUserTypes { get; set; }
         public virtual DbSet<userUserGroup> userUserGroups { get; set; }
 
-        public System.Data.Entity.DbSet<LIS.v10.Areas.HIS10.Models.HisEntity> HisEntities { get; set; }
+        public System.Data.Entity.DbSet<LIS.v10.Areas.HIS10.Models.HisPhysician> HisPhysicians { get; set; }
     }
 }

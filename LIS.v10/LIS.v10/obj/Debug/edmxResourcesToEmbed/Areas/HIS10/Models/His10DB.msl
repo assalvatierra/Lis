@@ -17,6 +17,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -148,6 +149,15 @@
       <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileDetails)">
         <MappingFragment StoreEntitySet="HisProfileDetails">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisPhysicianProfiles">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisPhysicianProfile)">
+        <MappingFragment StoreEntitySet="HisPhysicianProfiles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
           <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
         </MappingFragment>
       </EntityTypeMapping>

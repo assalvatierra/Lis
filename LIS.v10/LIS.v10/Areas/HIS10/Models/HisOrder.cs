@@ -27,9 +27,9 @@ namespace LIS.v10.Areas.HIS10.Models
         public int HisProfileId { get; set; }
         public int HisPhysicianId { get; set; }
         public int HisInstrumentId { get; set; }
-        public System.DateTime dtRequest { get; set; }
-        public System.DateTime dtProcessed { get; set; }
-        public System.DateTime dtReleased { get; set; }
+        public Nullable<System.DateTime> dtRequest { get; set; }
+        public Nullable<System.DateTime> dtProcessed { get; set; }
+        public Nullable<System.DateTime> dtReleased { get; set; }
     
         public virtual HisOrderType HisOrderType { get; set; }
         public virtual HisProfile HisProfile { get; set; }

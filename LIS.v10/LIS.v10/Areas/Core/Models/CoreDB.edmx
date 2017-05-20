@@ -65,6 +65,8 @@
     <Property Name="UserId" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Fullname" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Remarks" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="userTypes">
@@ -231,6 +233,8 @@
           <NavigationProperty Name="userUserGroups" Relationship="CoreDB.useruserUserGroup" FromRole="user" ToRole="userUserGroup" />
           <Property Name="Fullname" Type="String" Nullable="false" />
           <Property Name="Remarks" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
           <Property Name="Status" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="userType">
@@ -348,6 +352,8 @@
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Fullname" ColumnName="Fullname" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>

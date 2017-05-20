@@ -17,14 +17,11 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using LIS.v10.Models;
 
-
 namespace LIS.v10.Areas.Core.Controllers
 {
-    [Authorize]
     public class usersController : Controller
     {
         private CoreDBContainer db = new CoreDBContainer();
-        //private ApplicationUserManager _userManager;
 
         // GET: Core/users
         public ActionResult Index()
@@ -58,30 +55,29 @@ namespace LIS.v10.Areas.Core.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,UserId")] user user)
+        public ActionResult Create([Bind(Include = "Id,UserId,Fullname,Remarks,Email,Password,Status")] user user)
         {
             if (ModelState.IsValid)
             {
                 ApplicationUserManager _UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-                var newuser = new ApplicationUser { UserName = "Demo", Email = "Demo.RealMed@Gmail.com" };
-                var result = _UserManager.Create(newuser, "Demo123!");
+                var newuser = new ApplicationUser { UserName = user.Email, Email = user.Email };
+                var result = _UserManager.Create(newuser, user.Password);
 
                 if (result.Succeeded)
                 {
-                    user.Fullname = "Demo";
-                    user.Remarks = "test";
                     user.Status = "ACT";
                     user.UserId = newuser.Id;
 
                     db.users.Add(user);
                     db.SaveChanges();
                 }
+
                 return RedirectToAction("Index");
             }
 
             return View(user);
         }
+
 
         // GET: Core/users/Edit/5
         public ActionResult Edit(int? id)
@@ -103,7 +99,7 @@ namespace LIS.v10.Areas.Core.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId")] user user)
+        public ActionResult Edit([Bind(Include = "Id,UserId,Fullname,Remarks,Email,Password,Status")] user user)
         {
             if (ModelState.IsValid)
             {
