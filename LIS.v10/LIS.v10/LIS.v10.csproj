@@ -244,6 +244,7 @@
     <Compile Include="Areas\HIS10\Controllers\HisPhysiciansController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisProfilesController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisResultFieldsController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisResultsController.cs" />
     <Compile Include="Areas\HIS10\HIS10AreaRegistration.cs" />
     <Compile Include="Areas\HIS10\Models\His10DB.Context.cs">
       <AutoGen>True</AutoGen>
@@ -454,6 +455,12 @@
     <Content Include="Areas\HIS10\Views\HisResultFields\Details.cshtml" />
     <Content Include="Areas\HIS10\Views\HisResultFields\Edit.cshtml" />
     <Content Include="Areas\HIS10\Views\HisResultFields\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResults\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResults\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResults\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResults\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResults\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisResults\ResultList.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

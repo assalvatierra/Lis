@@ -132,6 +132,11 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ResultList(int? id)
+        {
+            return RedirectToAction("ResultList", "HisResults", new { orderId = id, area = "HIS10" });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
