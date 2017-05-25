@@ -18,6 +18,12 @@ namespace LIS.v10.Areas.HIS10.Controllers
         public ActionResult Index()
         {
             var hisResultFields = db.HisResultFields.Include(h => h.HisOrderType);
+            if (Session["ORDERTYPEID"] != null)
+            {
+                int ordertypeid = (int)Session["ORDERTYPEID"];
+                hisResultFields = hisResultFields.Where(d => d.HisOrderTypeId == ordertypeid);
+            }
+
             return View(hisResultFields.ToList());
         }
 
@@ -39,8 +45,24 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // GET: HIS10/HisResultFields/Create
         public ActionResult Create()
         {
-            ViewBag.HisOrderTypeId = new SelectList(db.HisOrderTypes, "Id", "Description");
-            return View();
+            int ordertypeid = 0;
+            int seqno = 0;
+            Models.HisResultField hrf = new HisResultField();
+
+            if (Session["ORDERTYPEID"]!=null)
+                ordertypeid = (int)Session["ORDERTYPEID"];
+
+            if (ordertypeid != 0)
+            {
+                hrf.HisOrderTypeId = ordertypeid;
+
+                var tmp1 = db.HisResultFields.Where(d => d.HisOrderTypeId == ordertypeid);
+                seqno = 10 * ( tmp1.Count() + 1 );
+                hrf.SeqNo = seqno;
+            }
+
+            ViewBag.HisOrderTypeId = new SelectList(db.HisOrderTypes, "Id", "Description", ordertypeid);
+            return View(hrf);
         }
 
         // POST: HIS10/HisResultFields/Create
@@ -118,6 +140,14 @@ namespace LIS.v10.Areas.HIS10.Controllers
             db.HisResultFields.Remove(hisResultField);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult OrderTypeFields(int? typeId)
+        {
+            Session["ORDERTYPEID"] = (int)typeId;
+            var hisResultFields = db.HisResultFields.Include(h => h.HisOrderType).Where(d=>d.HisOrderTypeId==typeId);
+            return View("index", hisResultFields.ToList());
         }
 
         protected override void Dispose(bool disposing)

@@ -115,6 +115,11 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ResultFields(int? id)
+        {
+            return RedirectToAction("OrderTypeFields", "HisResultFields", new { typeId = id, area = "HIS10" });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
