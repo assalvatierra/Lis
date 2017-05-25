@@ -23,8 +23,32 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
         public ActionResult ResultList(int? orderId)
         {
-    
-            var hisResults = db.HisResults.Include(h => h.HisOrder).Include(h => h.HisResultField);
+            Models.HisOrder order = db.HisOrders.Find((int)orderId);
+            var hisResults = db.HisResults.Include(h => h.HisOrder).Include(h => h.HisResultField).Where(d=>d.HisOrderId==orderId);
+            if(hisResults.Count()==0)
+            {
+                //generate fields results
+
+                //get order type
+                int ordertype = order.HisOrderTypeId;
+
+                //get fields for the type
+                var OrderTypeFields = db.HisResultFields.Where(d => d.HisOrderTypeId == ordertype);
+                
+                //add types to result 
+                foreach(var tmpField in OrderTypeFields)
+                {
+                    Models.HisResult hrf = new HisResult();
+                    hrf.HisOrderId = (int)orderId;
+                    hrf.HisResultFieldId = tmpField.Id;
+                    hrf.Remarks = "";
+
+                    db.HisResults.Add(hrf);
+                }
+
+                db.SaveChanges();
+            }
+
             return View(hisResults.ToList());
         }
 
