@@ -146,6 +146,12 @@ namespace LIS.v10.Areas.HIS10.Controllers
         public ActionResult OrderTypeFields(int? typeId)
         {
             Session["ORDERTYPEID"] = (int)typeId;
+
+            if( typeId != null && typeId > 0)
+            {
+                ViewBag.orderType = db.HisOrderTypes.Find(typeId);
+            }
+
             var hisResultFields = db.HisResultFields.Include(h => h.HisOrderType).Where(d=>d.HisOrderTypeId==typeId);
             return View("index", hisResultFields.ToList());
         }
