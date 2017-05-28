@@ -7,7 +7,7 @@
       <Diagram DiagramId="bfe074423cf5494dbae538c3c271abc3" Name="Diagram1" ZoomLevel="83" >
         <EntityTypeShape EntityType="His10DB.HisEntity" Width="1.5" PointX="2.75" PointY="0.625" />
         <EntityTypeShape EntityType="His10DB.HisProfile" Width="1.5" PointX="9.75" PointY="0.5" />
-        <EntityTypeShape EntityType="His10DB.HisCategory" Width="1.5" PointX="0.5" PointY="0.625" />
+        <EntityTypeShape EntityType="His10DB.HisCategory" Width="1.5" PointX="0.625" PointY="0.625" />
         <EntityTypeShape EntityType="His10DB.HisEntCat" Width="1.5" PointX="0.5" PointY="3.5" />
         <EntityTypeShape EntityType="His10DB.HisOrder" Width="1.5" PointX="9.75" PointY="3.75" />
         <EntityTypeShape EntityType="His10DB.HisOrderType" Width="1.5" PointX="15" PointY="2.125" />

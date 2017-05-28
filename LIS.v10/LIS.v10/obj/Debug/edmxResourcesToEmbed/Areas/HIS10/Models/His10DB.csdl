@@ -319,6 +319,7 @@
     <Property Name="minUm" Type="String" Nullable="true" MaxLength="10" />
     <Property Name="maxValue" Type="String" Nullable="true" MaxLength="10" />
     <Property Name="maxUm" Type="String" Nullable="true" MaxLength="10" />
+    <Property Name="AddForType" Type="Int32" Nullable="true" />
   </EntityType>
   <EntityType Name="HisResult">
     <Key>

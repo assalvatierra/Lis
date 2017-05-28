@@ -108,6 +108,7 @@
           <ScalarProperty Name="minUm" ColumnName="minUm" />
           <ScalarProperty Name="maxValue" ColumnName="maxValue" />
           <ScalarProperty Name="maxUm" ColumnName="maxUm" />
+          <ScalarProperty Name="AddForType" ColumnName="AddForType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

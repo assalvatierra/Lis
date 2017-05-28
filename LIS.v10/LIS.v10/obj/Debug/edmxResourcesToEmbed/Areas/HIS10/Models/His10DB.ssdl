@@ -184,6 +184,7 @@
     <Property Name="minUm" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="maxValue" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="maxUm" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="AddForType" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="HisResults">
     <Key>

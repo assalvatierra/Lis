@@ -24,6 +24,14 @@
                 @Html.ValidationMessageFor(model => model.HisOrderTypeId, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Add with service type</label>
+            <div class="col-md-10">
+                @Html.DropDownList("AddForType", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AddForType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })

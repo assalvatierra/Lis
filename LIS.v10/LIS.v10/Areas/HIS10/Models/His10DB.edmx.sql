@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/28/2017 07:24:37
+-- Date Created: 05/28/2017 15:20:33
 -- Generated from EDMX file: C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -219,7 +219,8 @@ CREATE TABLE [dbo].[HisResultFields] (
     [minValue] nvarchar(20)  NULL,
     [minUm] nvarchar(10)  NULL,
     [maxValue] nvarchar(10)  NULL,
-    [maxUm] nvarchar(10)  NULL
+    [maxUm] nvarchar(10)  NULL,
+    [AddForType] int  NULL
 );
 GO
 

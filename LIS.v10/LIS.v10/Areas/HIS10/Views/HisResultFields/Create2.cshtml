@@ -1,11 +1,11 @@
 ﻿@model LIS.v10.Areas.HIS10.Models.HisResultField
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create2";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Create2</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -20,13 +20,6 @@
             <div class="col-md-10">
                 @Html.DropDownList("HisOrderTypeId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.HisOrderTypeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">Add with service type</label>
-            <div class="col-md-10">
-                @Html.DropDownList("AddForType", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.AddForType, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -45,6 +38,15 @@
                 @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SeqNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SeqNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SeqNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.minValue, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -52,6 +54,7 @@
                 @Html.ValidationMessageFor(model => model.minValue, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.minUm, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -59,6 +62,7 @@
                 @Html.ValidationMessageFor(model => model.minUm, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.maxValue, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -66,6 +70,7 @@
                 @Html.ValidationMessageFor(model => model.maxValue, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.maxUm, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -75,10 +80,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SeqNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AddForType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SeqNo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SeqNo, "", new { @class = "text-danger" })
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.AddForType)
+                    @Html.ValidationMessageFor(model => model.AddForType, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 

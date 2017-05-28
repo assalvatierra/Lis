@@ -189,6 +189,7 @@
     <Property Name="minUm" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="maxValue" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="maxUm" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="AddForType" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="HisResults">
     <Key>
@@ -767,6 +768,7 @@
           <Property Name="minUm" Type="String" Nullable="true" MaxLength="10" />
           <Property Name="maxValue" Type="String" Nullable="true" MaxLength="10" />
           <Property Name="maxUm" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="AddForType" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="HisResult">
           <Key>
@@ -1034,6 +1036,7 @@
           <ScalarProperty Name="minUm" ColumnName="minUm" />
           <ScalarProperty Name="maxValue" ColumnName="maxValue" />
           <ScalarProperty Name="maxUm" ColumnName="maxUm" />
+          <ScalarProperty Name="AddForType" ColumnName="AddForType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

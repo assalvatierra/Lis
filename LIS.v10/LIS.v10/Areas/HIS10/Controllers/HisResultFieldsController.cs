@@ -62,6 +62,11 @@ namespace LIS.v10.Areas.HIS10.Controllers
             }
 
             ViewBag.HisOrderTypeId = new SelectList(db.HisOrderTypes, "Id", "Description", ordertypeid);
+            ViewBag.AddForType = new SelectList(new List<SelectListItem> {
+                new SelectListItem { Text = "Optional", Value = "0"},
+                new SelectListItem { Text = "Always Add to Service", Value = "1" }
+            }, "Value", "Text");
+
             return View(hrf);
         }
 
@@ -70,7 +75,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,HisOrderTypeId,Name,Desc,SeqNo, minValue, minUm, maxValue, maxUm")] HisResultField hisResultField)
+        public ActionResult Create([Bind(Include = "Id,HisOrderTypeId,Name,Desc,SeqNo, minValue, minUm, maxValue, maxUm, AddForType")] HisResultField hisResultField)
         {
             if (ModelState.IsValid)
             {
@@ -96,6 +101,11 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 return HttpNotFound();
             }
             ViewBag.HisOrderTypeId = new SelectList(db.HisOrderTypes, "Id", "Description", hisResultField.HisOrderTypeId);
+            ViewBag.AddForType = new SelectList(new List<SelectListItem> {
+                new SelectListItem { Text = "Optional", Value = "0"},
+                new SelectListItem { Text = "Always Add to Service", Value = "1" }
+            }, "Value","Text", hisResultField.AddForType);
+
             return View(hisResultField);
         }
 
@@ -104,7 +114,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,HisOrderTypeId,Name,Desc,SeqNo, minValue, minUm, maxValue, maxUm")] HisResultField hisResultField)
+        public ActionResult Edit([Bind(Include = "Id,HisOrderTypeId,Name,Desc,SeqNo, minValue, minUm, maxValue, maxUm, AddForType")] HisResultField hisResultField)
         {
             if (ModelState.IsValid)
             {

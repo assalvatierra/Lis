@@ -37,7 +37,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 int ordertype = order.HisOrderTypeId;
 
                 //get fields for the type
-                var OrderTypeFields = db.HisResultFields.Where(d => d.HisOrderTypeId == ordertype);
+                var OrderTypeFields = db.HisResultFields.Where(d => d.HisOrderTypeId == ordertype && d.AddForType == 1);
                 
                 //add types to result 
                 foreach(var tmpField in OrderTypeFields)
