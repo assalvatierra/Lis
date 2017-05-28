@@ -17,12 +17,16 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // GET: HIS10/HisResults
         public ActionResult Index()
         {
-            var hisResults = db.HisResults.Include(h => h.HisOrder).Include(h => h.HisResultField);
-            return View(hisResults.ToList());
+            int orderid = (int)Session["ORDERID"];
+            if(orderid==0) return RedirectToAction("index", "HisOrders");
+
+            return RedirectToAction("ResultList", new { orderId = orderid });
         }
 
         public ActionResult ResultList(int? orderId)
         {
+            Session["ORDERID"] = (int)orderId;
+
             Models.HisOrder order = db.HisOrders.Find((int)orderId);
             var hisResults = db.HisResults.Include(h => h.HisOrder).Include(h => h.HisResultField).Where(d=>d.HisOrderId==orderId);
             if(hisResults.Count()==0)
@@ -49,6 +53,8 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 db.SaveChanges();
             }
 
+            ViewBag.Order = order;
+
             return View(hisResults.ToList());
         }
 
@@ -70,7 +76,8 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // GET: HIS10/HisResults/Create
         public ActionResult Create()
         {
-            ViewBag.HisOrderId = new SelectList(db.HisOrders, "Id", "SpecimenId");
+            int orderid = (int)Session["ORDERID"];
+            ViewBag.HisOrderId = new SelectList(db.HisOrders, "Id", "SpecimenId", orderid);
             ViewBag.HisResultFieldId = new SelectList(db.HisResultFields, "Id", "Name");
             return View();
         }

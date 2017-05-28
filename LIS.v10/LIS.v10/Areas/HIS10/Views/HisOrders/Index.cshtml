@@ -1,8 +1,12 @@
-﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisOrder>
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Controllers.HisOrdersController.cOrderList>
 
 @{
     ViewBag.Title = "Laboratory";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<LIS.v10.Areas.HIS10.Controllers.HisOrdersController.cOrderList>
+        oStatus = (List<LIS.v10.Areas.HIS10.Controllers.HisOrdersController.cOrderList>)ViewBag.orderList;
+
 }
 
 <h2>Laboratory</h2>
@@ -13,28 +17,31 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.HisProfile.Name)
+            Completed
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SpecimenId)
+            @Html.DisplayNameFor(model => model.Order.HisProfile.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dtRequest)
+            @Html.DisplayNameFor(model => model.Order.SpecimenId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dtProcessed)
+            @Html.DisplayNameFor(model => model.Order.dtRequest)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dtReleased)
+            @Html.DisplayNameFor(model => model.Order.dtProcessed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HisOrderType.Description)
+            @Html.DisplayNameFor(model => model.Order.dtReleased)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HisPhysician.Name)
+            @Html.DisplayNameFor(model => model.Order.HisOrderType.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HisInstrument.Name)
+            @Html.DisplayNameFor(model => model.Order.HisPhysician.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order.HisInstrument.Name)
         </th>
         <th></th>
     </tr>
@@ -42,33 +49,36 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.HisProfile.Name)
+            @item.Processed%
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SpecimenId)
+            @Html.DisplayFor(modelItem => item.Order.HisProfile.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dtRequest)
+            @Html.DisplayFor(modelItem => item.Order.SpecimenId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dtProcessed)
+            @Html.DisplayFor(modelItem => item.Order.dtRequest)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dtReleased)
+            @Html.DisplayFor(modelItem => item.Order.dtProcessed)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HisOrderType.Description)
+            @Html.DisplayFor(modelItem => item.Order.dtReleased)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HisPhysician.Name)
+            @Html.DisplayFor(modelItem => item.Order.HisOrderType.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HisInstrument.Name)
+            @Html.DisplayFor(modelItem => item.Order.HisPhysician.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Result", "ResultList", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.Order.HisInstrument.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Order.Id }) |
+            @Html.ActionLink("Result", "ResultList", new { id = item.Order.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Order.Id })
         </td>
     </tr>
 }

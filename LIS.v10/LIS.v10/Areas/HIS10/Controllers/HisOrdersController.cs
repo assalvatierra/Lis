@@ -12,15 +12,54 @@ namespace LIS.v10.Areas.HIS10.Controllers
 {
     public class HisOrdersController : Controller
     {
+        public class cOrderList
+        {
+            public int orderid { get; set; }
+            public Models.HisOrder Order { get; set; }
+            public int Required { get; set; }
+            public int Completed { get; set; }
+            public int Processed { get; set; }
+        }
+        
         private His10DBContainer db = new His10DBContainer();
 
         // GET: HIS10/HisOrders
-        public ActionResult Index()
+        public ActionResult Index(int? status)
         {
             var hisOrders = db.HisOrders.Include(h => h.HisOrderType).Include(h => h.HisProfile).Include(h => h.HisPhysician).Include(h => h.HisInstrument);
-            return View(hisOrders.ToList());
-        }
 
+            List<cOrderList> orderList = new List<cOrderList>();
+            foreach (var tmpOrder in hisOrders)
+            {
+                int iRequired = tmpOrder.HisResults.Count;
+                int iCompleted = 0;
+
+                if (tmpOrder.HisResults.Count == 0) iCompleted = 0;
+                if (tmpOrder.HisResults.Count >= 1) iCompleted = tmpOrder.HisResults.Where(d => d.Value1 != null && d.Value1.Trim() != "").ToList().Count;
+
+
+                int iProcessed = 0;
+                if (iRequired > 0) iProcessed = (100 * iCompleted / iRequired);
+                if (iProcessed > 100) iProcessed = 100;
+
+                orderList.Add(new cOrderList
+                {
+                    orderid = tmpOrder.Id,
+                    Order = tmpOrder,
+                    Required = iRequired, Completed = iCompleted,
+                    Processed = iProcessed
+                });
+
+            }
+//            if (orderList.Count > 0) ViewBag.orderList = orderList;
+
+            //if ((int)status == 1)
+            //{
+            //}
+
+            return View(orderList.ToList());
+        }
+        
         // GET: HIS10/HisOrders/Details/5
         public ActionResult Details(int? id)
         {
