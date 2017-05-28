@@ -27,6 +27,10 @@ namespace LIS.v10.Areas.HIS10.Models
         public string Name { get; set; }
         public string Desc { get; set; }
         public int SeqNo { get; set; }
+        public string minValue { get; set; }
+        public string minUm { get; set; }
+        public string maxValue { get; set; }
+        public string maxUm { get; set; }
     
         public virtual HisOrderType HisOrderType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

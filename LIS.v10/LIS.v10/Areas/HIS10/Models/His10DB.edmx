@@ -185,6 +185,10 @@
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="200" />
     <Property Name="SeqNo" Type="int" Nullable="false" DefaultValue="100" />
+    <Property Name="minValue" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="minUm" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="maxValue" Type="nvarchar" Nullable="true" MaxLength="10" />
+    <Property Name="maxUm" Type="nvarchar" Nullable="true" MaxLength="10" />
   </EntityType>
   <EntityType Name="HisResults">
     <Key>
@@ -759,6 +763,10 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
           <Property Name="Desc" Type="String" Nullable="false" MaxLength="200" />
           <Property Name="SeqNo" Type="Int32" Nullable="false" DefaultValue="100" />
+          <Property Name="minValue" Type="String" Nullable="true" MaxLength="20" />
+          <Property Name="minUm" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="maxValue" Type="String" Nullable="true" MaxLength="10" />
+          <Property Name="maxUm" Type="String" Nullable="true" MaxLength="10" />
         </EntityType>
         <EntityType Name="HisResult">
           <Key>
@@ -1022,6 +1030,10 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
           <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+          <ScalarProperty Name="minValue" ColumnName="minValue" />
+          <ScalarProperty Name="minUm" ColumnName="minUm" />
+          <ScalarProperty Name="maxValue" ColumnName="maxValue" />
+          <ScalarProperty Name="maxUm" ColumnName="maxUm" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -28,7 +28,7 @@
         <AssociationConnector Association="His10DB.HisOrderHisResult" />
         <AssociationConnector Association="His10DB.HisOrderTypeHisResultField" />
         <AssociationConnector Association="His10DB.HisResultFieldHisResult" />
-        <EntityTypeShape EntityType="His10DB.HisResultRange" Width="1.5" PointX="11.75" PointY="7.875" />
+        <EntityTypeShape EntityType="His10DB.HisResultRange" Width="1.5" PointX="15" PointY="8.625" />
         <AssociationConnector Association="His10DB.HisResultFieldHisInsResultRange" />
         <EntityTypeShape EntityType="His10DB.HisOrderRemarks" Width="1.5" PointX="6.625" PointY="6.875" />
         <AssociationConnector Association="His10DB.HisOrderHisOrderRemarks" />

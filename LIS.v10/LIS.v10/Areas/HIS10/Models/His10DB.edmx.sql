@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/20/2017 14:18:29
--- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
+-- Date Created: 05/28/2017 07:24:37
+-- Generated from EDMX file: C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -215,7 +215,11 @@ CREATE TABLE [dbo].[HisResultFields] (
     [HisOrderTypeId] int  NOT NULL,
     [Name] nvarchar(100)  NOT NULL,
     [Desc] nvarchar(200)  NOT NULL,
-    [SeqNo] int  NOT NULL
+    [SeqNo] int  NOT NULL,
+    [minValue] nvarchar(20)  NULL,
+    [minUm] nvarchar(10)  NULL,
+    [maxValue] nvarchar(10)  NULL,
+    [maxUm] nvarchar(10)  NULL
 );
 GO
 

@@ -104,6 +104,10 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
           <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+          <ScalarProperty Name="minValue" ColumnName="minValue" />
+          <ScalarProperty Name="minUm" ColumnName="minUm" />
+          <ScalarProperty Name="maxValue" ColumnName="maxValue" />
+          <ScalarProperty Name="maxUm" ColumnName="maxUm" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
