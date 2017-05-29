@@ -53,13 +53,6 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.minUm, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.minUm, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.minUm, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
             @Html.LabelFor(model => model.maxValue, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.maxValue, new { htmlAttributes = new { @class = "form-control" } })
@@ -67,10 +60,10 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.maxUm, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Uom, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.maxUm, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.maxUm, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Uom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Uom, "", new { @class = "text-danger" })
             </div>
         </div>
 

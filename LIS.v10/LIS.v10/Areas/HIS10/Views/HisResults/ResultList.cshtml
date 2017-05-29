@@ -6,6 +6,7 @@
 
     LIS.v10.Areas.HIS10.Models.HisOrder order = (LIS.v10.Areas.HIS10.Models.HisOrder) ViewBag.Order;
 }
+
 <h2>Request Details</h2>
 <table class="table">
     <tr>
@@ -55,13 +56,7 @@
             @Html.DisplayNameFor(model => model.HisOrder.SpecimenId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Value1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Value2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Value3)
+            Result
         </th>
         <th colspan="2">Normal Range</th>
         <th>
@@ -83,18 +78,11 @@
                 @Html.DisplayFor(modelItem => item.Value1)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Value2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Value3)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HisResultField.minValue)
-                @Html.DisplayFor(modelItem => item.HisResultField.minUm)
-            </td>
-            <td>
+                @Html.DisplayFor(modelItem => item.HisResultField.minValue) - 
                 @Html.DisplayFor(modelItem => item.HisResultField.maxValue)
-                @Html.DisplayFor(modelItem => item.HisResultField.maxUm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HisResultField.Uom)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Remarks)

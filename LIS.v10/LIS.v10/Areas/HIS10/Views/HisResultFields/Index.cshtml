@@ -34,10 +34,10 @@
             @Html.DisplayNameFor(model => model.Desc)
         </th>
         <th>
-            Min
+            Normal Range
         </th>
         <th>
-            Max
+            Measurement
         </th>
         <th>
             @Html.DisplayNameFor(model => model.SeqNo)
@@ -57,10 +57,11 @@
             @Html.DisplayFor(modelItem => item.Desc)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.minValue) @Html.DisplayFor(modelItem => item.minUm)
+            @Html.DisplayFor(modelItem => item.minValue) -
+            @Html.DisplayFor(modelItem => item.maxValue)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.maxValue) @Html.DisplayFor(modelItem => item.maxUm)
+            @Html.DisplayFor(modelItem => item.Uom)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SeqNo)

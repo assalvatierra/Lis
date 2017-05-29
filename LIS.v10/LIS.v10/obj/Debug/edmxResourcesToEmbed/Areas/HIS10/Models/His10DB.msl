@@ -101,14 +101,13 @@
         <MappingFragment StoreEntitySet="HisResultFields">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HisOrderTypeId" ColumnName="HisOrderTypeId" />
+          <ScalarProperty Name="AddForType" ColumnName="AddForType" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
           <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
           <ScalarProperty Name="minValue" ColumnName="minValue" />
-          <ScalarProperty Name="minUm" ColumnName="minUm" />
           <ScalarProperty Name="maxValue" ColumnName="maxValue" />
-          <ScalarProperty Name="maxUm" ColumnName="maxUm" />
-          <ScalarProperty Name="AddForType" ColumnName="AddForType" />
+          <ScalarProperty Name="Uom" ColumnName="Uom" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

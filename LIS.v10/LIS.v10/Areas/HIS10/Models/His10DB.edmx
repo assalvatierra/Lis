@@ -182,14 +182,13 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HisOrderTypeId" Type="int" Nullable="false" />
+    <Property Name="AddForType" Type="int" Nullable="true" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="200" />
     <Property Name="SeqNo" Type="int" Nullable="false" DefaultValue="100" />
     <Property Name="minValue" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="minUm" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="maxValue" Type="nvarchar" Nullable="true" MaxLength="10" />
-    <Property Name="maxUm" Type="nvarchar" Nullable="true" MaxLength="10" />
-    <Property Name="AddForType" Type="int" Nullable="true" />
+    <Property Name="Uom" Type="nvarchar" Nullable="true" MaxLength="10" />
   </EntityType>
   <EntityType Name="HisResults">
     <Key>
@@ -761,14 +760,13 @@
           <Property Name="HisOrderTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="HisResults" Relationship="His10DB.HisResultFieldHisResult" FromRole="HisResultField" ToRole="HisResult" />
           <NavigationProperty Name="HisInsResultRanges" Relationship="His10DB.HisResultFieldHisInsResultRange" FromRole="HisResultField" ToRole="HisInsResultRange" />
+          <Property Name="AddForType" Type="Int32" Nullable="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
           <Property Name="Desc" Type="String" Nullable="false" MaxLength="200" />
           <Property Name="SeqNo" Type="Int32" Nullable="false" DefaultValue="100" />
           <Property Name="minValue" Type="String" Nullable="true" MaxLength="20" />
-          <Property Name="minUm" Type="String" Nullable="true" MaxLength="10" />
           <Property Name="maxValue" Type="String" Nullable="true" MaxLength="10" />
-          <Property Name="maxUm" Type="String" Nullable="true" MaxLength="10" />
-          <Property Name="AddForType" Type="Int32" Nullable="true" />
+          <Property Name="Uom" Type="String" Nullable="true" MaxLength="10" />
         </EntityType>
         <EntityType Name="HisResult">
           <Key>
@@ -1029,14 +1027,13 @@
         <MappingFragment StoreEntitySet="HisResultFields">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HisOrderTypeId" ColumnName="HisOrderTypeId" />
+          <ScalarProperty Name="AddForType" ColumnName="AddForType" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Desc" ColumnName="Desc" />
           <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
           <ScalarProperty Name="minValue" ColumnName="minValue" />
-          <ScalarProperty Name="minUm" ColumnName="minUm" />
           <ScalarProperty Name="maxValue" ColumnName="maxValue" />
-          <ScalarProperty Name="maxUm" ColumnName="maxUm" />
-          <ScalarProperty Name="AddForType" ColumnName="AddForType" />
+          <ScalarProperty Name="Uom" ColumnName="Uom" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

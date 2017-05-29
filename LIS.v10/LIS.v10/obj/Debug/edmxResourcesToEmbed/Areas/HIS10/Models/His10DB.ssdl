@@ -177,14 +177,13 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HisOrderTypeId" Type="int" Nullable="false" />
+    <Property Name="AddForType" Type="int" Nullable="true" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="200" />
     <Property Name="SeqNo" Type="int" Nullable="false" DefaultValue="100" />
     <Property Name="minValue" Type="nvarchar" Nullable="true" MaxLength="20" />
-    <Property Name="minUm" Type="nvarchar" Nullable="true" MaxLength="10" />
     <Property Name="maxValue" Type="nvarchar" Nullable="true" MaxLength="10" />
-    <Property Name="maxUm" Type="nvarchar" Nullable="true" MaxLength="10" />
-    <Property Name="AddForType" Type="int" Nullable="true" />
+    <Property Name="Uom" Type="nvarchar" Nullable="true" MaxLength="10" />
   </EntityType>
   <EntityType Name="HisResults">
     <Key>
