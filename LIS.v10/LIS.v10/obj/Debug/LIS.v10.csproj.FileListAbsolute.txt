@@ -161,3 +161,4 @@ C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\bin\Microsoft.Owin.Security
 C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.dll
 C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.pdb
+C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.csprojResolveAssemblyReference.cache
