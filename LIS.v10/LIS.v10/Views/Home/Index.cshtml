@@ -10,6 +10,8 @@
 </div>
 
 <div class="row">
+    @if (ViewBag.PageType == "ADMIN")
+    {
     <div class="col-md-4">
         <h2>Admin</h2>
         <p>
@@ -19,6 +21,10 @@
             @Html.ActionLink("Admin Panel", "index", "SystemAdmin", new { area = "Core" }, new { @class = "btn btn-default" })
         </p>
     </div>
+    }
+
+    @if (ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN")
+    {
     <div class="col-md-4">
         <h2>Profiles</h2>
         <p>Patient Profiles</p>
@@ -26,6 +32,30 @@
             @Html.ActionLink("Profiles", "index", "HisProfiles", new { area = "HIS10" }, new { @class = "btn btn-default" })
         </p>
     </div>
+    }
+
+    @if (ViewBag.PageType == "DOCTOR")
+    {
+        <div class="col-md-4">
+            <h2>Doctor Profile</h2>
+            <p>Define Doctor information and clinic schedules</p>
+            <p>
+                @Html.ActionLink("Profiles", "index", "HisProfiles", new { area = "HIS10" }, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    }
+    @if (ViewBag.PageType == "PATIENT")
+    {
+        <div class="col-md-4">
+            <h2>Patient Profile</h2>
+            <p>Define patient information and clinic schedules</p>
+            <p>
+                @Html.ActionLink("Profiles", "index", "HisProfiles", new { area = "HIS10" }, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    }
+
+
     <div class="col-md-4">
         <h2>Laboratory</h2>
         <p>Laboratory Status</p>

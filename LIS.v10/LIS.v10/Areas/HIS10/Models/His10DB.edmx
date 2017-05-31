@@ -21,6 +21,8 @@
     <EntitySet Name="HisOrderRemarks" EntityType="His10DB.Store.HisOrderRemarks" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisProfileDetails" EntityType="His10DB.Store.HisProfileDetails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisPhysicianProfiles" EntityType="His10DB.Store.HisPhysicianProfiles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisOperators" EntityType="His10DB.Store.HisOperators" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisEntOperators" EntityType="His10DB.Store.HisEntOperators" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
       <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
@@ -89,6 +91,14 @@
       <End Role="HisProfile" EntitySet="HisProfiles" />
       <End Role="HisPhysicianProfile" EntitySet="HisPhysicianProfiles" />
     </AssociationSet>
+    <AssociationSet Name="HisOperatorHisEntOperator" Association="His10DB.Store.HisOperatorHisEntOperator">
+      <End Role="HisOperator" EntitySet="HisOperators" />
+      <End Role="HisEntOperator" EntitySet="HisEntOperators" />
+    </AssociationSet>
+    <AssociationSet Name="HisEntityHisEntOperator" Association="His10DB.Store.HisEntityHisEntOperator">
+      <End Role="HisEntity" EntitySet="HisEntities" />
+      <End Role="HisEntOperator" EntitySet="HisEntOperators" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntities">
     <Key>
@@ -154,6 +164,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
+    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="HisEntPhysicians">
     <Key>
@@ -239,6 +250,23 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HisPhysicianId" Type="int" Nullable="false" />
     <Property Name="HisProfileId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisOperators">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
+    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="HisEntOperators">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisOperatorId" Type="int" Nullable="false" />
+    <Property Name="HisEntityId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -444,6 +472,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="HisOperatorHisEntOperator">
+    <End Role="HisOperator" Type="His10DB.Store.HisOperators" Multiplicity="1" />
+    <End Role="HisEntOperator" Type="His10DB.Store.HisEntOperators" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisOperator">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntOperator">
+        <PropertyRef Name="HisOperatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisEntityHisEntOperator">
+    <End Role="HisEntity" Type="His10DB.Store.HisEntities" Multiplicity="1" />
+    <End Role="HisEntOperator" Type="His10DB.Store.HisEntOperators" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntOperator">
+        <PropertyRef Name="HisEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -532,6 +584,16 @@
             <End Role="HisProfile" EntitySet="HisProfiles" />
             <End Role="HisPhysicianProfile" EntitySet="HisPhysicianProfiles" />
           </AssociationSet>
+          <EntitySet Name="HisOperators" EntityType="His10DB.HisOperator" />
+          <EntitySet Name="HisEntOperators" EntityType="His10DB.HisEntOperator" />
+          <AssociationSet Name="HisOperatorHisEntOperator" Association="His10DB.HisOperatorHisEntOperator">
+            <End Role="HisOperator" EntitySet="HisOperators" />
+            <End Role="HisEntOperator" EntitySet="HisEntOperators" />
+          </AssociationSet>
+          <AssociationSet Name="HisEntityHisEntOperator" Association="His10DB.HisEntityHisEntOperator">
+            <End Role="HisEntity" EntitySet="HisEntities" />
+            <End Role="HisEntOperator" EntitySet="HisEntOperators" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HisEntity">
           <Key>
@@ -544,6 +606,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
           <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
           <Property Name="userGroupId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisEntOperators" Relationship="His10DB.HisEntityHisEntOperator" FromRole="HisEntity" ToRole="HisEntOperator" />
         </EntityType>
         <EntityType Name="HisProfile">
           <Key>
@@ -617,6 +680,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" />
           <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
           <NavigationProperty Name="HisPhysicianProfiles" Relationship="His10DB.HisPhysicianHisPhysicianProfile" FromRole="HisPhysician" ToRole="HisPhysicianProfile" />
+          <Property Name="AccntUserId" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="HisEntPhysician">
           <Key>
@@ -921,6 +985,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="HisOperator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
+          <Property Name="AccntUserId" Type="String" Nullable="true" />
+          <NavigationProperty Name="HisEntOperators" Relationship="His10DB.HisOperatorHisEntOperator" FromRole="HisOperator" ToRole="HisEntOperator" />
+        </EntityType>
+        <EntityType Name="HisEntOperator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisOperator" Relationship="His10DB.HisOperatorHisEntOperator" FromRole="HisEntOperator" ToRole="HisOperator" />
+          <Property Name="HisOperatorId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisEntity" Relationship="His10DB.HisEntityHisEntOperator" FromRole="HisEntOperator" ToRole="HisEntity" />
+          <Property Name="HisEntityId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="HisOperatorHisEntOperator">
+          <End Type="His10DB.HisOperator" Role="HisOperator" Multiplicity="1" />
+          <End Type="His10DB.HisEntOperator" Role="HisEntOperator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisOperator">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisEntOperator">
+              <PropertyRef Name="HisOperatorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisEntityHisEntOperator">
+          <End Type="His10DB.HisEntity" Role="HisEntity" Multiplicity="1" />
+          <End Type="His10DB.HisEntOperator" Role="HisEntOperator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisEntity">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisEntOperator">
+              <PropertyRef Name="HisEntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -996,6 +1104,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1089,6 +1198,25 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
           <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisOperators">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisOperator)">
+        <MappingFragment StoreEntitySet="HisOperators">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisEntOperators">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntOperator)">
+        <MappingFragment StoreEntitySet="HisEntOperators">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisOperatorId" ColumnName="HisOperatorId" />
+          <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

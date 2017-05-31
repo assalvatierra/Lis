@@ -70,6 +70,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -163,6 +164,25 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
           <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisOperators">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisOperator)">
+        <MappingFragment StoreEntitySet="HisOperators">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisEntOperators">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntOperator)">
+        <MappingFragment StoreEntitySet="HisEntOperators">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisOperatorId" ColumnName="HisOperatorId" />
+          <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

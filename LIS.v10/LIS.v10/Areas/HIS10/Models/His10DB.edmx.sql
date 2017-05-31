@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/29/2017 15:11:47
+-- Date Created: 05/31/2017 15:16:54
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -184,7 +184,8 @@ GO
 CREATE TABLE [dbo].[HisPhysicians] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(200)  NOT NULL,
-    [Remarks] nvarchar(200)  NULL
+    [Remarks] nvarchar(200)  NULL,
+    [AccntUserId] nvarchar(max)  NULL
 );
 GO
 
@@ -270,6 +271,23 @@ CREATE TABLE [dbo].[HisPhysicianProfiles] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [HisPhysicianId] int  NOT NULL,
     [HisProfileId] int  NOT NULL
+);
+GO
+
+-- Creating table 'HisOperators'
+CREATE TABLE [dbo].[HisOperators] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(200)  NOT NULL,
+    [Remarks] nvarchar(200)  NULL,
+    [AccntUserId] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'HisEntOperators'
+CREATE TABLE [dbo].[HisEntOperators] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisOperatorId] int  NOT NULL,
+    [HisEntityId] int  NOT NULL
 );
 GO
 
@@ -364,6 +382,18 @@ GO
 -- Creating primary key on [Id] in table 'HisPhysicianProfiles'
 ALTER TABLE [dbo].[HisPhysicianProfiles]
 ADD CONSTRAINT [PK_HisPhysicianProfiles]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisOperators'
+ALTER TABLE [dbo].[HisOperators]
+ADD CONSTRAINT [PK_HisOperators]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisEntOperators'
+ALTER TABLE [dbo].[HisEntOperators]
+ADD CONSTRAINT [PK_HisEntOperators]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -624,6 +654,36 @@ GO
 CREATE INDEX [IX_FK_HisProfileHisPhysicianProfile]
 ON [dbo].[HisPhysicianProfiles]
     ([HisProfileId]);
+GO
+
+-- Creating foreign key on [HisOperatorId] in table 'HisEntOperators'
+ALTER TABLE [dbo].[HisEntOperators]
+ADD CONSTRAINT [FK_HisOperatorHisEntOperator]
+    FOREIGN KEY ([HisOperatorId])
+    REFERENCES [dbo].[HisOperators]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisOperatorHisEntOperator'
+CREATE INDEX [IX_FK_HisOperatorHisEntOperator]
+ON [dbo].[HisEntOperators]
+    ([HisOperatorId]);
+GO
+
+-- Creating foreign key on [HisEntityId] in table 'HisEntOperators'
+ALTER TABLE [dbo].[HisEntOperators]
+ADD CONSTRAINT [FK_HisEntityHisEntOperator]
+    FOREIGN KEY ([HisEntityId])
+    REFERENCES [dbo].[HisEntities]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisEntityHisEntOperator'
+CREATE INDEX [IX_FK_HisEntityHisEntOperator]
+ON [dbo].[HisEntOperators]
+    ([HisEntityId]);
 GO
 
 -- --------------------------------------------------

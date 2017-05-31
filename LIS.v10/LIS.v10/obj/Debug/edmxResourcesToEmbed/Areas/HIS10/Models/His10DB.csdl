@@ -84,6 +84,16 @@
       <End Role="HisProfile" EntitySet="HisProfiles" />
       <End Role="HisPhysicianProfile" EntitySet="HisPhysicianProfiles" />
     </AssociationSet>
+    <EntitySet Name="HisOperators" EntityType="His10DB.HisOperator" />
+    <EntitySet Name="HisEntOperators" EntityType="His10DB.HisEntOperator" />
+    <AssociationSet Name="HisOperatorHisEntOperator" Association="His10DB.HisOperatorHisEntOperator">
+      <End Role="HisOperator" EntitySet="HisOperators" />
+      <End Role="HisEntOperator" EntitySet="HisEntOperators" />
+    </AssociationSet>
+    <AssociationSet Name="HisEntityHisEntOperator" Association="His10DB.HisEntityHisEntOperator">
+      <End Role="HisEntity" EntitySet="HisEntities" />
+      <End Role="HisEntOperator" EntitySet="HisEntOperators" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntity">
     <Key>
@@ -96,6 +106,7 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
     <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
     <Property Name="userGroupId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HisEntOperators" Relationship="His10DB.HisEntityHisEntOperator" FromRole="HisEntity" ToRole="HisEntOperator" />
   </EntityType>
   <EntityType Name="HisProfile">
     <Key>
@@ -169,6 +180,7 @@
     <Property Name="Name" Type="String" Nullable="false" MaxLength="200" />
     <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
     <NavigationProperty Name="HisPhysicianProfiles" Relationship="His10DB.HisPhysicianHisPhysicianProfile" FromRole="HisPhysician" ToRole="HisPhysicianProfile" />
+    <Property Name="AccntUserId" Type="String" Nullable="true" />
   </EntityType>
   <EntityType Name="HisEntPhysician">
     <Key>
@@ -470,6 +482,50 @@
       </Principal>
       <Dependent Role="HisPhysicianProfile">
         <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HisOperator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" />
+    <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
+    <Property Name="AccntUserId" Type="String" Nullable="true" />
+    <NavigationProperty Name="HisEntOperators" Relationship="His10DB.HisOperatorHisEntOperator" FromRole="HisOperator" ToRole="HisEntOperator" />
+  </EntityType>
+  <EntityType Name="HisEntOperator">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="HisOperator" Relationship="His10DB.HisOperatorHisEntOperator" FromRole="HisEntOperator" ToRole="HisOperator" />
+    <Property Name="HisOperatorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="HisEntity" Relationship="His10DB.HisEntityHisEntOperator" FromRole="HisEntOperator" ToRole="HisEntity" />
+    <Property Name="HisEntityId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="HisOperatorHisEntOperator">
+    <End Type="His10DB.HisOperator" Role="HisOperator" Multiplicity="1" />
+    <End Type="His10DB.HisEntOperator" Role="HisEntOperator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisOperator">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntOperator">
+        <PropertyRef Name="HisOperatorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisEntityHisEntOperator">
+    <End Type="His10DB.HisEntity" Role="HisEntity" Multiplicity="1" />
+    <End Type="His10DB.HisEntOperator" Role="HisEntOperator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntOperator">
+        <PropertyRef Name="HisEntityId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

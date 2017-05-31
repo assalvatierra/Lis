@@ -239,6 +239,7 @@
     </Compile>
     <Compile Include="Areas\HIS10\Controllers\HisEntitiesController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisInstrumentsController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisOperatorsController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisOrdersController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisOrderTypesController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisPhysiciansController.cs" />
@@ -270,10 +271,16 @@
     <Compile Include="Areas\HIS10\Models\HisEntity.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\HIS10\Models\HisEntOperator.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\HIS10\Models\HisEntPhysician.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Models\HisInstrument.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisOperator.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Models\HisOrder.cs">
@@ -463,6 +470,11 @@
     <Content Include="Areas\HIS10\Views\HisResults\Index.cshtml" />
     <Content Include="Areas\HIS10\Views\HisResults\ResultList.cshtml" />
     <Content Include="Areas\HIS10\Views\HisResultFields\Create2.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOperators\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOperators\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOperators\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOperators\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOperators\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LIS.v10.Areas.HIS10.Models;
+using Microsoft.AspNet.Identity;
 
 namespace LIS.v10.Areas.HIS10.Controllers
 {
@@ -26,7 +27,34 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // GET: HIS10/HisOrders
         public ActionResult Index(int? status)
         {
-            var hisOrders = db.HisOrders.Include(h => h.HisOrderType).Include(h => h.HisProfile).Include(h => h.HisPhysician).Include(h => h.HisInstrument);
+            IQueryable<Models.HisOrder> hisOrders = db.HisOrders.Include(h => h.HisOrderType).Include(h => h.HisProfile).Include(h => h.HisPhysician).Include(h => h.HisInstrument);
+            ViewBag.PageLabel = "Laboratory List";
+
+            if (User.Identity.IsAuthenticated)
+            {
+                string userAccntId = User.Identity.GetUserId();
+
+                //check if physician account
+                int iPhysician = 0;
+                var physician = db.HisPhysicians.Where(d => d.AccntUserId == userAccntId).FirstOrDefault();
+                if (physician != null) iPhysician = (int)physician.Id;
+                if (iPhysician != 0)
+                {
+                    hisOrders = hisOrders.Where(d => d.HisPhysicianId == iPhysician);
+                    ViewBag.PageLabel = "Doctor's Requests";
+                }
+
+                //check if Patient account
+                int iPatient = 0;
+                var patient = db.HisProfiles.Where(d => d.AccntUserId == userAccntId).FirstOrDefault();
+                if (patient != null) iPatient = (int)patient.Id;
+                if (iPatient != 0)
+                {
+                    hisOrders = hisOrders.Where(d => d.HisProfileId == iPatient);
+                    ViewBag.PageLabel = "Patient's Laboratory";
+                }
+
+            }
 
             List<cOrderList> orderList = new List<cOrderList>();
             foreach (var tmpOrder in hisOrders)
@@ -56,6 +84,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
             //if ((int)status == 1)
             //{
             //}
+
 
             return View(orderList.ToList());
         }
