@@ -475,6 +475,7 @@
     <Content Include="Areas\HIS10\Views\HisOperators\Details.cshtml" />
     <Content Include="Areas\HIS10\Views\HisOperators\Edit.cshtml" />
     <Content Include="Areas\HIS10\Views\HisOperators\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\profile.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -34,7 +34,7 @@
         <AssociationConnector Association="His10DB.HisOrderHisOrderRemarks" />
         <EntityTypeShape EntityType="His10DB.HisProfileDetails" Width="1.5" PointX="14" PointY="0.875" />
         <AssociationConnector Association="His10DB.HisProfileHisProfileDetails" />
-        <EntityTypeShape EntityType="His10DB.HisPhysicianProfile" Width="1.5" PointX="8.5" PointY="0.5" />
+        <EntityTypeShape EntityType="His10DB.HisPhysicianProfile" Width="1.5" PointX="9" PointY="0.5" />
         <AssociationConnector Association="His10DB.HisPhysicianHisPhysicianProfile" />
         <AssociationConnector Association="His10DB.HisProfileHisPhysicianProfile" />
         <EntityTypeShape EntityType="His10DB.HisOperator" Width="1.5" PointX="0.5" PointY="6" />

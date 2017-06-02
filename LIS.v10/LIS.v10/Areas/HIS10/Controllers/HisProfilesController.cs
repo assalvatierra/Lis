@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LIS.v10.Areas.HIS10.Models;
+using Microsoft.AspNet.Identity;
 
 namespace LIS.v10.Areas.HIS10.Controllers
 {
@@ -79,6 +80,43 @@ namespace LIS.v10.Areas.HIS10.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Remarks,AccntUserId")] HisProfile hisProfile)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(hisProfile).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(hisProfile);
+        }
+        // GET: HIS10/HisProfiles/Edit/5
+        public ActionResult Patient(int? id)
+        {
+            if (id == null)
+            {
+                string userAccntId = User.Identity.GetUserId();
+                var profile = db.HisProfiles.Where(d => d.AccntUserId == userAccntId).FirstOrDefault();
+                if (profile != null) id = (int)profile.Id;
+            }
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HisProfile hisProfile = db.HisProfiles.Find(id);
+            if (hisProfile == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hisProfile);
+        }
+
+        // POST: HIS10/HisProfiles/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Patient([Bind(Include = "Id,Name,Remarks,AccntUserId")] HisProfile hisProfile)
         {
             if (ModelState.IsValid)
             {

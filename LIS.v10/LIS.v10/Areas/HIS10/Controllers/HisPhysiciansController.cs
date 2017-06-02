@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LIS.v10.Areas.Core.Models;
 using LIS.v10.Areas.HIS10.Models;
+using Microsoft.AspNet.Identity;
 
 namespace LIS.v10.Areas.HIS10.Controllers
 {
@@ -18,6 +19,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // GET: HIS10/HisPhysicians
         public ActionResult Index()
         {
+
             return View(db.HisPhysicians.ToList());
         }
 
@@ -115,6 +117,46 @@ namespace LIS.v10.Areas.HIS10.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        // Doctors profile
+        // GET: HIS10/HisPhysicians/Edit/5
+        public ActionResult profile(int? id)
+        {
+            if (id == null)
+            {
+                string userAccntId = User.Identity.GetUserId();
+                var physician = db.HisPhysicians.Where(d => d.AccntUserId == userAccntId).FirstOrDefault();
+                if (physician != null) id = (int)physician.Id;
+            }
+        
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HisPhysician hisPhysician = db.HisPhysicians.Find(id);
+            if (hisPhysician == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hisPhysician);
+        }
+
+        // POST: HIS10/HisPhysicians/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult profile([Bind(Include = "Id,Name,Remarks,AccntUserId")] HisPhysician hisPhysician)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(hisPhysician).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index","Home",new { area = "" });
+            }
+            return View(hisPhysician);
+        }
+
 
         protected override void Dispose(bool disposing)
         {
