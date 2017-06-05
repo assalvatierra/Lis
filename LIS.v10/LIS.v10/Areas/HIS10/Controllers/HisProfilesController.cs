@@ -122,7 +122,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
             {
                 db.Entry(hisProfile).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home", new { area = "" });
             }
             return View(hisProfile);
         }

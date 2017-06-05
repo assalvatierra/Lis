@@ -42,6 +42,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 {
                     hisOrders = hisOrders.Where(d => d.HisPhysicianId == iPhysician);
                     ViewBag.PageLabel = "Doctor's Requests";
+                    ViewBag.PageType = "DOCTOR";
                 }
 
                 //check if Patient account
@@ -52,6 +53,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 {
                     hisOrders = hisOrders.Where(d => d.HisProfileId == iPatient);
                     ViewBag.PageLabel = "Patient's Laboratory";
+                    ViewBag.PageType = "PATIENT";
                 }
 
             }

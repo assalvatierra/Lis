@@ -19,29 +19,35 @@
         <th>
             Completed
         </th>
+        @if (ViewBag.PageType != "PATIENT")
+        {
         <th>
-            @Html.DisplayNameFor(model => model.Order.HisProfile.Name)
+            Patient
         </th>
+        }
         <th>
             @Html.DisplayNameFor(model => model.Order.SpecimenId)
         </th>
+        <td>
+            Request
+        </td>
+        <td>
+            Processed
+        </td>
+        <td>
+            Released
+        </td>
         <th>
-            @Html.DisplayNameFor(model => model.Order.dtRequest)
+            Order
         </th>
+        @if (ViewBag.PageType != "DOCTOR")
+        {
         <th>
-            @Html.DisplayNameFor(model => model.Order.dtProcessed)
+            Physician
         </th>
+        }
         <th>
-            @Html.DisplayNameFor(model => model.Order.dtReleased)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Order.HisOrderType.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Order.HisPhysician.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Order.HisInstrument.Name)
+            Instrument
         </th>
         <th></th>
     </tr>
@@ -51,9 +57,12 @@
         <td>
             @item.Processed%
         </td>
+        @if (ViewBag.PageType != "PATIENT")
+        {
         <td>
             @Html.DisplayFor(modelItem => item.Order.HisProfile.Name)
         </td>
+        }
         <td>
             @Html.DisplayFor(modelItem => item.Order.SpecimenId)
         </td>
@@ -69,9 +78,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.Order.HisOrderType.Description)
         </td>
+        @if (ViewBag.PageType != "DOCTOR")
+        {
         <td>
             @Html.DisplayFor(modelItem => item.Order.HisPhysician.Name)
         </td>
+        }
         <td>
             @Html.DisplayFor(modelItem => item.Order.HisInstrument.Name)
         </td>
