@@ -56,6 +56,10 @@ namespace LIS.v10.Areas.HIS10.Controllers
                     ViewBag.PageType = "PATIENT";
                 }
 
+                //check if MedTech account
+                var oper = db.HisOperators.Where(d => d.AccntUserId == userAccntId).FirstOrDefault();
+                if (oper != null) ViewBag.PageType = "MEDTECH";
+
             }
 
             List<cOrderList> orderList = new List<cOrderList>();
@@ -125,6 +129,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         {
             if (ModelState.IsValid)
             {
+                hisOrder.dtRequest = DateTime.Now;
                 db.HisOrders.Add(hisOrder);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -205,6 +210,10 @@ namespace LIS.v10.Areas.HIS10.Controllers
         public ActionResult ResultList(int? id)
         {
             return RedirectToAction("ResultList", "HisResults", new { orderId = id, area = "HIS10" });
+        }
+        public ActionResult ResultView(int? id)
+        {
+            return RedirectToAction("ResultView", "HisResults", new { orderId = id, area = "HIS10" });
         }
 
         protected override void Dispose(bool disposing)

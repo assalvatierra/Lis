@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LisDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LisDBStoreContainer">
+    <EntitySet Name="AppInformations" EntityType="LisDB.Store.AppInformations" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="AppInformations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Data" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+</Schema>

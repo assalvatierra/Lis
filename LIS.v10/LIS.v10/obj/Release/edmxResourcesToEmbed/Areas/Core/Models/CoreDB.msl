@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CoreDBStoreContainer" CdmEntityContainer="CoreDBContainer">
+    <EntitySetMapping Name="ModInformations">
+      <EntityTypeMapping TypeName="IsTypeOf(CoreDB.ModInformation)">
+        <MappingFragment StoreEntitySet="ModInformations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(CoreDB.userGroup)">
+        <MappingFragment StoreEntitySet="userGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userGroupAdmins">
+      <EntityTypeMapping TypeName="IsTypeOf(CoreDB.userGroupAdmin)">
+        <MappingFragment StoreEntitySet="userGroupAdmins">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="userGroupId" ColumnName="userGroupId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="IsTypeOf(CoreDB.user)">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(CoreDB.userType)">
+        <MappingFragment StoreEntitySet="userTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userUserTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(CoreDB.userUserType)">
+        <MappingFragment StoreEntitySet="userUserTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="userTypeId" ColumnName="userTypeId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userUserGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(CoreDB.userUserGroup)">
+        <MappingFragment StoreEntitySet="userUserGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="userGroupId" ColumnName="userGroupId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

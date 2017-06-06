@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LisDBStoreContainer" CdmEntityContainer="LisDBContainer">
+    <EntitySetMapping Name="AppInformations">
+      <EntityTypeMapping TypeName="IsTypeOf(LisDB.AppInformation)">
+        <MappingFragment StoreEntitySet="AppInformations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

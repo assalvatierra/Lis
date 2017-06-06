@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CoreDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="CoreDBStoreContainer">
+    <EntitySet Name="ModInformations" EntityType="CoreDB.Store.ModInformations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="userGroups" EntityType="CoreDB.Store.userGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="userGroupAdmins" EntityType="CoreDB.Store.userGroupAdmins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="CoreDB.Store.users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="userTypes" EntityType="CoreDB.Store.userTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="userUserTypes" EntityType="CoreDB.Store.userUserTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="userUserGroups" EntityType="CoreDB.Store.userUserGroups" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="userGroupuserGroupAdmin" Association="CoreDB.Store.userGroupuserGroupAdmin">
+      <End Role="userGroup" EntitySet="userGroups" />
+      <End Role="userGroupAdmin" EntitySet="userGroupAdmins" />
+    </AssociationSet>
+    <AssociationSet Name="userTypeuserUserType" Association="CoreDB.Store.userTypeuserUserType">
+      <End Role="userType" EntitySet="userTypes" />
+      <End Role="userUserType" EntitySet="userUserTypes" />
+    </AssociationSet>
+    <AssociationSet Name="useruserUserType" Association="CoreDB.Store.useruserUserType">
+      <End Role="user" EntitySet="users" />
+      <End Role="userUserType" EntitySet="userUserTypes" />
+    </AssociationSet>
+    <AssociationSet Name="userGroupuserUserGroup" Association="CoreDB.Store.userGroupuserUserGroup">
+      <End Role="userGroup" EntitySet="userGroups" />
+      <End Role="userUserGroup" EntitySet="userUserGroups" />
+    </AssociationSet>
+    <AssociationSet Name="useruserUserGroup" Association="CoreDB.Store.useruserUserGroup">
+      <End Role="user" EntitySet="users" />
+      <End Role="userUserGroup" EntitySet="userUserGroups" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ModInformations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Version" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userGroups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userGroupAdmins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userGroupId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Fullname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Remarks" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userUserTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userTypeId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userUserGroups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userGroupId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="userGroupuserGroupAdmin">
+    <End Role="userGroup" Type="CoreDB.Store.userGroups" Multiplicity="1" />
+    <End Role="userGroupAdmin" Type="CoreDB.Store.userGroupAdmins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userGroupAdmin">
+        <PropertyRef Name="userGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="userTypeuserUserType">
+    <End Role="userType" Type="CoreDB.Store.userTypes" Multiplicity="1" />
+    <End Role="userUserType" Type="CoreDB.Store.userUserTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userUserType">
+        <PropertyRef Name="userTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="useruserUserType">
+    <End Role="user" Type="CoreDB.Store.users" Multiplicity="1" />
+    <End Role="userUserType" Type="CoreDB.Store.userUserTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userUserType">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="userGroupuserUserGroup">
+    <End Role="userGroup" Type="CoreDB.Store.userGroups" Multiplicity="1" />
+    <End Role="userUserGroup" Type="CoreDB.Store.userUserGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userUserGroup">
+        <PropertyRef Name="userGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="useruserUserGroup">
+    <End Role="user" Type="CoreDB.Store.users" Multiplicity="1" />
+    <End Role="userUserGroup" Type="CoreDB.Store.userUserGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="userUserGroup">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -58,6 +58,14 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return View(hisResults.ToList());
         }
 
+        public ActionResult ResultView(int? orderId)
+        {
+            Models.HisOrder order = db.HisOrders.Find((int)orderId);
+            var hisResults = db.HisResults.Include(h => h.HisOrder).Include(h => h.HisResultField).Where(d => d.HisOrderId == orderId);
+            ViewBag.Order = order;
+            return View(hisResults.ToList());
+        }
+
         // GET: HIS10/HisResults/Details/5
         public ActionResult Details(int? id)
         {
@@ -128,7 +136,16 @@ namespace LIS.v10.Areas.HIS10.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(hisResult).State = EntityState.Modified;
+
+                var hisOrder = db.HisOrders.Find(hisResult.HisOrderId);
+                if (hisOrder.dtProcessed == null)
+                {
+                    hisOrder.dtProcessed = DateTime.Now;
+                    db.Entry(hisOrder).State = EntityState.Modified;
+                }
+
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             ViewBag.HisOrderId = new SelectList(db.HisOrders, "Id", "SpecimenId", hisResult.HisOrderId);
