@@ -8,11 +8,11 @@
         <EntityTypeShape EntityType="His10DB.HisEntity" Width="1.5" PointX="3.625" PointY="0.625" />
         <EntityTypeShape EntityType="His10DB.HisProfile" Width="1.5" PointX="11.875" PointY="0.5" />
         <EntityTypeShape EntityType="His10DB.HisCategory" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="His10DB.HisEntCat" Width="1.5" PointX="0.875" PointY="2.875" />
+        <EntityTypeShape EntityType="His10DB.HisEntCat" Width="1.5" PointX="0.5" PointY="2.875" />
         <EntityTypeShape EntityType="His10DB.HisOrder" Width="1.5" PointX="11.875" PointY="3.75" />
         <EntityTypeShape EntityType="His10DB.HisOrderType" Width="1.5" PointX="17.125" PointY="2" />
         <EntityTypeShape EntityType="His10DB.HisPhysician" Width="1.5" PointX="6.625" PointY="0.5" />
-        <EntityTypeShape EntityType="His10DB.HisEntPhysician" Width="1.5" PointX="5.5" PointY="4.25" />
+        <EntityTypeShape EntityType="His10DB.HisEntPhysician" Width="1.5" PointX="5.875" PointY="3.875" />
         <AssociationConnector Association="His10DB.HisPhysicianHisEntPhysician" />
         <AssociationConnector Association="His10DB.HisOrderTypeHisOrder" />
         <AssociationConnector Association="His10DB.HisProfileHisOrder" />
@@ -37,10 +37,14 @@
         <EntityTypeShape EntityType="His10DB.HisPhysicianProfile" Width="1.5" PointX="9" PointY="0.5" />
         <AssociationConnector Association="His10DB.HisPhysicianHisPhysicianProfile" />
         <AssociationConnector Association="His10DB.HisProfileHisPhysicianProfile" />
-        <EntityTypeShape EntityType="His10DB.HisOperator" Width="1.5" PointX="0.5" PointY="6" />
-        <EntityTypeShape EntityType="His10DB.HisEntOperator" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="His10DB.HisOperator" Width="1.5" PointX="0.5" PointY="7.875" />
+        <EntityTypeShape EntityType="His10DB.HisEntOperator" Width="1.5" PointX="2.625" PointY="7.875" />
         <AssociationConnector Association="His10DB.HisOperatorHisEntOperator" />
         <AssociationConnector Association="His10DB.HisEntityHisEntOperator" />
+        <EntityTypeShape EntityType="His10DB.HisAdmin" Width="1.5" PointX="0.5" PointY="5.5" />
+        <EntityTypeShape EntityType="His10DB.HisEntAdmin" Width="1.5" PointX="2.625" PointY="5.375" />
+        <AssociationConnector Association="His10DB.HisAdminHisEntAdmin" />
+        <AssociationConnector Association="His10DB.HisEntityHisEntAdmin" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

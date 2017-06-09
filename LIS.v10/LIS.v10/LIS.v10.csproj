@@ -262,7 +262,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>His10DB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\HIS10\Models\HisAdmin.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\HIS10\Models\HisCategory.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisEntAdmin.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Models\HisEntCat.cs">
@@ -344,6 +350,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\HIS10\Models\20170609.AddFieldtoEntities.sql" />
     <Content Include="Areas\Core\Models\CoreDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>CoreDB.Context.cs</LastGenOutput>
@@ -355,6 +362,7 @@
       <LastGenOutput>CoreDB.cs</LastGenOutput>
       <DependentUpon>CoreDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\HIS10\Models\20170609.AddEntAdminTables.sql" />
     <Content Include="Areas\HIS10\Models\His10DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>His10DB.Context.cs</LastGenOutput>
@@ -369,6 +377,7 @@
     <Content Include="Areas\HIS10\Models\InitializeData.sql" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\placeholder-image.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -478,6 +487,7 @@
     <Content Include="Areas\HIS10\Views\HisPhysicians\profile.cshtml" />
     <Content Include="Areas\HIS10\Views\HisProfiles\Patient.cshtml" />
     <Content Include="Areas\HIS10\Views\HisResults\ResultView.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisEntities\Categories.cshtml" />
     <None Include="Properties\PublishProfiles\ZeeIt2017.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

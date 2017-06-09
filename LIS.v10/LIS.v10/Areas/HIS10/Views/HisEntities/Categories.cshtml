@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisCategory>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int entid = ViewBag.EntId;
+    var entCats = ViewBag.entCat;
+
+    List<LIS.v10.Areas.HIS10.Models.HisEntAdmin> entAdmins =
+        (List<LIS.v10.Areas.HIS10.Models.HisEntAdmin>)ViewBag.Administrators;
+}
+
+<h2>Categories</h2>
+
+<table class="table">
+
+@foreach (var item in Model) {
+    bool isChecked = false;
+    if (entCats.Contains(item.Id)) { isChecked = true; }
+
+    <tr>
+        <td style="width:2em;">
+            @Html.CheckBox(item.Id.ToString(), isChecked)
+        </td>
+        <td>
+            <span style="font: bold 12px calibre, verdana;">
+                @Html.DisplayFor(modelItem => item.Name)
+            </span>
+            <br />
+            <span style="font-size:smaller">
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </span>
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to Details", "Edit", new { id = entid })
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        alert("here");
+    </script>
+
+}

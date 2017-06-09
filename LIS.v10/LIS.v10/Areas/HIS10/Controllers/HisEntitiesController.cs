@@ -47,7 +47,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Remarks,userGroupId")] HisEntity hisEntity)
+        public ActionResult Create([Bind(Include = "Id,Name,Remarks,Address,Contact")] HisEntity hisEntity)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +58,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
             return View(hisEntity);
         }
+
 
         // GET: HIS10/HisEntities/Edit/5
         public ActionResult Edit(int? id)
@@ -71,6 +72,10 @@ namespace LIS.v10.Areas.HIS10.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Categories = db.HisEntCats.Include(d => d.HisCategory).Where(d => d.HisEntityId == id).ToList();
+            ViewBag.Administrators = db.HisEntAdmins.Include(d => d.HisAdmin).Where(d => d.HisEntityId == id).ToList();
+
             return View(hisEntity);
         }
 
@@ -79,7 +84,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Remarks,userGroupId")] HisEntity hisEntity)
+        public ActionResult Edit([Bind(Include = "Id,Name,Remarks,Address,Contact")] HisEntity hisEntity)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +92,10 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
+            ViewBag.Categories = db.HisEntCats.Include(d => d.HisCategory).Where(d => d.HisEntityId == hisEntity.Id ).ToList();
+            ViewBag.Administrators = db.HisEntAdmins.Include(d => d.HisAdmin).Where(d => d.HisEntityId == hisEntity.Id ).ToList();
+
             return View(hisEntity);
         }
 
@@ -114,6 +123,21 @@ namespace LIS.v10.Areas.HIS10.Controllers
             db.HisEntities.Remove(hisEntity);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Categories(int? id)
+        {
+            var data = db.HisCategories.OrderBy(s => s.SeqNo);
+            ViewBag.entCat = db.HisEntCats.Where(d => d.HisEntityId == id).Select(s=> s.HisEntityId ).ToList();
+            ViewBag.EntId = (int)id;
+
+            return View(data);
+        }
+
+        public ActionResult Administrators(int? id)
+        {
+            var data = db.HisAdmins;
+            return View(data);
         }
 
         protected override void Dispose(bool disposing)

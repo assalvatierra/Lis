@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/31/2017 15:16:54
+-- Date Created: 06/09/2017 14:13:11
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -68,6 +68,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_HisProfileHisPhysicianProfile]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisPhysicianProfiles] DROP CONSTRAINT [FK_HisProfileHisPhysicianProfile];
 GO
+IF OBJECT_ID(N'[dbo].[FK_HisOperatorHisEntOperator]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisEntOperators] DROP CONSTRAINT [FK_HisOperatorHisEntOperator];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisEntityHisEntOperator]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisEntOperators] DROP CONSTRAINT [FK_HisEntityHisEntOperator];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -118,6 +124,12 @@ GO
 IF OBJECT_ID(N'[dbo].[HisPhysicianProfiles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HisPhysicianProfiles];
 GO
+IF OBJECT_ID(N'[dbo].[HisOperators]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisOperators];
+GO
+IF OBJECT_ID(N'[dbo].[HisEntOperators]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisEntOperators];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -128,7 +140,9 @@ CREATE TABLE [dbo].[HisEntities] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(100)  NOT NULL,
     [Remarks] nvarchar(250)  NULL,
-    [userGroupId] int  NOT NULL
+    [userGroupId] int  NOT NULL,
+    [Address] nvarchar(250)  NULL,
+    [Contact] nvarchar(180)  NULL
 );
 GO
 
@@ -291,6 +305,22 @@ CREATE TABLE [dbo].[HisEntOperators] (
 );
 GO
 
+-- Creating table 'HisAdmins'
+CREATE TABLE [dbo].[HisAdmins] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [AccntUserId] nvarchar(max)  NOT NULL,
+    [Remarks] nvarchar(80)  NULL
+);
+GO
+
+-- Creating table 'HisEntAdmins'
+CREATE TABLE [dbo].[HisEntAdmins] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisAdminId] int  NOT NULL,
+    [HisEntityId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -394,6 +424,18 @@ GO
 -- Creating primary key on [Id] in table 'HisEntOperators'
 ALTER TABLE [dbo].[HisEntOperators]
 ADD CONSTRAINT [PK_HisEntOperators]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisAdmins'
+ALTER TABLE [dbo].[HisAdmins]
+ADD CONSTRAINT [PK_HisAdmins]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisEntAdmins'
+ALTER TABLE [dbo].[HisEntAdmins]
+ADD CONSTRAINT [PK_HisEntAdmins]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -683,6 +725,36 @@ GO
 -- Creating non-clustered index for FOREIGN KEY 'FK_HisEntityHisEntOperator'
 CREATE INDEX [IX_FK_HisEntityHisEntOperator]
 ON [dbo].[HisEntOperators]
+    ([HisEntityId]);
+GO
+
+-- Creating foreign key on [HisAdminId] in table 'HisEntAdmins'
+ALTER TABLE [dbo].[HisEntAdmins]
+ADD CONSTRAINT [FK_HisAdminHisEntAdmin]
+    FOREIGN KEY ([HisAdminId])
+    REFERENCES [dbo].[HisAdmins]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisAdminHisEntAdmin'
+CREATE INDEX [IX_FK_HisAdminHisEntAdmin]
+ON [dbo].[HisEntAdmins]
+    ([HisAdminId]);
+GO
+
+-- Creating foreign key on [HisEntityId] in table 'HisEntAdmins'
+ALTER TABLE [dbo].[HisEntAdmins]
+ADD CONSTRAINT [FK_HisEntityHisEntAdmin]
+    FOREIGN KEY ([HisEntityId])
+    REFERENCES [dbo].[HisEntities]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisEntityHisEntAdmin'
+CREATE INDEX [IX_FK_HisEntityHisEntAdmin]
+ON [dbo].[HisEntAdmins]
     ([HisEntityId]);
 GO
 
