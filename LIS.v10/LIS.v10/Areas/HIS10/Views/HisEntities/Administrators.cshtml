@@ -1,0 +1,77 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Controllers.AccntUsers>
+@{
+    ViewBag.Title = "Administrators";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int entid = ViewBag.EntId;
+    var entAdmins = ViewBag.entAdmin;
+
+}
+
+<h2>Administrators</h2>
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        bool isChecked = false;
+        if (entAdmins.Contains(item.UserId)) { isChecked = true; }
+
+        <tr>
+            <td style="width:2em;">
+                @Html.CheckBox(item.UserId, isChecked, new { id = item.UserId.ToString(), @class = "_chkItem" })
+            </td>
+            <td>
+                <span style="font: bold 12px calibre, verdana;">
+                    @Html.DisplayFor(modelItem => item.email)
+                </span>
+                <br />
+                <span style="font-size:smaller">
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </span>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to Details", "Edit", new { id = entid })
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+
+        $("._chkItem").click(function test() {
+
+            var userid = $(this).prop('id');
+            var check = $(this).prop('checked');
+
+            $.ajax({
+                type: "POST",
+                url: "/HisEntities/UpdateAdmin",
+                data: '{UserId:"' + userid + '", entityid: ' + @entid +', sVal:"' + check + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    //alert("Hello: " + response.message + " .\code: " + response.code);
+                },
+                failure: function (response) {
+                    alert("Unable to process your request: " + response.message);
+                },
+                error: function (response) {
+                    alert("Error has occured at the server. "  + response.message);
+                }
+            });
+
+
+
+
+        });
+
+    </script>
+
+}
+
+

@@ -262,9 +262,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>His10DB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Areas\HIS10\Models\HisAdmin.cs">
-      <DependentUpon>His10DB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\HIS10\Models\HisCategory.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
@@ -488,6 +485,7 @@
     <Content Include="Areas\HIS10\Views\HisProfiles\Patient.cshtml" />
     <Content Include="Areas\HIS10\Views\HisResults\ResultView.cshtml" />
     <Content Include="Areas\HIS10\Views\HisEntities\Categories.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisEntities\Administrators.cshtml" />
     <None Include="Properties\PublishProfiles\ZeeIt2017.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

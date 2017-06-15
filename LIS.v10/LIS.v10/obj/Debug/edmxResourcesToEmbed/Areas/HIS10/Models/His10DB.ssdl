@@ -18,7 +18,6 @@
     <EntitySet Name="HisPhysicianProfiles" EntityType="His10DB.Store.HisPhysicianProfiles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisOperators" EntityType="His10DB.Store.HisOperators" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisEntOperators" EntityType="His10DB.Store.HisEntOperators" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="HisAdmins" EntityType="His10DB.Store.HisAdmins" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisEntAdmins" EntityType="His10DB.Store.HisEntAdmins" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
@@ -95,10 +94,6 @@
     <AssociationSet Name="HisEntityHisEntOperator" Association="His10DB.Store.HisEntityHisEntOperator">
       <End Role="HisEntity" EntitySet="HisEntities" />
       <End Role="HisEntOperator" EntitySet="HisEntOperators" />
-    </AssociationSet>
-    <AssociationSet Name="HisAdminHisEntAdmin" Association="His10DB.Store.HisAdminHisEntAdmin">
-      <End Role="HisAdmin" EntitySet="HisAdmins" />
-      <End Role="HisEntAdmin" EntitySet="HisEntAdmins" />
     </AssociationSet>
     <AssociationSet Name="HisEntityHisEntAdmin" Association="His10DB.Store.HisEntityHisEntAdmin">
       <End Role="HisEntity" EntitySet="HisEntities" />
@@ -275,21 +270,13 @@
     <Property Name="HisOperatorId" Type="int" Nullable="false" />
     <Property Name="HisEntityId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="HisAdmins">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="80" />
-  </EntityType>
   <EntityType Name="HisEntAdmins">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HisAdminId" Type="int" Nullable="false" />
     <Property Name="HisEntityId" Type="int" Nullable="false" />
+    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -516,18 +503,6 @@
       </Principal>
       <Dependent Role="HisEntOperator">
         <PropertyRef Name="HisEntityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="HisAdminHisEntAdmin">
-    <End Role="HisAdmin" Type="His10DB.Store.HisAdmins" Multiplicity="1" />
-    <End Role="HisEntAdmin" Type="His10DB.Store.HisEntAdmins" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="HisAdmin">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="HisEntAdmin">
-        <PropertyRef Name="HisAdminId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

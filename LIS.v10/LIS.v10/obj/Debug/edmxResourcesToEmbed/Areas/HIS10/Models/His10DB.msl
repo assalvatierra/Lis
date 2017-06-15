@@ -188,21 +188,12 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HisAdmins">
-      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisAdmin)">
-        <MappingFragment StoreEntitySet="HisAdmins">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="HisEntAdmins">
       <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisEntAdmin)">
         <MappingFragment StoreEntitySet="HisEntAdmins">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="HisAdminId" ColumnName="HisAdminId" />
           <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
+          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

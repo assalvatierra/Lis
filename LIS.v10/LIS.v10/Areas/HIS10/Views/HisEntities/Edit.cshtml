@@ -6,8 +6,8 @@
 
     List<LIS.v10.Areas.HIS10.Models.HisEntCat> entCats =
         (List<LIS.v10.Areas.HIS10.Models.HisEntCat>)ViewBag.Categories;
-    List<LIS.v10.Areas.HIS10.Models.HisEntAdmin> entAdmins =
-        (List<LIS.v10.Areas.HIS10.Models.HisEntAdmin>)ViewBag.Administrators;
+    List<LIS.v10.Areas.HIS10.Controllers.AccntUsers> entAdmins =
+        (List<LIS.v10.Areas.HIS10.Controllers.AccntUsers>)ViewBag.Administrators;
 
 }
 
@@ -79,7 +79,11 @@
                 Administrators
             </label>
             <div class="col-md-10">
-
+                @foreach (var item in entAdmins)
+                {
+                    @item.email <br />
+                }
+                @Html.ActionLink("Modify", "Administrators", new { id = Model.Id })
             </div>
         </div>
             

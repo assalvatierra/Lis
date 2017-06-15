@@ -41,10 +41,9 @@
         <EntityTypeShape EntityType="His10DB.HisEntOperator" Width="1.5" PointX="2.625" PointY="7.875" />
         <AssociationConnector Association="His10DB.HisOperatorHisEntOperator" />
         <AssociationConnector Association="His10DB.HisEntityHisEntOperator" />
-        <EntityTypeShape EntityType="His10DB.HisAdmin" Width="1.5" PointX="0.5" PointY="5.5" />
-        <EntityTypeShape EntityType="His10DB.HisEntAdmin" Width="1.5" PointX="2.625" PointY="5.375" />
-        <AssociationConnector Association="His10DB.HisAdminHisEntAdmin" />
-        <AssociationConnector Association="His10DB.HisEntityHisEntAdmin" />
+        <EntityTypeShape EntityType="His10DB.HisEntAdmin" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="His10DB.HisEntityHisEntAdmin" ManuallyRouted="false" >
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

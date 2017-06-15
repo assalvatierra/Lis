@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,6 +12,12 @@ using LIS.v10.Areas.HIS10.Models;
 
 namespace LIS.v10.Areas.HIS10.Controllers
 {
+    public class AccntUsers
+    {
+        public string email { get; set; }
+        public string UserId { get; set; }
+    }
+
     public class HisEntitiesController : Controller
     {
         private His10DBContainer db = new His10DBContainer();
@@ -74,7 +81,12 @@ namespace LIS.v10.Areas.HIS10.Controllers
             }
 
             ViewBag.Categories = db.HisEntCats.Include(d => d.HisCategory).Where(d => d.HisEntityId == id).ToList();
-            ViewBag.Administrators = db.HisEntAdmins.Include(d => d.HisAdmin).Where(d => d.HisEntityId == id).ToList();
+
+            string sqlExec = 
+                "select A.Email, A.Id as UserId from AspNetUsers A left outer join HisEntAdmins B on A.Id = B.AccntUserId where B.HisEntityId = " + id.ToString();
+            //DbRawSqlQuery<AccntUsers> adminAccnts = db.Database.SqlQuery<AccntUsers>(sqlExec).ToList();
+            List<AccntUsers> adminAccnts = db.Database.SqlQuery<AccntUsers>(sqlExec).ToList();
+            ViewBag.Administrators = adminAccnts;
 
             return View(hisEntity);
         }
@@ -94,7 +106,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
             }
 
             ViewBag.Categories = db.HisEntCats.Include(d => d.HisCategory).Where(d => d.HisEntityId == hisEntity.Id ).ToList();
-            ViewBag.Administrators = db.HisEntAdmins.Include(d => d.HisAdmin).Where(d => d.HisEntityId == hisEntity.Id ).ToList();
+            //ViewBag.Administrators = db.HisEntAdmins.Include(d => d.HisAdmin).Where(d => d.HisEntityId == hisEntity.Id ).ToList();
 
             return View(hisEntity);
         }
@@ -128,16 +140,66 @@ namespace LIS.v10.Areas.HIS10.Controllers
         public ActionResult Categories(int? id)
         {
             var data = db.HisCategories.OrderBy(s => s.SeqNo);
-            ViewBag.entCat = db.HisEntCats.Where(d => d.HisEntityId == id).Select(s=> s.HisEntityId ).ToList();
+            ViewBag.entCat = db.HisEntCats.Where(d => d.HisEntityId == id).Select(s=> s.HisCategoryId ).ToList();
             ViewBag.EntId = (int)id;
 
             return View(data);
         }
 
+        [HttpPost]
+        public JsonResult UpdateCategory(int catid, int entityid, string sVal)
+        {
+            string sqlExec = "";
+
+            if (sVal.ToUpper() == "TRUE")
+            {
+                sqlExec = "Insert Into HisEntCats([HisCategoryId],[HisEntityId]) Values(" + catid.ToString() + "," + entityid.ToString() + ")";
+            }
+            else
+            {
+                sqlExec = "delete from HisEntCats where HisCategoryId = " + catid.ToString() + " AND HisEntityId = " + entityid.ToString();
+            }
+            if (sqlExec != "")
+            {
+                db.Database.ExecuteSqlCommand(sqlExec);
+                db.SaveChanges();
+            }
+
+            return Json(new { code = 0, message = "Server:" + sVal });
+        }
+
         public ActionResult Administrators(int? id)
         {
-            var data = db.HisAdmins;
+            string sqlExec = "select Email, Id as UserId from AspNetUsers";
+            DbRawSqlQuery<AccntUsers> data = db.Database.SqlQuery<AccntUsers>(sqlExec);
+
+            ViewBag.EntId = (int)id;
+            ViewBag.entAdmin = db.HisEntAdmins.Where(d => d.HisEntityId == id).Select(s => s.AccntUserId).ToList();
+
             return View(data);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateAdmin(string UserId, int entityid, string sVal)
+        {
+            string sqlExec = "";
+
+            if (sVal.ToUpper() == "TRUE")
+            {
+                sqlExec = "Insert Into HisEntAdmins([HisEntityId],[AccntUserId]) Values(" + entityid.ToString() + ",'" + UserId + "')";
+            }
+            else
+            {
+                sqlExec = "delete from HisEntAdmins where HisEntityId = " + entityid.ToString() + " AND AccntUserId = '" + UserId + "'";
+            }
+            if (sqlExec != "")
+            {
+                db.Database.ExecuteSqlCommand(sqlExec);
+                db.SaveChanges();
+            }
+
+            return Json(new { code = 0, message = "Server:" + sVal });
+
         }
 
         protected override void Dispose(bool disposing)

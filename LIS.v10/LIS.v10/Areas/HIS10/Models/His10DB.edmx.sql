@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/09/2017 14:13:11
+-- Date Created: 06/13/2017 16:12:24
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -74,6 +74,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_HisEntityHisEntOperator]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisEntOperators] DROP CONSTRAINT [FK_HisEntityHisEntOperator];
 GO
+IF OBJECT_ID(N'[dbo].[FK_HisEntityHisEntAdmin]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisEntAdmins] DROP CONSTRAINT [FK_HisEntityHisEntAdmin];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -129,6 +132,9 @@ IF OBJECT_ID(N'[dbo].[HisOperators]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[HisEntOperators]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HisEntOperators];
+GO
+IF OBJECT_ID(N'[dbo].[HisEntAdmins]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisEntAdmins];
 GO
 
 -- --------------------------------------------------
@@ -305,19 +311,11 @@ CREATE TABLE [dbo].[HisEntOperators] (
 );
 GO
 
--- Creating table 'HisAdmins'
-CREATE TABLE [dbo].[HisAdmins] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [AccntUserId] nvarchar(max)  NOT NULL,
-    [Remarks] nvarchar(80)  NULL
-);
-GO
-
 -- Creating table 'HisEntAdmins'
 CREATE TABLE [dbo].[HisEntAdmins] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [HisAdminId] int  NOT NULL,
-    [HisEntityId] int  NOT NULL
+    [HisEntityId] int  NOT NULL,
+    [AccntUserId] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -424,12 +422,6 @@ GO
 -- Creating primary key on [Id] in table 'HisEntOperators'
 ALTER TABLE [dbo].[HisEntOperators]
 ADD CONSTRAINT [PK_HisEntOperators]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'HisAdmins'
-ALTER TABLE [dbo].[HisAdmins]
-ADD CONSTRAINT [PK_HisAdmins]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -726,21 +718,6 @@ GO
 CREATE INDEX [IX_FK_HisEntityHisEntOperator]
 ON [dbo].[HisEntOperators]
     ([HisEntityId]);
-GO
-
--- Creating foreign key on [HisAdminId] in table 'HisEntAdmins'
-ALTER TABLE [dbo].[HisEntAdmins]
-ADD CONSTRAINT [FK_HisAdminHisEntAdmin]
-    FOREIGN KEY ([HisAdminId])
-    REFERENCES [dbo].[HisAdmins]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HisAdminHisEntAdmin'
-CREATE INDEX [IX_FK_HisAdminHisEntAdmin]
-ON [dbo].[HisEntAdmins]
-    ([HisAdminId]);
 GO
 
 -- Creating foreign key on [HisEntityId] in table 'HisEntAdmins'

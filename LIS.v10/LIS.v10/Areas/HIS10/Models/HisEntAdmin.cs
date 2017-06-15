@@ -15,10 +15,9 @@ namespace LIS.v10.Areas.HIS10.Models
     public partial class HisEntAdmin
     {
         public int Id { get; set; }
-        public int HisAdminId { get; set; }
         public int HisEntityId { get; set; }
+        public string AccntUserId { get; set; }
     
-        public virtual HisAdmin HisAdmin { get; set; }
         public virtual HisEntity HisEntity { get; set; }
     }
 }
