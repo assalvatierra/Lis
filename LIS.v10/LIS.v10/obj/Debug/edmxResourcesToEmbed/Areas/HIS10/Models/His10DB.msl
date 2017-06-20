@@ -197,5 +197,36 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HisSpecializations">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisSpecialization)">
+        <MappingFragment StoreEntitySet="HisSpecializations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisPhysicianSpecializations">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisPhysicianSpecialization)">
+        <MappingFragment StoreEntitySet="HisPhysicianSpecializations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisSpecializationId" ColumnName="HisSpecializationId" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisPhysicianClinics">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisPhysicianClinic)">
+        <MappingFragment StoreEntitySet="HisPhysicianClinics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

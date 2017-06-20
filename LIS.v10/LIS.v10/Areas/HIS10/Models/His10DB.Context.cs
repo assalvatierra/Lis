@@ -43,5 +43,8 @@ namespace LIS.v10.Areas.HIS10.Models
         public virtual DbSet<HisOperator> HisOperators { get; set; }
         public virtual DbSet<HisEntOperator> HisEntOperators { get; set; }
         public virtual DbSet<HisEntAdmin> HisEntAdmins { get; set; }
+        public virtual DbSet<HisSpecialization> HisSpecializations { get; set; }
+        public virtual DbSet<HisPhysicianSpecialization> HisPhysicianSpecializations { get; set; }
+        public virtual DbSet<HisPhysicianClinic> HisPhysicianClinics { get; set; }
     }
 }

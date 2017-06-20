@@ -20,6 +20,8 @@ namespace LIS.v10.Areas.HIS10.Models
             this.HisEntPhysicians = new HashSet<HisEntPhysician>();
             this.HisOrders = new HashSet<HisOrder>();
             this.HisPhysicianProfiles = new HashSet<HisPhysicianProfile>();
+            this.HisPhysicianSpecializations = new HashSet<HisPhysicianSpecialization>();
+            this.HisPhysicianClinics = new HashSet<HisPhysicianClinic>();
         }
     
         public int Id { get; set; }
@@ -33,5 +35,9 @@ namespace LIS.v10.Areas.HIS10.Models
         public virtual ICollection<HisOrder> HisOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HisPhysicianProfile> HisPhysicianProfiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HisPhysicianSpecialization> HisPhysicianSpecializations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HisPhysicianClinic> HisPhysicianClinics { get; set; }
     }
 }

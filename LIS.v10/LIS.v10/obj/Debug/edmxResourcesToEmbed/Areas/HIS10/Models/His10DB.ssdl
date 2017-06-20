@@ -19,6 +19,9 @@
     <EntitySet Name="HisOperators" EntityType="His10DB.Store.HisOperators" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisEntOperators" EntityType="His10DB.Store.HisEntOperators" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisEntAdmins" EntityType="His10DB.Store.HisEntAdmins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisSpecializations" EntityType="His10DB.Store.HisSpecializations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisPhysicianSpecializations" EntityType="His10DB.Store.HisPhysicianSpecializations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisPhysicianClinics" EntityType="His10DB.Store.HisPhysicianClinics" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
       <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
@@ -98,6 +101,18 @@
     <AssociationSet Name="HisEntityHisEntAdmin" Association="His10DB.Store.HisEntityHisEntAdmin">
       <End Role="HisEntity" EntitySet="HisEntities" />
       <End Role="HisEntAdmin" EntitySet="HisEntAdmins" />
+    </AssociationSet>
+    <AssociationSet Name="HisSpecializationHisPhysicianSpecialization" Association="His10DB.Store.HisSpecializationHisPhysicianSpecialization">
+      <End Role="HisSpecialization" EntitySet="HisSpecializations" />
+      <End Role="HisPhysicianSpecialization" EntitySet="HisPhysicianSpecializations" />
+    </AssociationSet>
+    <AssociationSet Name="HisPhysicianHisPhysicianSpecialization" Association="His10DB.Store.HisPhysicianHisPhysicianSpecialization">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisPhysicianSpecialization" EntitySet="HisPhysicianSpecializations" />
+    </AssociationSet>
+    <AssociationSet Name="HisPhysicianHisPhysicianClinic" Association="His10DB.Store.HisPhysicianHisPhysicianClinic">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisPhysicianClinic" EntitySet="HisPhysicianClinics" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntities">
@@ -277,6 +292,34 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HisEntityId" Type="int" Nullable="false" />
     <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisSpecializations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Code" Type="nvarchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="HisPhysicianSpecializations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisSpecializationId" Type="int" Nullable="false" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisPhysicianClinics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="120" />
+    <Property Name="Time" Type="nvarchar" Nullable="false" MaxLength="120" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="Telephone" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -515,6 +558,42 @@
       </Principal>
       <Dependent Role="HisEntAdmin">
         <PropertyRef Name="HisEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisSpecializationHisPhysicianSpecialization">
+    <End Role="HisSpecialization" Type="His10DB.Store.HisSpecializations" Multiplicity="1" />
+    <End Role="HisPhysicianSpecialization" Type="His10DB.Store.HisPhysicianSpecializations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisSpecialization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianSpecialization">
+        <PropertyRef Name="HisSpecializationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisPhysicianHisPhysicianSpecialization">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisPhysicianSpecialization" Type="His10DB.Store.HisPhysicianSpecializations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianSpecialization">
+        <PropertyRef Name="HisPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisPhysicianHisPhysicianClinic">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisPhysicianClinic" Type="His10DB.Store.HisPhysicianClinics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianClinic">
+        <PropertyRef Name="HisPhysicianId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

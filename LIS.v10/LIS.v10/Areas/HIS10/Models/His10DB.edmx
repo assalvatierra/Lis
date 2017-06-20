@@ -24,6 +24,9 @@
     <EntitySet Name="HisOperators" EntityType="His10DB.Store.HisOperators" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisEntOperators" EntityType="His10DB.Store.HisEntOperators" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisEntAdmins" EntityType="His10DB.Store.HisEntAdmins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisSpecializations" EntityType="His10DB.Store.HisSpecializations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisPhysicianSpecializations" EntityType="His10DB.Store.HisPhysicianSpecializations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisPhysicianClinics" EntityType="His10DB.Store.HisPhysicianClinics" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
       <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
@@ -103,6 +106,18 @@
     <AssociationSet Name="HisEntityHisEntAdmin" Association="His10DB.Store.HisEntityHisEntAdmin">
       <End Role="HisEntity" EntitySet="HisEntities" />
       <End Role="HisEntAdmin" EntitySet="HisEntAdmins" />
+    </AssociationSet>
+    <AssociationSet Name="HisSpecializationHisPhysicianSpecialization" Association="His10DB.Store.HisSpecializationHisPhysicianSpecialization">
+      <End Role="HisSpecialization" EntitySet="HisSpecializations" />
+      <End Role="HisPhysicianSpecialization" EntitySet="HisPhysicianSpecializations" />
+    </AssociationSet>
+    <AssociationSet Name="HisPhysicianHisPhysicianSpecialization" Association="His10DB.Store.HisPhysicianHisPhysicianSpecialization">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisPhysicianSpecialization" EntitySet="HisPhysicianSpecializations" />
+    </AssociationSet>
+    <AssociationSet Name="HisPhysicianHisPhysicianClinic" Association="His10DB.Store.HisPhysicianHisPhysicianClinic">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisPhysicianClinic" EntitySet="HisPhysicianClinics" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntities">
@@ -282,6 +297,34 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HisEntityId" Type="int" Nullable="false" />
     <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisSpecializations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Code" Type="nvarchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="HisPhysicianSpecializations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisSpecializationId" Type="int" Nullable="false" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisPhysicianClinics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="120" />
+    <Property Name="Time" Type="nvarchar" Nullable="false" MaxLength="120" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="Telephone" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -523,6 +566,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="HisSpecializationHisPhysicianSpecialization">
+    <End Role="HisSpecialization" Type="His10DB.Store.HisSpecializations" Multiplicity="1" />
+    <End Role="HisPhysicianSpecialization" Type="His10DB.Store.HisPhysicianSpecializations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisSpecialization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianSpecialization">
+        <PropertyRef Name="HisSpecializationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisPhysicianHisPhysicianSpecialization">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisPhysicianSpecialization" Type="His10DB.Store.HisPhysicianSpecializations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianSpecialization">
+        <PropertyRef Name="HisPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisPhysicianHisPhysicianClinic">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisPhysicianClinic" Type="His10DB.Store.HisPhysicianClinics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianClinic">
+        <PropertyRef Name="HisPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -626,6 +705,21 @@
             <End Role="HisEntity" EntitySet="HisEntities" />
             <End Role="HisEntAdmin" EntitySet="HisEntAdmins" />
           </AssociationSet>
+          <EntitySet Name="HisSpecializations" EntityType="His10DB.HisSpecialization" />
+          <EntitySet Name="HisPhysicianSpecializations" EntityType="His10DB.HisPhysicianSpecialization" />
+          <AssociationSet Name="HisSpecializationHisPhysicianSpecialization" Association="His10DB.HisSpecializationHisPhysicianSpecialization">
+            <End Role="HisSpecialization" EntitySet="HisSpecializations" />
+            <End Role="HisPhysicianSpecialization" EntitySet="HisPhysicianSpecializations" />
+          </AssociationSet>
+          <AssociationSet Name="HisPhysicianHisPhysicianSpecialization" Association="His10DB.HisPhysicianHisPhysicianSpecialization">
+            <End Role="HisPhysician" EntitySet="HisPhysicians" />
+            <End Role="HisPhysicianSpecialization" EntitySet="HisPhysicianSpecializations" />
+          </AssociationSet>
+          <EntitySet Name="HisPhysicianClinics" EntityType="His10DB.HisPhysicianClinic" />
+          <AssociationSet Name="HisPhysicianHisPhysicianClinic" Association="His10DB.HisPhysicianHisPhysicianClinic">
+            <End Role="HisPhysician" EntitySet="HisPhysicians" />
+            <End Role="HisPhysicianClinic" EntitySet="HisPhysicianClinics" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HisEntity">
           <Key>
@@ -716,6 +810,8 @@
           <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
           <NavigationProperty Name="HisPhysicianProfiles" Relationship="His10DB.HisPhysicianHisPhysicianProfile" FromRole="HisPhysician" ToRole="HisPhysicianProfile" />
           <Property Name="AccntUserId" Type="String" Nullable="true" />
+          <NavigationProperty Name="HisPhysicianSpecializations" Relationship="His10DB.HisPhysicianHisPhysicianSpecialization" FromRole="HisPhysician" ToRole="HisPhysicianSpecialization" />
+          <NavigationProperty Name="HisPhysicianClinics" Relationship="His10DB.HisPhysicianHisPhysicianClinic" FromRole="HisPhysician" ToRole="HisPhysicianClinic" />
         </EntityType>
         <EntityType Name="HisEntPhysician">
           <Key>
@@ -1085,6 +1181,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="HisSpecialization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Desc" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="Code" Type="String" Nullable="true" MaxLength="20" />
+          <NavigationProperty Name="HisPhysicianSpecializations" Relationship="His10DB.HisSpecializationHisPhysicianSpecialization" FromRole="HisSpecialization" ToRole="HisPhysicianSpecialization" />
+        </EntityType>
+        <EntityType Name="HisPhysicianSpecialization">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisSpecialization" Relationship="His10DB.HisSpecializationHisPhysicianSpecialization" FromRole="HisPhysicianSpecialization" ToRole="HisSpecialization" />
+          <Property Name="HisSpecializationId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisPhysician" Relationship="His10DB.HisPhysicianHisPhysicianSpecialization" FromRole="HisPhysicianSpecialization" ToRole="HisPhysician" />
+          <Property Name="HisPhysicianId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="HisSpecializationHisPhysicianSpecialization">
+          <End Type="His10DB.HisSpecialization" Role="HisSpecialization" Multiplicity="1" />
+          <End Type="His10DB.HisPhysicianSpecialization" Role="HisPhysicianSpecialization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisSpecialization">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisPhysicianSpecialization">
+              <PropertyRef Name="HisSpecializationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisPhysicianHisPhysicianSpecialization">
+          <End Type="His10DB.HisPhysician" Role="HisPhysician" Multiplicity="1" />
+          <End Type="His10DB.HisPhysicianSpecialization" Role="HisPhysicianSpecialization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisPhysician">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisPhysicianSpecialization">
+              <PropertyRef Name="HisPhysicianId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HisPhysicianClinic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HisPhysicianId" Type="Int32" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="250" />
+          <Property Name="Days" Type="String" Nullable="false" MaxLength="120" />
+          <Property Name="Time" Type="String" Nullable="false" MaxLength="120" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
+          <NavigationProperty Name="HisPhysician" Relationship="His10DB.HisPhysicianHisPhysicianClinic" FromRole="HisPhysicianClinic" ToRole="HisPhysician" />
+          <Property Name="Telephone" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="HisPhysicianHisPhysicianClinic">
+          <End Type="His10DB.HisPhysician" Role="HisPhysician" Multiplicity="1" />
+          <End Type="His10DB.HisPhysicianClinic" Role="HisPhysicianClinic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisPhysician">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisPhysicianClinic">
+              <PropertyRef Name="HisPhysicianId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1284,6 +1448,37 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HisEntityId" ColumnName="HisEntityId" />
           <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisSpecializations">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisSpecialization)">
+        <MappingFragment StoreEntitySet="HisSpecializations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Desc" ColumnName="Desc" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisPhysicianSpecializations">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisPhysicianSpecialization)">
+        <MappingFragment StoreEntitySet="HisPhysicianSpecializations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisSpecializationId" ColumnName="HisSpecializationId" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisPhysicianClinics">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisPhysicianClinic)">
+        <MappingFragment StoreEntitySet="HisPhysicianClinics">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Days" ColumnName="Days" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
