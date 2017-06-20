@@ -3,6 +3,13 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<LIS.v10.Areas.HIS10.Models.HisPhysicianSpecialization> specs =
+        (List<LIS.v10.Areas.HIS10.Models.HisPhysicianSpecialization>)ViewBag.Specs;
+    List<LIS.v10.Areas.HIS10.Models.HisPhysicianClinic> clinics =
+        (List<LIS.v10.Areas.HIS10.Models.HisPhysicianClinic>)ViewBag.Clinics;
+
+
 }
 
 <h2>Edit</h2>
@@ -51,4 +58,40 @@
 
 <div>
     @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<div class="form-group">
+    <label class="control-label col-md-2">
+        Specialization
+    </label>
+    <div class="col-md-10">
+        @foreach (var item in specs)
+        {
+            @item.HisSpecialization.Desc<br />
+        }
+        @Html.ActionLink("Modify", "Specialization", new { id = Model.Id })
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-2">
+        Clinic
+    </label>
+    <div class="col-md-10">
+        <table>
+
+            @foreach (var item in clinics)
+            {
+                <tr>
+                    <td>@item.Location</td>
+                    <td>@item.Telephone</td>
+                    <td>@item.Days</td>
+                    <td>@item.Time</td>
+                    <td>@item.Remarks</td>
+                </tr>
+            }
+        </table>
+        @Html.ActionLink("Modify", "Specialization", new { id = Model.Id })
+    </div>
 </div>

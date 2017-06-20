@@ -73,6 +73,10 @@ namespace LIS.v10.Areas.HIS10.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Specs = db.HisPhysicianSpecializations.ToList();
+            ViewBag.Clinics = db.HisPhysicianClinics.ToList();
+
             return View(hisPhysician);
         }
 
