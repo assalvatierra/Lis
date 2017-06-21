@@ -161,6 +161,57 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return View(hisPhysician);
         }
 
+        public ActionResult ListSpecialization(int? id)
+        {
+            var data = db.HisSpecializations.ToList();
+            ViewBag.PhysicianId = id;
+
+            return View(data);
+        }
+
+        public ActionResult UseSpecialization(int? SpecId, int? physicianId)
+        {
+            string sqlExec = "Insert Into HisPhysicianSpecializations([HisSpecializationId],[HisPhysicianId]) Values(" + SpecId.ToString() + ",'" + physicianId.ToString() + "')";
+            db.Database.ExecuteSqlCommand(sqlExec);
+            return RedirectToAction("Edit", new { id = physicianId });
+        }
+
+        public ActionResult RemoveSpecialization(int? SpecId, int? physicianId)
+        {
+            string sqlExec = "delete from HisPhysicianSpecializations where HisSpecializationId = '"+ SpecId.ToString() + "' and HisPhysicianId = '" + physicianId.ToString() +"'";
+            db.Database.ExecuteSqlCommand(sqlExec);
+            return RedirectToAction("Edit", new { id = physicianId });
+        }
+
+        public ActionResult AddClinic(int? id)
+        {
+            Models.HisPhysicianClinic clinic = new HisPhysicianClinic();
+            clinic.HisPhysicianId = (int)id;
+            clinic.Days = "Mon-Fri";
+            clinic.Time = "10am - 3pm";
+            return View(clinic);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddClinic([Bind(Include = "Id,HisPhysicianId,Location,Days,Time,Remarks,Telephone")] HisPhysicianClinic clinic)
+        {
+            if(ModelState.IsValid)
+            {
+                db.HisPhysicianClinics.Add(clinic);
+                db.SaveChanges();
+                return RedirectToAction("Edit", new { id = clinic.HisPhysicianId });
+            }
+
+            return View(clinic);
+        }
+
+        public ActionResult EditClinic(int? id)
+        {
+            var data = db.HisPhysicianClinics.Find(id);
+            return View(data);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

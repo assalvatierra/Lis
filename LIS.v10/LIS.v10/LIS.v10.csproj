@@ -498,6 +498,8 @@
     <Content Include="Areas\HIS10\Views\HisResults\ResultView.cshtml" />
     <Content Include="Areas\HIS10\Views\HisEntities\Categories.cshtml" />
     <Content Include="Areas\HIS10\Views\HisEntities\Administrators.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\ListSpecialization.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\AddClinic.cshtml" />
     <None Include="Properties\PublishProfiles\ZeeIt2017.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
