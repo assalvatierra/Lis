@@ -324,7 +324,7 @@
     <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="120" />
     <Property Name="Time" Type="nvarchar" Nullable="false" MaxLength="120" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
-    <Property Name="Telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" Nullable="true" MaxLength="120" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -1235,7 +1235,7 @@
           <Property Name="Time" Type="String" Nullable="false" MaxLength="120" />
           <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
           <NavigationProperty Name="HisPhysician" Relationship="His10DB.HisPhysicianHisPhysicianClinic" FromRole="HisPhysicianClinic" ToRole="HisPhysician" />
-          <Property Name="Telephone" Type="String" Nullable="false" />
+          <Property Name="Telephone" Type="String" Nullable="true" MaxLength="120" />
         </EntityType>
         <Association Name="HisPhysicianHisPhysicianClinic">
           <End Type="His10DB.HisPhysician" Role="HisPhysician" Multiplicity="1" />

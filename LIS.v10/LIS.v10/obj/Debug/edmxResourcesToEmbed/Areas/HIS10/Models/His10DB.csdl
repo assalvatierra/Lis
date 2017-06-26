@@ -629,7 +629,7 @@
     <Property Name="Time" Type="String" Nullable="false" MaxLength="120" />
     <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
     <NavigationProperty Name="HisPhysician" Relationship="His10DB.HisPhysicianHisPhysicianClinic" FromRole="HisPhysicianClinic" ToRole="HisPhysician" />
-    <Property Name="Telephone" Type="String" Nullable="false" />
+    <Property Name="Telephone" Type="String" Nullable="true" MaxLength="120" />
   </EntityType>
   <Association Name="HisPhysicianHisPhysicianClinic">
     <End Type="His10DB.HisPhysician" Role="HisPhysician" Multiplicity="1" />

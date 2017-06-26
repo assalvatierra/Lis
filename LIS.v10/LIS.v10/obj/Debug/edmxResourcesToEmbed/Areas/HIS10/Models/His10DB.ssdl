@@ -319,7 +319,7 @@
     <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="120" />
     <Property Name="Time" Type="nvarchar" Nullable="false" MaxLength="120" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
-    <Property Name="Telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" Nullable="true" MaxLength="120" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />

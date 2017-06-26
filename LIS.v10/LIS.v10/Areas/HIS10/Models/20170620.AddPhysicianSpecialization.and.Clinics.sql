@@ -22,7 +22,7 @@ CREATE TABLE [dbo].[HisPhysicianClinics] (
     [Days] nvarchar(120)  NOT NULL,
     [Time] nvarchar(120)  NOT NULL,
     [Remarks] nvarchar(250)  NULL,
-    [Telephone] nvarchar(max)  NOT NULL
+    [Telephone] nvarchar(120)  NULL
 );
 GO
 

@@ -74,8 +74,8 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Specs = db.HisPhysicianSpecializations.ToList();
-            ViewBag.Clinics = db.HisPhysicianClinics.ToList();
+            ViewBag.Specs = db.HisPhysicianSpecializations.Where(d=>d.HisPhysicianId==id).ToList();
+            ViewBag.Clinics = db.HisPhysicianClinics.Where(d => d.HisPhysicianId == id).ToList();
 
             return View(hisPhysician);
         }
@@ -212,6 +212,28 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return View(data);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditClinic([Bind(Include = "Id,HisPhysicianId,Location,Days,Time,Remarks,Telephone")] HisPhysicianClinic clinic)
+        {
+            if(ModelState.IsValid)
+            {
+                db.Entry(clinic).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Edit", new { id = clinic.HisPhysicianId });
+            }
+            return View(clinic);
+        }
+
+        public ActionResult RemoveClinic(int? id)
+        {
+            var data = db.HisPhysicianClinics.Find(id);
+            int pId = data.HisPhysicianId;
+
+            db.HisPhysicianClinics.Remove(data);
+            db.SaveChanges();
+            return RedirectToAction("Edit", new { id = pId });
+        }
 
         protected override void Dispose(bool disposing)
         {

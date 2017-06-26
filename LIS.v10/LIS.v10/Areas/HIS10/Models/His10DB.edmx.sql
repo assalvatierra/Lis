@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/20/2017 15:32:38
+-- Date Created: 06/23/2017 17:27:05
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -77,6 +77,15 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_HisEntityHisEntAdmin]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisEntAdmins] DROP CONSTRAINT [FK_HisEntityHisEntAdmin];
 GO
+IF OBJECT_ID(N'[dbo].[FK_HisSpecializationHisPhysicianSpecialization]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisPhysicianSpecializations] DROP CONSTRAINT [FK_HisSpecializationHisPhysicianSpecialization];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisPhysicianHisPhysicianSpecialization]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisPhysicianSpecializations] DROP CONSTRAINT [FK_HisPhysicianHisPhysicianSpecialization];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisPhysicianHisPhysicianClinic]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisPhysicianClinics] DROP CONSTRAINT [FK_HisPhysicianHisPhysicianClinic];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -135,6 +144,15 @@ IF OBJECT_ID(N'[dbo].[HisEntOperators]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[HisEntAdmins]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HisEntAdmins];
+GO
+IF OBJECT_ID(N'[dbo].[HisSpecializations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisSpecializations];
+GO
+IF OBJECT_ID(N'[dbo].[HisPhysicianSpecializations]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisPhysicianSpecializations];
+GO
+IF OBJECT_ID(N'[dbo].[HisPhysicianClinics]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisPhysicianClinics];
 GO
 
 -- --------------------------------------------------
@@ -343,7 +361,7 @@ CREATE TABLE [dbo].[HisPhysicianClinics] (
     [Days] nvarchar(120)  NOT NULL,
     [Time] nvarchar(120)  NOT NULL,
     [Remarks] nvarchar(250)  NULL,
-    [Telephone] nvarchar(max)  NOT NULL
+    [Telephone] nvarchar(120)  NULL
 );
 GO
 
