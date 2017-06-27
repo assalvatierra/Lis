@@ -226,30 +226,6 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
         }
 
-        public ActionResult DeleteClinic(int? id)
-        {
-            var clinic = db.HisPhysicianClinics.Find(id);
-            db.HisPhysicianClinics.Remove(clinic);
-            db.SaveChanges();
-            return RedirectToAction("Edit", new { id = clinic.HisPhysicianId });
-
-
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditClinic([Bind(Include = "Id,HisPhysicianId,Location,Days,Time,Remarks,Telephone")] HisPhysicianClinic clinic)
-        {
-            if(ModelState.IsValid)
-            {
-                db.Entry(clinic).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Edit", new { id = clinic.HisPhysicianId });
-            }
-            return View(clinic);
-        }
-
         public ActionResult RemoveClinic(int? id)
         {
             var data = db.HisPhysicianClinics.Find(id);
