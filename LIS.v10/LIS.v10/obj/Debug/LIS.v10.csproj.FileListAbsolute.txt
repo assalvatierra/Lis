@@ -79,7 +79,6 @@ C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\bin\Microsoft.Owin.Security
 C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.dll
 C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.pdb
-C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\obj\Debug\LIS.v10.csprojResolveAssemblyReference.cache
 D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\bin\ApplicationInsights.config
 D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\bin\roslyn\csc.exe
 D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
