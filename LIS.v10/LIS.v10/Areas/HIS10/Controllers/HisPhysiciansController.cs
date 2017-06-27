@@ -19,7 +19,6 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // GET: HIS10/HisPhysicians
         public ActionResult Index()
         {
-
             return View(db.HisPhysicians.ToList());
         }
 

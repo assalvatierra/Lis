@@ -26,7 +26,10 @@
                 <br />@item.Remarks
             </span>
             <p>
-                @Html.ActionLink("Details", "Edit", new { id = item.Id })
+                @Html.ActionLink("Details", "Edit", new { id = item.Id }) | 
+                @Html.ActionLink("Physicians", "EntityPhysicianList", new { id = item.Id }) | 
+                @Html.ActionLink("Instruments", "Edit", new { id = item.Id }) | 
+                @Html.ActionLink("MedTechs", "Edit", new { id = item.Id })
             </p>
         </td>
     </tr>

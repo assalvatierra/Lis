@@ -202,6 +202,17 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
         }
 
+        public ActionResult EntityPhysicianList(int? id)
+        {
+            var pIDs = db.HisEntPhysicians.Where(d => d.HisEntityId == id).Select(s => s.HisPhysicianId);
+            var data = db.HisPhysicians.Where(d => pIDs.Contains(d.Id));
+            return View(data);
+
+//            TempData["ENTITYID"] = (int)id;
+//            return RedirectToAction("Index", "HisPhysicians", new { id = id });
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
