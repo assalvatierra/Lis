@@ -500,7 +500,6 @@
     <Content Include="Areas\HIS10\Views\HisEntities\Administrators.cshtml" />
     <Content Include="Areas\HIS10\Views\HisPhysicians\ListSpecialization.cshtml" />
     <Content Include="Areas\HIS10\Views\HisPhysicians\AddClinic.cshtml" />
-    <Content Include="Areas\HIS10\Views\HisPhysicians\EditClinic.cshtml" />
     <None Include="Properties\PublishProfiles\ZeeIt2017.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
