@@ -25,6 +25,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         //public ActionResult SearchPhysicianPage()
         //{
         //    return View();
+
         //}
 
         // GET: HIS10/HisPhysicians/Details/5
