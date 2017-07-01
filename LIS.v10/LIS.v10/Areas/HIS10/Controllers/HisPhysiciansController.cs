@@ -22,6 +22,11 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return View(db.HisPhysicians.ToList());
         }
 
+        //public ActionResult SearchPhysicianPage()
+        //{
+        //    return View();
+        //}
+
         // GET: HIS10/HisPhysicians/Details/5
         public ActionResult Details(int? id)
         {
