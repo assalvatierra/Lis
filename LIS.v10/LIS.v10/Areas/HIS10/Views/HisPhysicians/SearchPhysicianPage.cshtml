@@ -20,6 +20,9 @@
         <div>
             @ViewBag.Search
         </div>
+        <div>
+            <input type="button" id="btnsearch" name="btnsearch" value="test" class="btn btn-default"/>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -27,4 +30,40 @@
             </div>
         </div>
     </div>
+}
+
+
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        $("#btnsearch").click(function test() {
+
+            //alert("test");
+            var searchword = $("#search").val();
+            
+            $.ajax({
+                type: "POST",
+                url: "/HisPhysicians/SearchPhysician",
+                data: '{search:"' + searchword + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert("Hello: " + response.message + " .\code: " + response.code);
+                },
+                failure: function (response) {
+                    alert("Unable to process your request: " + response.message);
+                },
+                error: function (response) {
+                    alert("Error has occured at the server. "  + response.message);
+                }
+            });
+
+
+
+        });
+
+    </script>
+
 }
