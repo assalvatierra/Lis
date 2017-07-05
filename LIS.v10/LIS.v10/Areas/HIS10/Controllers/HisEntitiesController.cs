@@ -213,6 +213,11 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
         }
 
+        public ActionResult AddNewEntityPhysician()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
