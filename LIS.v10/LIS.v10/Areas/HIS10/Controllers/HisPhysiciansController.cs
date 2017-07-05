@@ -31,9 +31,10 @@ namespace LIS.v10.Areas.HIS10.Controllers
         [HttpPost]
         public JsonResult SearchPhysician(string search)
         {
+            var data = db.HisPhysicians.Where(d => d.Name.Contains(search)).Select(s => new { name = s.Name, id = s.Id });
             var ret = new { message = "server: SearchPhysician=" + search, code = "110" };
 
-            return Json(ret);
+            return Json(data);
         }
 
 
