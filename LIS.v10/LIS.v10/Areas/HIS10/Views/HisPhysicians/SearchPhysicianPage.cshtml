@@ -50,7 +50,11 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    alert("Hello: " + response.message + " .\code: " + response.code);
+                    $.each(response, function (key, data) {
+                        alert(data.name);
+                    })
+                    //alert(response);
+                    //alert("Hello: " + response.message + " .\code: " + response.code);
                 },
                 failure: function (response) {
                     alert("Unable to process your request: " + response.message);
