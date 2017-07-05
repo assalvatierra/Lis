@@ -29,10 +29,11 @@ namespace LIS.v10.Areas.HIS10.Controllers
         }
 
         [HttpPost]
-        public ActionResult SearchPhysicianPage(string search)
+        public JsonResult SearchPhysician(string search)
         {
-            ViewBag.Search = "server: " + search;
-            return View();
+            var ret = new { message = "server: SearchPhysician=" + search, code = "110" };
+
+            return Json(ret);
         }
 
 
