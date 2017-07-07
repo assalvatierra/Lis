@@ -16,20 +16,18 @@
                 <input class="form-control text-box single-line" id="search" type="text" name="search" />
             </div>
         </div>
-
         <div>
-            @ViewBag.Search
-        </div>
-        <div>
-            <input type="button" id="btnsearch" name="btnsearch" value="test" class="btn btn-default"/>
+            <input type="button" id="btnsearch" name="btnsearch" value="Search" class="btn btn-default" />
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Submit" class="btn btn-default" />
-            </div>
+        <div>
+            <p style="font:bold 12px arial, verdana">Search Results</p>
+            <span id="SearchResult" name="SearchResult">
+                @ViewBag.Search
+            </span>
         </div>
     </div>
+
 }
 
 
@@ -42,7 +40,8 @@
 
             //alert("test");
             var searchword = $("#search").val();
-            
+            var sResult = "";
+
             $.ajax({
                 type: "POST",
                 url: "/HisPhysicians/SearchPhysician",
@@ -51,10 +50,16 @@
                 dataType: "json",
                 success: function (response) {
                     $.each(response, function (key, data) {
-                        alert(data.name);
+                        sResult += "<br /> " + data.name + " <a href=''>use</a>";
                     })
-                    //alert(response);
-                    //alert("Hello: " + response.message + " .\code: " + response.code);
+
+                    if(sResult=="")
+                    {
+                        sResult = "no Physician matches your criteria : " + searchword;
+                    }
+
+                    $("#SearchResult").html(sResult);
+
                 },
                 failure: function (response) {
                     alert("Unable to process your request: " + response.message);
@@ -63,7 +68,6 @@
                     alert("Error has occured at the server. "  + response.message);
                 }
             });
-
 
 
         });
