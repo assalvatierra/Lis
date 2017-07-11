@@ -204,18 +204,38 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
         public ActionResult EntityPhysicianList(int? id)
         {
+            Session["ENTITYID"] = (int)id;
             var pIDs = db.HisEntPhysicians.Where(d => d.HisEntityId == id).Select(s => s.HisPhysicianId);
             var data = db.HisPhysicians.Where(d => pIDs.Contains(d.Id));
             return View(data);
-
-//            TempData["ENTITYID"] = (int)id;
-//            return RedirectToAction("Index", "HisPhysicians", new { id = id });
-
         }
 
         public ActionResult AddPhysician(int? id)
         {
+            //initialize Search config. to be called upon selecting an item
+            TempData["SEARCHOBJ"] = new Controllers.HisPhysiciansController.SearchPhysicianConfig
+            { ActionOnUse = "AddingPhysician", ControllerOnUse = "HisEntities" };
+
             return RedirectToAction("SearchPhysicianPage", "HisPhysicians");
+        }
+
+        public ActionResult AddingPhysician (int? SearchData)
+        {
+            int entityId = (int)Session["ENTITYID"];
+            int pId = (int)SearchData;
+
+            db.Database.ExecuteSqlCommand(
+                "delete from HisEntPhysicians where HisPhysicianId='" + pId.ToString() + "' and HisEntityId = '" + entityId.ToString() + "'"
+                );
+            db.SaveChanges();
+
+
+            db.Database.ExecuteSqlCommand(
+                "Insert into HisEntPhysicians(HisPhysicianId,HisEntityId) values ('"+ pId.ToString() +"','"+ entityId.ToString() +"')"
+                );
+            db.SaveChanges();
+
+            return RedirectToAction("EntityPhysicianList", new { id = entityId });
         }
 
         protected override void Dispose(bool disposing)
