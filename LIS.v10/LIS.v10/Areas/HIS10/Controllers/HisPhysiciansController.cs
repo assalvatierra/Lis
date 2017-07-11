@@ -36,7 +36,12 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
             return Json(data);
         }
+        [HttpPost]
+        public ActionResult SearchUseItem()
+        {
 
+            return View();
+        }
 
         // GET: HIS10/HisPhysicians/Details/5
         public ActionResult Details(int? id)
