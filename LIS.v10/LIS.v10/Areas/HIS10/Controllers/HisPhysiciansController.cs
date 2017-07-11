@@ -14,6 +14,12 @@ namespace LIS.v10.Areas.HIS10.Controllers
 {
     public class HisPhysiciansController : Controller
     {
+        public class SearchPhysicianConfig
+        {
+            public string ActionOnUse { get; set; }
+            public string ControllerOnUse { get; set; }
+        }
+
         private His10DBContainer db = new His10DBContainer();
 
         // GET: HIS10/HisPhysicians
@@ -36,7 +42,15 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
             return Json(data);
         }
+        
+        public ActionResult SearchUseItem(int? id)
+        {
+            SearchPhysicianConfig config = (SearchPhysicianConfig)TempData["SEARCHOBJ"];
+            if (config != null)
+                return RedirectToAction(config.ActionOnUse, config.ControllerOnUse, new { SearchData = id });
 
+            return View();
+        }
 
         // GET: HIS10/HisPhysicians/Details/5
         public ActionResult Details(int? id)

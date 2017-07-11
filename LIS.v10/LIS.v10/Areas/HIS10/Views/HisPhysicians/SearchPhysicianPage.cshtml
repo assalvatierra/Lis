@@ -50,14 +50,14 @@
                 dataType: "json",
                 success: function (response) {
                     $.each(response, function (key, data) {
-                        sResult += "<br /> " + data.name + " <a href=''>use</a>";
+                        sResult += "<br /> " + data.name + " <a href='/HIS10/HisPhysicians/SearchUseItem/"+ data.id +"'>use</a>";
                     })
 
                     if(sResult=="")
                     {
                         sResult = "no Physician matches your criteria : " + searchword;
                     }
-                    
+
                     $("#SearchResult").html(sResult);
 
                 },

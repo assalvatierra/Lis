@@ -503,6 +503,7 @@
     <Content Include="Areas\HIS10\Views\HisPhysicians\EditClinic.cshtml" />
     <Content Include="Areas\HIS10\Views\HisEntities\EntityPhysicianList.cshtml" />
     <Content Include="Areas\HIS10\Views\HisPhysicians\SearchPhysicianPage.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisPhysicians\SearchUseItem.cshtml" />
     <None Include="Properties\PublishProfiles\ZeeIt2017.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

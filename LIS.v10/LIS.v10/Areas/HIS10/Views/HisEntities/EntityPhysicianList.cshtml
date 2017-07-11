@@ -8,7 +8,7 @@
 <h2>Physicians</h2>
 
 <p>
-    @Html.ActionLink("Add New", "Create")
+    @Html.ActionLink("Add New", "AddPhysician")
 </p>
 <table class="table">
     @foreach (var item in Model)
@@ -32,9 +32,6 @@
                     </span>
                 }
 
-                <p>
-                    @Html.ActionLink("Details", "Edit", new { id = item.Id })
-                </p>
             </td>
         </tr>
     }
