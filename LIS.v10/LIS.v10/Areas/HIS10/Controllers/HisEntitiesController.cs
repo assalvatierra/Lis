@@ -250,7 +250,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         public ActionResult AddOperator(int? id)
         {
             //initialize Search config. to be called upon selecting an item
-            TempData["SEARCHOBJ"] = new Controllers.HisPhysiciansController.SearchPhysicianConfig
+            TempData["SEARCHOBJ"] = new Controllers.HisOperatorsController.SearchConfig
             { ActionOnUse = "AddingOperator", ControllerOnUse = "HisEntities" };
 
             return RedirectToAction("SearchPage", "HisOperators");
@@ -267,7 +267,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
 
             db.Database.ExecuteSqlCommand(
-                "Insert into HisEntPhysicians(HisOperatorId,HisEntityId) values ('" + pId.ToString() + "','" + entityId.ToString() + "')"
+                "Insert into HisEntOperators(HisOperatorId,HisEntityId) values ('" + pId.ToString() + "','" + entityId.ToString() + "')"
                 );
             db.SaveChanges();
 
