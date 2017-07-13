@@ -28,8 +28,8 @@
             <p>
                 @Html.ActionLink("Details", "Edit", new { id = item.Id }) | 
                 @Html.ActionLink("Physicians", "EntityPhysicianList", new { id = item.Id }) | 
-                @Html.ActionLink("Instruments", "Edit", new { id = item.Id }) | 
-                @Html.ActionLink("MedTechs", "Edit", new { id = item.Id })
+                @Html.ActionLink("Instruments", "EntityInstrumentList", new { id = item.Id }) | 
+                @Html.ActionLink("Operators", "EntityOperatorList", new { id = item.Id })
             </p>
         </td>
     </tr>
