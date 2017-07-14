@@ -274,6 +274,16 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return RedirectToAction("EntityOperatorList", new { id = entityId });
         }
         #endregion
+        #region Instrument List
+        public ActionResult EntityInstrumentList(int? id)
+        {
+            Session["ENTITYID"] = (int)id;
+            var data = db.HisInstruments.Where(d => d.HisEntityId == id);
+            return View(data);
+        }
+
+        #endregion
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

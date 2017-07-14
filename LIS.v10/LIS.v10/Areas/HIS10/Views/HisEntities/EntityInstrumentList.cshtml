@@ -1,0 +1,47 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisInstrument>
+
+@{
+    ViewBag.Title = "Instruments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "Instruments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Instruments</h2>
+
+<p>
+    @Html.ActionLink("Add New", "")
+</p>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="width:10%;">
+                <img src="~/Content/placeholder-image.jpg" height="100" />
+            </td>
+            <td>
+                <span style="font: bold 14px calibre, verdana;">
+                    @item.Name - @item.InsCode
+                </span>
+                <span style="font-size:smaller">
+                    <br />@item.Description
+                    <br />@item.Specification
+                    <br />@item.Remarks
+                </span>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    <p>
+        @Html.ActionLink("Back to Hospital List", "index", "HisEntities", new { area = "HIS10" }, null)
+    </p>
+</div>
+
