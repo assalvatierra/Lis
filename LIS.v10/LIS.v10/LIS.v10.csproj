@@ -504,6 +504,10 @@
     <Content Include="Areas\HIS10\Views\HisEntities\EntityPhysicianList.cshtml" />
     <Content Include="Areas\HIS10\Views\HisPhysicians\SearchPhysicianPage.cshtml" />
     <Content Include="Areas\HIS10\Views\HisPhysicians\SearchUseItem.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisEntities\EntityOperatorList.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOperators\Search.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisOperators\SearchPage.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisEntities\EntityInstrumentList.cshtml" />
     <None Include="Properties\PublishProfiles\ZeeIt2017.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

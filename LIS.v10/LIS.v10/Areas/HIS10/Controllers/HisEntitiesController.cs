@@ -202,6 +202,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
         }
 
+        #region Physician List
         public ActionResult EntityPhysicianList(int? id)
         {
             Session["ENTITYID"] = (int)id;
@@ -237,6 +238,51 @@ namespace LIS.v10.Areas.HIS10.Controllers
 
             return RedirectToAction("EntityPhysicianList", new { id = entityId });
         }
+        #endregion
+        #region Operator List
+        public ActionResult EntityOperatorList(int? id)
+        {
+            Session["ENTITYID"] = (int)id;
+            var pIDs = db.HisEntOperators.Where(d => d.HisEntityId == id).Select(s => s.HisOperatorId);
+            var data = db.HisOperators.Where(d => pIDs.Contains(d.Id));
+            return View(data);
+        }
+        public ActionResult AddOperator(int? id)
+        {
+            //initialize Search config. to be called upon selecting an item
+            TempData["SEARCHOBJ"] = new Controllers.HisOperatorsController.SearchConfig
+            { ActionOnUse = "AddingOperator", ControllerOnUse = "HisEntities" };
+
+            return RedirectToAction("SearchPage", "HisOperators");
+        }
+        public ActionResult AddingOperator(int? SearchData)
+        {
+            int entityId = (int)Session["ENTITYID"];
+            int pId = (int)SearchData;
+
+            db.Database.ExecuteSqlCommand(
+                "delete from HisEntOperators where HisOperatorId='" + pId.ToString() + "' and HisEntityId = '" + entityId.ToString() + "'"
+                );
+            db.SaveChanges();
+
+
+            db.Database.ExecuteSqlCommand(
+                "Insert into HisEntOperators(HisOperatorId,HisEntityId) values ('" + pId.ToString() + "','" + entityId.ToString() + "')"
+                );
+            db.SaveChanges();
+
+            return RedirectToAction("EntityOperatorList", new { id = entityId });
+        }
+        #endregion
+        #region Instrument List
+        public ActionResult EntityInstrumentList(int? id)
+        {
+            Session["ENTITYID"] = (int)id;
+            var data = db.HisInstruments.Where(d => d.HisEntityId == id);
+            return View(data);
+        }
+
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

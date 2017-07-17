@@ -12,6 +12,13 @@ namespace LIS.v10.Areas.HIS10.Controllers
 {
     public class HisOperatorsController : Controller
     {
+        public class SearchConfig
+        {
+            public string ActionOnUse { get; set; }
+            public string ControllerOnUse { get; set; }
+        }
+
+
         private His10DBContainer db = new His10DBContainer();
 
         // GET: HIS10/HisOperators
@@ -19,6 +26,31 @@ namespace LIS.v10.Areas.HIS10.Controllers
         {
             return View(db.HisOperators.ToList());
         }
+
+        public ActionResult SearchPage()
+        {
+            ViewBag.Search = "Start searching.";
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult Search(string search)
+        {
+            var data = db.HisOperators.Where(d => d.Name.Contains(search)).Select(s => new { name = s.Name, id = s.Id });
+            var ret = new { message = "server: SearchOperator=" + search, code = "110" };
+
+            return Json(data);
+        }
+
+        public ActionResult SearchUseItem(int? id)
+        {
+            SearchConfig config = (SearchConfig)TempData["SEARCHOBJ"];
+            if (config != null)
+                return RedirectToAction(config.ActionOnUse, config.ControllerOnUse, new { SearchData = id });
+
+            return View();
+        }
+
 
         // GET: HIS10/HisOperators/Details/5
         public ActionResult Details(int? id)
