@@ -21,6 +21,15 @@ namespace LIS.v10.Areas.Core.Controllers
 {
     public class usersController : Controller
     {
+        public class CreateLoginConfig
+        {
+            public string AccntName { get; set; }
+            public string AccntRemarks { get; set; }
+            public string ActionAfterCreate { get; set; }
+            public string ControllerAfterCreate { get; set; }
+            public string AreaAfterCreate { get; set; }
+        }
+
         private CoreDBContainer db = new CoreDBContainer();
 
         // GET: Core/users
@@ -47,7 +56,15 @@ namespace LIS.v10.Areas.Core.Controllers
         // GET: Core/users/Create
         public ActionResult Create()
         {
-            return View();
+            Core.Models.user newuser = new user();
+            if (TempData.ContainsKey("CREATELOGINCONFIG"))
+            {
+                CreateLoginConfig actionConfig = (CreateLoginConfig)TempData.Peek("CREATELOGINCONFIG");
+                newuser.Fullname = actionConfig.AccntName;
+                newuser.Remarks = actionConfig.AccntRemarks;
+            }
+
+            return View(newuser);
         }
 
         // POST: Core/users/Create
@@ -61,17 +78,31 @@ namespace LIS.v10.Areas.Core.Controllers
             {
                 ApplicationUserManager _UserManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var newuser = new ApplicationUser { UserName = user.Email, Email = user.Email };
-                var result = _UserManager.Create(newuser, user.Password);
 
-                if (result.Succeeded)
+                try
                 {
-                    user.Status = "ACT";
-                    user.UserId = newuser.Id;
+                    var result = _UserManager.Create(newuser, user.Password);
 
-                    db.users.Add(user);
-                    db.SaveChanges();
+                    if (result.Succeeded)
+                    {
+                        user.Status = "ACT";
+                        user.UserId = newuser.Id;
+
+                        db.users.Add(user);
+                        db.SaveChanges();
+                    }
+                }
+                catch( Exception e)
+                {
+                    ViewBag.errorMsg = e.Message;
                 }
 
+                if ( TempData.ContainsKey("CREATELOGINCONFIG") )
+                {
+                    CreateLoginConfig actionConfig = (CreateLoginConfig)TempData["CREATELOGINCONFIG"];
+                    return RedirectToAction(actionConfig.ActionAfterCreate, actionConfig.ControllerAfterCreate, new { area = actionConfig.AreaAfterCreate, data = newuser.Id });
+                }
+                
                 return RedirectToAction("Index");
             }
 

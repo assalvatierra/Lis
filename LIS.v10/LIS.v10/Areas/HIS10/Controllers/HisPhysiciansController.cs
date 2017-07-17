@@ -265,6 +265,30 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return RedirectToAction("Edit", new { id = pId });
         }
 
+        public ActionResult CreateLogin (int? id)
+        {
+            var data = db.HisPhysicians.Find(id);
+
+            TempData["CREATELOGINPHYSICIANID"] = id;
+            TempData["CREATELOGINCONFIG"] = new Core.Controllers.usersController.CreateLoginConfig
+                    { AccntName=data.Name, AccntRemarks=data.Remarks, ActionAfterCreate = "CreateLoginDone", ControllerAfterCreate = "HisPhysicians", AreaAfterCreate="HIS10" };
+
+            return RedirectToAction("Create", "users", new { area = "CORE" });
+
+        }
+
+        public ActionResult CreateLoginDone(string data)
+        {
+            int id = (int)TempData["CREATELOGINPHYSICIANID"];
+
+            db.Database.ExecuteSqlCommand(
+            "update HisPhysicians set AccntUserId = '" + data + "' where Id=" + id.ToString()
+                );
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
