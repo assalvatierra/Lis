@@ -147,6 +147,31 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult CreateLogin(int? id)
+        {
+            var data = db.HisOperators.Find(id);
+
+            TempData["CREATELOGINOPERATORID"] = id;
+            TempData["CREATELOGINCONFIG"] = new Core.Controllers.usersController.CreateLoginConfig
+            { AccntName = data.Name, AccntRemarks = data.Remarks, ActionAfterCreate = "CreateLoginDone", ControllerAfterCreate = "HisOperators", AreaAfterCreate = "HIS10" };
+
+            return RedirectToAction("Create", "users", new { area = "CORE" });
+
+        }
+
+        public ActionResult CreateLoginDone(string data)
+        {
+            int id = (int)TempData["CREATELOGINOPERATORID"];
+
+            db.Database.ExecuteSqlCommand(
+            "update HisOperators set AccntUserId = '" + data + "' where Id=" + id.ToString()
+                );
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
