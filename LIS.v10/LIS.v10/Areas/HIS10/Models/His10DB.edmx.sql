@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 06/23/2017 17:27:05
+-- Date Created: 01/10/2018 16:46:10
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -365,6 +365,92 @@ CREATE TABLE [dbo].[HisPhysicianClinics] (
 );
 GO
 
+-- Creating table 'HisGroupings'
+CREATE TABLE [dbo].[HisGroupings] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(80)  NOT NULL,
+    [Description] nvarchar(250)  NULL
+);
+GO
+
+-- Creating table 'HisProfileGroups'
+CREATE TABLE [dbo].[HisProfileGroups] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisProfileId] int  NOT NULL,
+    [HisGroupingId] int  NOT NULL
+);
+GO
+
+-- Creating table 'HisIncharges'
+CREATE TABLE [dbo].[HisIncharges] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(80)  NOT NULL,
+    [Remarks] nvarchar(250)  NULL,
+    [AccntUserId] nvarchar(50)  NULL
+);
+GO
+
+-- Creating table 'HisProfileIncharges'
+CREATE TABLE [dbo].[HisProfileIncharges] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisProfileId] int  NOT NULL,
+    [HisInchargeId] int  NOT NULL
+);
+GO
+
+-- Creating table 'HisRequests'
+CREATE TABLE [dbo].[HisRequests] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Title] nvarchar(80)  NOT NULL,
+    [Description] nvarchar(250)  NULL
+);
+GO
+
+-- Creating table 'HisProfileReqs'
+CREATE TABLE [dbo].[HisProfileReqs] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisProfileId] int  NOT NULL,
+    [HisRequestId] int  NOT NULL,
+    [dtRequested] datetime  NULL,
+    [dtSchedule] datetime  NULL,
+    [dtPerformed] datetime  NULL,
+    [Remarks] nvarchar(250)  NULL
+);
+GO
+
+-- Creating table 'HisTemplateRequests'
+CREATE TABLE [dbo].[HisTemplateRequests] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Title] nvarchar(80)  NOT NULL,
+    [Remarks] nvarchar(250)  NULL
+);
+GO
+
+-- Creating table 'HisTemplateReqItems1'
+CREATE TABLE [dbo].[HisTemplateReqItems1] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisTemplateRequestId] int  NOT NULL,
+    [HisRequestId] int  NOT NULL,
+    [Sort] int  NOT NULL,
+    [RefDay] int  NOT NULL
+);
+GO
+
+-- Creating table 'HisReqCategories'
+CREATE TABLE [dbo].[HisReqCategories] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(80)  NOT NULL
+);
+GO
+
+-- Creating table 'HisReqCats'
+CREATE TABLE [dbo].[HisReqCats] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisReqCategoryId] int  NOT NULL,
+    [HisRequestId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -492,6 +578,66 @@ GO
 -- Creating primary key on [Id] in table 'HisPhysicianClinics'
 ALTER TABLE [dbo].[HisPhysicianClinics]
 ADD CONSTRAINT [PK_HisPhysicianClinics]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisGroupings'
+ALTER TABLE [dbo].[HisGroupings]
+ADD CONSTRAINT [PK_HisGroupings]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisProfileGroups'
+ALTER TABLE [dbo].[HisProfileGroups]
+ADD CONSTRAINT [PK_HisProfileGroups]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisIncharges'
+ALTER TABLE [dbo].[HisIncharges]
+ADD CONSTRAINT [PK_HisIncharges]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisProfileIncharges'
+ALTER TABLE [dbo].[HisProfileIncharges]
+ADD CONSTRAINT [PK_HisProfileIncharges]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisRequests'
+ALTER TABLE [dbo].[HisRequests]
+ADD CONSTRAINT [PK_HisRequests]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisProfileReqs'
+ALTER TABLE [dbo].[HisProfileReqs]
+ADD CONSTRAINT [PK_HisProfileReqs]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisTemplateRequests'
+ALTER TABLE [dbo].[HisTemplateRequests]
+ADD CONSTRAINT [PK_HisTemplateRequests]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisTemplateReqItems1'
+ALTER TABLE [dbo].[HisTemplateReqItems1]
+ADD CONSTRAINT [PK_HisTemplateReqItems1]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisReqCategories'
+ALTER TABLE [dbo].[HisReqCategories]
+ADD CONSTRAINT [PK_HisReqCategories]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisReqCats'
+ALTER TABLE [dbo].[HisReqCats]
+ADD CONSTRAINT [PK_HisReqCats]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -842,6 +988,156 @@ GO
 CREATE INDEX [IX_FK_HisPhysicianHisPhysicianClinic]
 ON [dbo].[HisPhysicianClinics]
     ([HisPhysicianId]);
+GO
+
+-- Creating foreign key on [HisProfileId] in table 'HisProfileGroups'
+ALTER TABLE [dbo].[HisProfileGroups]
+ADD CONSTRAINT [FK_HisProfileHisProfileGroup]
+    FOREIGN KEY ([HisProfileId])
+    REFERENCES [dbo].[HisProfiles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisProfileHisProfileGroup'
+CREATE INDEX [IX_FK_HisProfileHisProfileGroup]
+ON [dbo].[HisProfileGroups]
+    ([HisProfileId]);
+GO
+
+-- Creating foreign key on [HisGroupingId] in table 'HisProfileGroups'
+ALTER TABLE [dbo].[HisProfileGroups]
+ADD CONSTRAINT [FK_HisGroupingHisProfileGroup]
+    FOREIGN KEY ([HisGroupingId])
+    REFERENCES [dbo].[HisGroupings]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisGroupingHisProfileGroup'
+CREATE INDEX [IX_FK_HisGroupingHisProfileGroup]
+ON [dbo].[HisProfileGroups]
+    ([HisGroupingId]);
+GO
+
+-- Creating foreign key on [HisProfileId] in table 'HisProfileIncharges'
+ALTER TABLE [dbo].[HisProfileIncharges]
+ADD CONSTRAINT [FK_HisProfileHisProfileIncharge]
+    FOREIGN KEY ([HisProfileId])
+    REFERENCES [dbo].[HisProfiles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisProfileHisProfileIncharge'
+CREATE INDEX [IX_FK_HisProfileHisProfileIncharge]
+ON [dbo].[HisProfileIncharges]
+    ([HisProfileId]);
+GO
+
+-- Creating foreign key on [HisInchargeId] in table 'HisProfileIncharges'
+ALTER TABLE [dbo].[HisProfileIncharges]
+ADD CONSTRAINT [FK_HisInchargeHisProfileIncharge]
+    FOREIGN KEY ([HisInchargeId])
+    REFERENCES [dbo].[HisIncharges]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisInchargeHisProfileIncharge'
+CREATE INDEX [IX_FK_HisInchargeHisProfileIncharge]
+ON [dbo].[HisProfileIncharges]
+    ([HisInchargeId]);
+GO
+
+-- Creating foreign key on [HisProfileId] in table 'HisProfileReqs'
+ALTER TABLE [dbo].[HisProfileReqs]
+ADD CONSTRAINT [FK_HisProfileHisProfileReq]
+    FOREIGN KEY ([HisProfileId])
+    REFERENCES [dbo].[HisProfiles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisProfileHisProfileReq'
+CREATE INDEX [IX_FK_HisProfileHisProfileReq]
+ON [dbo].[HisProfileReqs]
+    ([HisProfileId]);
+GO
+
+-- Creating foreign key on [HisRequestId] in table 'HisProfileReqs'
+ALTER TABLE [dbo].[HisProfileReqs]
+ADD CONSTRAINT [FK_HisRequestHisProfileReq]
+    FOREIGN KEY ([HisRequestId])
+    REFERENCES [dbo].[HisRequests]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisRequestHisProfileReq'
+CREATE INDEX [IX_FK_HisRequestHisProfileReq]
+ON [dbo].[HisProfileReqs]
+    ([HisRequestId]);
+GO
+
+-- Creating foreign key on [HisTemplateRequestId] in table 'HisTemplateReqItems1'
+ALTER TABLE [dbo].[HisTemplateReqItems1]
+ADD CONSTRAINT [FK_HisTemplateRequestHisTemplateReqItems]
+    FOREIGN KEY ([HisTemplateRequestId])
+    REFERENCES [dbo].[HisTemplateRequests]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisTemplateRequestHisTemplateReqItems'
+CREATE INDEX [IX_FK_HisTemplateRequestHisTemplateReqItems]
+ON [dbo].[HisTemplateReqItems1]
+    ([HisTemplateRequestId]);
+GO
+
+-- Creating foreign key on [HisRequestId] in table 'HisTemplateReqItems1'
+ALTER TABLE [dbo].[HisTemplateReqItems1]
+ADD CONSTRAINT [FK_HisRequestHisTemplateReqItems]
+    FOREIGN KEY ([HisRequestId])
+    REFERENCES [dbo].[HisRequests]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisRequestHisTemplateReqItems'
+CREATE INDEX [IX_FK_HisRequestHisTemplateReqItems]
+ON [dbo].[HisTemplateReqItems1]
+    ([HisRequestId]);
+GO
+
+-- Creating foreign key on [HisReqCategoryId] in table 'HisReqCats'
+ALTER TABLE [dbo].[HisReqCats]
+ADD CONSTRAINT [FK_HisReqCategoryHisReqCat]
+    FOREIGN KEY ([HisReqCategoryId])
+    REFERENCES [dbo].[HisReqCategories]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisReqCategoryHisReqCat'
+CREATE INDEX [IX_FK_HisReqCategoryHisReqCat]
+ON [dbo].[HisReqCats]
+    ([HisReqCategoryId]);
+GO
+
+-- Creating foreign key on [HisRequestId] in table 'HisReqCats'
+ALTER TABLE [dbo].[HisReqCats]
+ADD CONSTRAINT [FK_HisRequestHisReqCat]
+    FOREIGN KEY ([HisRequestId])
+    REFERENCES [dbo].[HisRequests]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisRequestHisReqCat'
+CREATE INDEX [IX_FK_HisRequestHisReqCat]
+ON [dbo].[HisReqCats]
+    ([HisRequestId]);
 GO
 
 -- --------------------------------------------------

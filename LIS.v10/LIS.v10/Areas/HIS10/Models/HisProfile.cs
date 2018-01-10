@@ -20,6 +20,9 @@ namespace LIS.v10.Areas.HIS10.Models
             this.HisOrders = new HashSet<HisOrder>();
             this.HisProfileDetails = new HashSet<HisProfileDetails>();
             this.HisPhysicianProfiles = new HashSet<HisPhysicianProfile>();
+            this.HisProfileGroups = new HashSet<HisProfileGroup>();
+            this.HisProfileIncharges = new HashSet<HisProfileIncharge>();
+            this.HisProfileReqs = new HashSet<HisProfileReq>();
         }
     
         public int Id { get; set; }
@@ -33,5 +36,11 @@ namespace LIS.v10.Areas.HIS10.Models
         public virtual ICollection<HisProfileDetails> HisProfileDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HisPhysicianProfile> HisPhysicianProfiles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HisProfileGroup> HisProfileGroups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HisProfileIncharge> HisProfileIncharges { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HisProfileReq> HisProfileReqs { get; set; }
     }
 }

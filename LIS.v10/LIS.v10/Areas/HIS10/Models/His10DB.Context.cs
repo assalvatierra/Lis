@@ -46,5 +46,15 @@ namespace LIS.v10.Areas.HIS10.Models
         public virtual DbSet<HisSpecialization> HisSpecializations { get; set; }
         public virtual DbSet<HisPhysicianSpecialization> HisPhysicianSpecializations { get; set; }
         public virtual DbSet<HisPhysicianClinic> HisPhysicianClinics { get; set; }
+        public virtual DbSet<HisGrouping> HisGroupings { get; set; }
+        public virtual DbSet<HisProfileGroup> HisProfileGroups { get; set; }
+        public virtual DbSet<HisIncharge> HisIncharges { get; set; }
+        public virtual DbSet<HisProfileIncharge> HisProfileIncharges { get; set; }
+        public virtual DbSet<HisRequest> HisRequests { get; set; }
+        public virtual DbSet<HisProfileReq> HisProfileReqs { get; set; }
+        public virtual DbSet<HisTemplateRequest> HisTemplateRequests { get; set; }
+        public virtual DbSet<HisTemplateReqItems> HisTemplateReqItems1 { get; set; }
+        public virtual DbSet<HisReqCategory> HisReqCategories { get; set; }
+        public virtual DbSet<HisReqCat> HisReqCats { get; set; }
     }
 }

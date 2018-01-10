@@ -27,6 +27,16 @@
     <EntitySet Name="HisSpecializations" EntityType="His10DB.Store.HisSpecializations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisPhysicianSpecializations" EntityType="His10DB.Store.HisPhysicianSpecializations" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisPhysicianClinics" EntityType="His10DB.Store.HisPhysicianClinics" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisGroupings" EntityType="His10DB.Store.HisGroupings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisProfileGroups" EntityType="His10DB.Store.HisProfileGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisIncharges" EntityType="His10DB.Store.HisIncharges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisProfileIncharges" EntityType="His10DB.Store.HisProfileIncharges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisRequests" EntityType="His10DB.Store.HisRequests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisProfileReqs" EntityType="His10DB.Store.HisProfileReqs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisTemplateRequests" EntityType="His10DB.Store.HisTemplateRequests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisTemplateReqItems1" EntityType="His10DB.Store.HisTemplateReqItems1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisReqCategories" EntityType="His10DB.Store.HisReqCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisReqCats" EntityType="His10DB.Store.HisReqCats" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
       <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
@@ -118,6 +128,46 @@
     <AssociationSet Name="HisPhysicianHisPhysicianClinic" Association="His10DB.Store.HisPhysicianHisPhysicianClinic">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
       <End Role="HisPhysicianClinic" EntitySet="HisPhysicianClinics" />
+    </AssociationSet>
+    <AssociationSet Name="HisProfileHisProfileGroup" Association="His10DB.Store.HisProfileHisProfileGroup">
+      <End Role="HisProfile" EntitySet="HisProfiles" />
+      <End Role="HisProfileGroup" EntitySet="HisProfileGroups" />
+    </AssociationSet>
+    <AssociationSet Name="HisGroupingHisProfileGroup" Association="His10DB.Store.HisGroupingHisProfileGroup">
+      <End Role="HisGrouping" EntitySet="HisGroupings" />
+      <End Role="HisProfileGroup" EntitySet="HisProfileGroups" />
+    </AssociationSet>
+    <AssociationSet Name="HisProfileHisProfileIncharge" Association="His10DB.Store.HisProfileHisProfileIncharge">
+      <End Role="HisProfile" EntitySet="HisProfiles" />
+      <End Role="HisProfileIncharge" EntitySet="HisProfileIncharges" />
+    </AssociationSet>
+    <AssociationSet Name="HisInchargeHisProfileIncharge" Association="His10DB.Store.HisInchargeHisProfileIncharge">
+      <End Role="HisIncharge" EntitySet="HisIncharges" />
+      <End Role="HisProfileIncharge" EntitySet="HisProfileIncharges" />
+    </AssociationSet>
+    <AssociationSet Name="HisProfileHisProfileReq" Association="His10DB.Store.HisProfileHisProfileReq">
+      <End Role="HisProfile" EntitySet="HisProfiles" />
+      <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
+    </AssociationSet>
+    <AssociationSet Name="HisRequestHisProfileReq" Association="His10DB.Store.HisRequestHisProfileReq">
+      <End Role="HisRequest" EntitySet="HisRequests" />
+      <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
+    </AssociationSet>
+    <AssociationSet Name="HisTemplateRequestHisTemplateReqItems" Association="His10DB.Store.HisTemplateRequestHisTemplateReqItems">
+      <End Role="HisTemplateRequest" EntitySet="HisTemplateRequests" />
+      <End Role="HisTemplateReqItems" EntitySet="HisTemplateReqItems1" />
+    </AssociationSet>
+    <AssociationSet Name="HisRequestHisTemplateReqItems" Association="His10DB.Store.HisRequestHisTemplateReqItems">
+      <End Role="HisRequest" EntitySet="HisRequests" />
+      <End Role="HisTemplateReqItems" EntitySet="HisTemplateReqItems1" />
+    </AssociationSet>
+    <AssociationSet Name="HisReqCategoryHisReqCat" Association="His10DB.Store.HisReqCategoryHisReqCat">
+      <End Role="HisReqCategory" EntitySet="HisReqCategories" />
+      <End Role="HisReqCat" EntitySet="HisReqCats" />
+    </AssociationSet>
+    <AssociationSet Name="HisRequestHisReqCat" Association="His10DB.Store.HisRequestHisReqCat">
+      <End Role="HisRequest" EntitySet="HisRequests" />
+      <End Role="HisReqCat" EntitySet="HisReqCats" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntities">
@@ -325,6 +375,92 @@
     <Property Name="Time" Type="nvarchar" Nullable="false" MaxLength="120" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
     <Property Name="Telephone" Type="nvarchar" Nullable="true" MaxLength="120" />
+  </EntityType>
+  <EntityType Name="HisGroupings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HisProfileGroups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisProfileId" Type="int" Nullable="false" />
+    <Property Name="HisGroupingId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisIncharges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="AccntUserId" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HisProfileIncharges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisProfileId" Type="int" Nullable="false" />
+    <Property Name="HisInchargeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisRequests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HisProfileReqs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisProfileId" Type="int" Nullable="false" />
+    <Property Name="HisRequestId" Type="int" Nullable="false" />
+    <Property Name="dtRequested" Type="datetime" Nullable="true" />
+    <Property Name="dtSchedule" Type="datetime" Nullable="true" />
+    <Property Name="dtPerformed" Type="datetime" Nullable="true" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HisTemplateRequests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HisTemplateReqItems1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisTemplateRequestId" Type="int" Nullable="false" />
+    <Property Name="HisRequestId" Type="int" Nullable="false" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="RefDay" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisReqCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="HisReqCats">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisReqCategoryId" Type="int" Nullable="false" />
+    <Property Name="HisRequestId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -602,6 +738,126 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="HisProfileHisProfileGroup">
+    <End Role="HisProfile" Type="His10DB.Store.HisProfiles" Multiplicity="1" />
+    <End Role="HisProfileGroup" Type="His10DB.Store.HisProfileGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileGroup">
+        <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisGroupingHisProfileGroup">
+    <End Role="HisGrouping" Type="His10DB.Store.HisGroupings" Multiplicity="1" />
+    <End Role="HisProfileGroup" Type="His10DB.Store.HisProfileGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisGrouping">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileGroup">
+        <PropertyRef Name="HisGroupingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisProfileHisProfileIncharge">
+    <End Role="HisProfile" Type="His10DB.Store.HisProfiles" Multiplicity="1" />
+    <End Role="HisProfileIncharge" Type="His10DB.Store.HisProfileIncharges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileIncharge">
+        <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisInchargeHisProfileIncharge">
+    <End Role="HisIncharge" Type="His10DB.Store.HisIncharges" Multiplicity="1" />
+    <End Role="HisProfileIncharge" Type="His10DB.Store.HisProfileIncharges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisIncharge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileIncharge">
+        <PropertyRef Name="HisInchargeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisProfileHisProfileReq">
+    <End Role="HisProfile" Type="His10DB.Store.HisProfiles" Multiplicity="1" />
+    <End Role="HisProfileReq" Type="His10DB.Store.HisProfileReqs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileReq">
+        <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisRequestHisProfileReq">
+    <End Role="HisRequest" Type="His10DB.Store.HisRequests" Multiplicity="1" />
+    <End Role="HisProfileReq" Type="His10DB.Store.HisProfileReqs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileReq">
+        <PropertyRef Name="HisRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisTemplateRequestHisTemplateReqItems">
+    <End Role="HisTemplateRequest" Type="His10DB.Store.HisTemplateRequests" Multiplicity="1" />
+    <End Role="HisTemplateReqItems" Type="His10DB.Store.HisTemplateReqItems1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisTemplateRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisTemplateReqItems">
+        <PropertyRef Name="HisTemplateRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisRequestHisTemplateReqItems">
+    <End Role="HisRequest" Type="His10DB.Store.HisRequests" Multiplicity="1" />
+    <End Role="HisTemplateReqItems" Type="His10DB.Store.HisTemplateReqItems1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisTemplateReqItems">
+        <PropertyRef Name="HisRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisReqCategoryHisReqCat">
+    <End Role="HisReqCategory" Type="His10DB.Store.HisReqCategories" Multiplicity="1" />
+    <End Role="HisReqCat" Type="His10DB.Store.HisReqCats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisReqCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisReqCat">
+        <PropertyRef Name="HisReqCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisRequestHisReqCat">
+    <End Role="HisRequest" Type="His10DB.Store.HisRequests" Multiplicity="1" />
+    <End Role="HisReqCat" Type="His10DB.Store.HisReqCats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisReqCat">
+        <PropertyRef Name="HisRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -720,6 +976,56 @@
             <End Role="HisPhysician" EntitySet="HisPhysicians" />
             <End Role="HisPhysicianClinic" EntitySet="HisPhysicianClinics" />
           </AssociationSet>
+          <EntitySet Name="HisGroupings" EntityType="His10DB.HisGrouping" />
+          <EntitySet Name="HisProfileGroups" EntityType="His10DB.HisProfileGroup" />
+          <AssociationSet Name="HisProfileHisProfileGroup" Association="His10DB.HisProfileHisProfileGroup">
+            <End Role="HisProfile" EntitySet="HisProfiles" />
+            <End Role="HisProfileGroup" EntitySet="HisProfileGroups" />
+          </AssociationSet>
+          <AssociationSet Name="HisGroupingHisProfileGroup" Association="His10DB.HisGroupingHisProfileGroup">
+            <End Role="HisGrouping" EntitySet="HisGroupings" />
+            <End Role="HisProfileGroup" EntitySet="HisProfileGroups" />
+          </AssociationSet>
+          <EntitySet Name="HisIncharges" EntityType="His10DB.HisIncharge" />
+          <EntitySet Name="HisProfileIncharges" EntityType="His10DB.HisProfileIncharge" />
+          <AssociationSet Name="HisProfileHisProfileIncharge" Association="His10DB.HisProfileHisProfileIncharge">
+            <End Role="HisProfile" EntitySet="HisProfiles" />
+            <End Role="HisProfileIncharge" EntitySet="HisProfileIncharges" />
+          </AssociationSet>
+          <AssociationSet Name="HisInchargeHisProfileIncharge" Association="His10DB.HisInchargeHisProfileIncharge">
+            <End Role="HisIncharge" EntitySet="HisIncharges" />
+            <End Role="HisProfileIncharge" EntitySet="HisProfileIncharges" />
+          </AssociationSet>
+          <EntitySet Name="HisRequests" EntityType="His10DB.HisRequest" />
+          <EntitySet Name="HisProfileReqs" EntityType="His10DB.HisProfileReq" />
+          <AssociationSet Name="HisProfileHisProfileReq" Association="His10DB.HisProfileHisProfileReq">
+            <End Role="HisProfile" EntitySet="HisProfiles" />
+            <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
+          </AssociationSet>
+          <AssociationSet Name="HisRequestHisProfileReq" Association="His10DB.HisRequestHisProfileReq">
+            <End Role="HisRequest" EntitySet="HisRequests" />
+            <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
+          </AssociationSet>
+          <EntitySet Name="HisTemplateRequests" EntityType="His10DB.HisTemplateRequest" />
+          <EntitySet Name="HisTemplateReqItems1" EntityType="His10DB.HisTemplateReqItems" />
+          <AssociationSet Name="HisTemplateRequestHisTemplateReqItems" Association="His10DB.HisTemplateRequestHisTemplateReqItems">
+            <End Role="HisTemplateRequest" EntitySet="HisTemplateRequests" />
+            <End Role="HisTemplateReqItems" EntitySet="HisTemplateReqItems1" />
+          </AssociationSet>
+          <AssociationSet Name="HisRequestHisTemplateReqItems" Association="His10DB.HisRequestHisTemplateReqItems">
+            <End Role="HisRequest" EntitySet="HisRequests" />
+            <End Role="HisTemplateReqItems" EntitySet="HisTemplateReqItems1" />
+          </AssociationSet>
+          <EntitySet Name="HisReqCategories" EntityType="His10DB.HisReqCategory" />
+          <EntitySet Name="HisReqCats" EntityType="His10DB.HisReqCat" />
+          <AssociationSet Name="HisReqCategoryHisReqCat" Association="His10DB.HisReqCategoryHisReqCat">
+            <End Role="HisReqCategory" EntitySet="HisReqCategories" />
+            <End Role="HisReqCat" EntitySet="HisReqCats" />
+          </AssociationSet>
+          <AssociationSet Name="HisRequestHisReqCat" Association="His10DB.HisRequestHisReqCat">
+            <End Role="HisRequest" EntitySet="HisRequests" />
+            <End Role="HisReqCat" EntitySet="HisReqCats" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="HisEntity">
           <Key>
@@ -748,6 +1054,9 @@
           <NavigationProperty Name="HisProfileDetails" Relationship="His10DB.HisProfileHisProfileDetails" FromRole="HisProfile" ToRole="HisProfileDetails" />
           <NavigationProperty Name="HisPhysicianProfiles" Relationship="His10DB.HisProfileHisPhysicianProfile" FromRole="HisProfile" ToRole="HisPhysicianProfile" />
           <Property Name="AccntUserId" Type="String" Nullable="false" />
+          <NavigationProperty Name="HisProfileGroups" Relationship="His10DB.HisProfileHisProfileGroup" FromRole="HisProfile" ToRole="HisProfileGroup" />
+          <NavigationProperty Name="HisProfileIncharges" Relationship="His10DB.HisProfileHisProfileIncharge" FromRole="HisProfile" ToRole="HisProfileIncharge" />
+          <NavigationProperty Name="HisProfileReqs" Relationship="His10DB.HisProfileHisProfileReq" FromRole="HisProfile" ToRole="HisProfileReq" />
         </EntityType>
         <EntityType Name="HisCategory">
           <Key>
@@ -1249,6 +1558,229 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="HisGrouping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisProfileGroups" Relationship="His10DB.HisGroupingHisProfileGroup" FromRole="HisGrouping" ToRole="HisProfileGroup" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="HisProfileGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisProfile" Relationship="His10DB.HisProfileHisProfileGroup" FromRole="HisProfileGroup" ToRole="HisProfile" />
+          <Property Name="HisProfileId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisGrouping" Relationship="His10DB.HisGroupingHisProfileGroup" FromRole="HisProfileGroup" ToRole="HisGrouping" />
+          <Property Name="HisGroupingId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="HisProfileHisProfileGroup">
+          <End Type="His10DB.HisProfile" Role="HisProfile" Multiplicity="1" />
+          <End Type="His10DB.HisProfileGroup" Role="HisProfileGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileGroup">
+              <PropertyRef Name="HisProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisGroupingHisProfileGroup">
+          <End Type="His10DB.HisGrouping" Role="HisGrouping" Multiplicity="1" />
+          <End Type="His10DB.HisProfileGroup" Role="HisProfileGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisGrouping">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileGroup">
+              <PropertyRef Name="HisGroupingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HisIncharge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
+          <Property Name="AccntUserId" Type="String" Nullable="true" MaxLength="50" />
+          <NavigationProperty Name="HisProfileIncharges" Relationship="His10DB.HisInchargeHisProfileIncharge" FromRole="HisIncharge" ToRole="HisProfileIncharge" />
+        </EntityType>
+        <EntityType Name="HisProfileIncharge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisProfile" Relationship="His10DB.HisProfileHisProfileIncharge" FromRole="HisProfileIncharge" ToRole="HisProfile" />
+          <Property Name="HisProfileId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisIncharge" Relationship="His10DB.HisInchargeHisProfileIncharge" FromRole="HisProfileIncharge" ToRole="HisIncharge" />
+          <Property Name="HisInchargeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="HisProfileHisProfileIncharge">
+          <End Type="His10DB.HisProfile" Role="HisProfile" Multiplicity="1" />
+          <End Type="His10DB.HisProfileIncharge" Role="HisProfileIncharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileIncharge">
+              <PropertyRef Name="HisProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisInchargeHisProfileIncharge">
+          <End Type="His10DB.HisIncharge" Role="HisIncharge" Multiplicity="1" />
+          <End Type="His10DB.HisProfileIncharge" Role="HisProfileIncharge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisIncharge">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileIncharge">
+              <PropertyRef Name="HisInchargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HisRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="80" />
+          <Property Name="Description" Type="String" Nullable="true" MaxLength="250" />
+          <NavigationProperty Name="HisProfileReqs" Relationship="His10DB.HisRequestHisProfileReq" FromRole="HisRequest" ToRole="HisProfileReq" />
+          <NavigationProperty Name="HisTemplateReqItems" Relationship="His10DB.HisRequestHisTemplateReqItems" FromRole="HisRequest" ToRole="HisTemplateReqItems" />
+          <NavigationProperty Name="HisReqCats" Relationship="His10DB.HisRequestHisReqCat" FromRole="HisRequest" ToRole="HisReqCat" />
+        </EntityType>
+        <EntityType Name="HisProfileReq">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisProfile" Relationship="His10DB.HisProfileHisProfileReq" FromRole="HisProfileReq" ToRole="HisProfile" />
+          <Property Name="HisProfileId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisRequest" Relationship="His10DB.HisRequestHisProfileReq" FromRole="HisProfileReq" ToRole="HisRequest" />
+          <Property Name="HisRequestId" Type="Int32" Nullable="false" />
+          <Property Name="dtRequested" Type="DateTime" Nullable="true" />
+          <Property Name="dtSchedule" Type="DateTime" Nullable="true" />
+          <Property Name="dtPerformed" Type="DateTime" Nullable="true" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
+        </EntityType>
+        <Association Name="HisProfileHisProfileReq">
+          <End Type="His10DB.HisProfile" Role="HisProfile" Multiplicity="1" />
+          <End Type="His10DB.HisProfileReq" Role="HisProfileReq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileReq">
+              <PropertyRef Name="HisProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisRequestHisProfileReq">
+          <End Type="His10DB.HisRequest" Role="HisRequest" Multiplicity="1" />
+          <End Type="His10DB.HisProfileReq" Role="HisProfileReq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileReq">
+              <PropertyRef Name="HisRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HisTemplateRequest">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="80" />
+          <NavigationProperty Name="HisTemplateReqItems" Relationship="His10DB.HisTemplateRequestHisTemplateReqItems" FromRole="HisTemplateRequest" ToRole="HisTemplateReqItems" />
+          <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="HisTemplateReqItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisTemplateRequest" Relationship="His10DB.HisTemplateRequestHisTemplateReqItems" FromRole="HisTemplateReqItems" ToRole="HisTemplateRequest" />
+          <Property Name="HisTemplateRequestId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisRequest" Relationship="His10DB.HisRequestHisTemplateReqItems" FromRole="HisTemplateReqItems" ToRole="HisRequest" />
+          <Property Name="HisRequestId" Type="Int32" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <Property Name="RefDay" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="HisTemplateRequestHisTemplateReqItems">
+          <End Type="His10DB.HisTemplateRequest" Role="HisTemplateRequest" Multiplicity="1" />
+          <End Type="His10DB.HisTemplateReqItems" Role="HisTemplateReqItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisTemplateRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisTemplateReqItems">
+              <PropertyRef Name="HisTemplateRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisRequestHisTemplateReqItems">
+          <End Type="His10DB.HisRequest" Role="HisRequest" Multiplicity="1" />
+          <End Type="His10DB.HisTemplateReqItems" Role="HisTemplateReqItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisTemplateReqItems">
+              <PropertyRef Name="HisRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HisReqCategory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" />
+          <NavigationProperty Name="HisReqCats" Relationship="His10DB.HisReqCategoryHisReqCat" FromRole="HisReqCategory" ToRole="HisReqCat" />
+        </EntityType>
+        <EntityType Name="HisReqCat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisReqCategory" Relationship="His10DB.HisReqCategoryHisReqCat" FromRole="HisReqCat" ToRole="HisReqCategory" />
+          <Property Name="HisReqCategoryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisRequest" Relationship="His10DB.HisRequestHisReqCat" FromRole="HisReqCat" ToRole="HisRequest" />
+          <Property Name="HisRequestId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="HisReqCategoryHisReqCat">
+          <End Type="His10DB.HisReqCategory" Role="HisReqCategory" Multiplicity="1" />
+          <End Type="His10DB.HisReqCat" Role="HisReqCat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisReqCategory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisReqCat">
+              <PropertyRef Name="HisReqCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisRequestHisReqCat">
+          <End Type="His10DB.HisRequest" Role="HisRequest" Multiplicity="1" />
+          <End Type="His10DB.HisReqCat" Role="HisReqCat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisRequest">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisReqCat">
+              <PropertyRef Name="HisRequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1479,6 +2011,102 @@
           <ScalarProperty Name="Time" ColumnName="Time" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
           <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisGroupings">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisGrouping)">
+        <MappingFragment StoreEntitySet="HisGroupings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfileGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileGroup)">
+        <MappingFragment StoreEntitySet="HisProfileGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+          <ScalarProperty Name="HisGroupingId" ColumnName="HisGroupingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisIncharges">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisIncharge)">
+        <MappingFragment StoreEntitySet="HisIncharges">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfileIncharges">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileIncharge)">
+        <MappingFragment StoreEntitySet="HisProfileIncharges">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+          <ScalarProperty Name="HisInchargeId" ColumnName="HisInchargeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisRequests">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisRequest)">
+        <MappingFragment StoreEntitySet="HisRequests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfileReqs">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileReq)">
+        <MappingFragment StoreEntitySet="HisProfileReqs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+          <ScalarProperty Name="HisRequestId" ColumnName="HisRequestId" />
+          <ScalarProperty Name="dtRequested" ColumnName="dtRequested" />
+          <ScalarProperty Name="dtSchedule" ColumnName="dtSchedule" />
+          <ScalarProperty Name="dtPerformed" ColumnName="dtPerformed" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisTemplateRequests">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisTemplateRequest)">
+        <MappingFragment StoreEntitySet="HisTemplateRequests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisTemplateReqItems1">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisTemplateReqItems)">
+        <MappingFragment StoreEntitySet="HisTemplateReqItems1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisTemplateRequestId" ColumnName="HisTemplateRequestId" />
+          <ScalarProperty Name="HisRequestId" ColumnName="HisRequestId" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <ScalarProperty Name="RefDay" ColumnName="RefDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisReqCategories">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisReqCategory)">
+        <MappingFragment StoreEntitySet="HisReqCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisReqCats">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisReqCat)">
+        <MappingFragment StoreEntitySet="HisReqCats">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisReqCategoryId" ColumnName="HisReqCategoryId" />
+          <ScalarProperty Name="HisRequestId" ColumnName="HisRequestId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
