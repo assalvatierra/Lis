@@ -228,5 +228,101 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HisGroupings">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisGrouping)">
+        <MappingFragment StoreEntitySet="HisGroupings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfileGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileGroup)">
+        <MappingFragment StoreEntitySet="HisProfileGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+          <ScalarProperty Name="HisGroupingId" ColumnName="HisGroupingId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisIncharges">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisIncharge)">
+        <MappingFragment StoreEntitySet="HisIncharges">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfileIncharges">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileIncharge)">
+        <MappingFragment StoreEntitySet="HisProfileIncharges">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+          <ScalarProperty Name="HisInchargeId" ColumnName="HisInchargeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisRequests">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisRequest)">
+        <MappingFragment StoreEntitySet="HisRequests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisProfileReqs">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisProfileReq)">
+        <MappingFragment StoreEntitySet="HisProfileReqs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisProfileId" ColumnName="HisProfileId" />
+          <ScalarProperty Name="HisRequestId" ColumnName="HisRequestId" />
+          <ScalarProperty Name="dtRequested" ColumnName="dtRequested" />
+          <ScalarProperty Name="dtSchedule" ColumnName="dtSchedule" />
+          <ScalarProperty Name="dtPerformed" ColumnName="dtPerformed" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisTemplateRequests">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisTemplateRequest)">
+        <MappingFragment StoreEntitySet="HisTemplateRequests">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisTemplateReqItems1">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisTemplateReqItems)">
+        <MappingFragment StoreEntitySet="HisTemplateReqItems1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisTemplateRequestId" ColumnName="HisTemplateRequestId" />
+          <ScalarProperty Name="HisRequestId" ColumnName="HisRequestId" />
+          <ScalarProperty Name="Sort" ColumnName="Sort" />
+          <ScalarProperty Name="RefDay" ColumnName="RefDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisReqCategories">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisReqCategory)">
+        <MappingFragment StoreEntitySet="HisReqCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisReqCats">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisReqCat)">
+        <MappingFragment StoreEntitySet="HisReqCats">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisReqCategoryId" ColumnName="HisReqCategoryId" />
+          <ScalarProperty Name="HisRequestId" ColumnName="HisRequestId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

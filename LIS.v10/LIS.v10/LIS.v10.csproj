@@ -282,6 +282,12 @@
     <Compile Include="Areas\HIS10\Models\HisEntPhysician.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\HIS10\Models\HisGrouping.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisIncharge.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\HIS10\Models\HisInstrument.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
@@ -315,6 +321,24 @@
     <Compile Include="Areas\HIS10\Models\HisProfileDetails.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\HIS10\Models\HisProfileGroup.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisProfileIncharge.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisProfileReq.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisReqCat.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisReqCategory.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisRequest.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\HIS10\Models\HisResult.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
@@ -325,6 +349,12 @@
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Models\HisSpecialization.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisTemplateReqItems.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisTemplateRequest.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
