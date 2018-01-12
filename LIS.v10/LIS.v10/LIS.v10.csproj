@@ -240,6 +240,7 @@
       <DependentUpon>CoreDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Controllers\HisEntitiesController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisInchargesController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisInstrumentsController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisOperatorsController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisOrdersController.cs" />
@@ -538,6 +539,11 @@
     <Content Include="Areas\HIS10\Views\HisOperators\Search.cshtml" />
     <Content Include="Areas\HIS10\Views\HisOperators\SearchPage.cshtml" />
     <Content Include="Areas\HIS10\Views\HisEntities\EntityInstrumentList.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisIncharges\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisIncharges\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisIncharges\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisIncharges\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisIncharges\Index.cshtml" />
     <None Include="Properties\PublishProfiles\ZeeIt2017.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
