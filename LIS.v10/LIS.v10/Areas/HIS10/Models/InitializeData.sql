@@ -23,5 +23,12 @@ values (1,0,'Test01','testing',10,'40','60','CM'),
 		(2,0,'C 01','test C',30,'40','60','CM');
 
 
+insert into HisRequests([Title],[Description])
+values ('Test 101','General Test checkup'),
+('Vacc 101','Standard Vaccination'),
+('Med 101','General Medication'),
+('Vas 101','Vascu Exercises'),
+('Ther 101','Theraphy 101')
+
 
 

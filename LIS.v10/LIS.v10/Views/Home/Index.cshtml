@@ -93,6 +93,20 @@
                 @Html.ActionLink("Orders", "index", "HisOrders", new { area = "HIS10" }, new { @class = "btn btn-default" })
             </p>
         </div>
+        <div class="col-md-4">
+            <h2>Units/Items</h2>
+            <p>Units and Items handled by account</p>
+            <p>
+                @Html.ActionLink("Units/Items", "index", "HisProfileIncharges", new { area = "HIS10" }, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Requests</h2>
+            <p>Requests and Schedules</p>
+            <p>
+                @Html.ActionLink("Requests", "index", "HisProfileReqs", new { area = "HIS10" }, new { @class = "btn btn-default" })
+            </p>
+        </div>
 
         if (ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN")
         {
