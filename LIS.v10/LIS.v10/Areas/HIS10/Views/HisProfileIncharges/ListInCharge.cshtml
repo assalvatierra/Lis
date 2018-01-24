@@ -7,9 +7,6 @@
 
 <h2>Select Therapist</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
 @foreach (var item in Model)
 {
@@ -29,3 +26,7 @@
 }
 
 </table>
+
+<p>
+    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)
+</p>

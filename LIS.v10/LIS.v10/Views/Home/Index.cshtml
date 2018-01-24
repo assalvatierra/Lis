@@ -104,7 +104,9 @@
             <h2>Requests</h2>
             <p>Requests and Schedules</p>
             <p>
-                @Html.ActionLink("Requests", "index", "HisProfileReqs", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                @Html.ActionLink("All Requests", "index", "HisProfileReqs", new { area = "HIS10", RptType=1, status = 0 }, new { @class = "btn btn-default" })
+                @Html.ActionLink("By Schedule", "index", "HisProfileReqs", new { area = "HIS10", RptType = 2, status = 1 }, new { @class = "btn btn-default" })
+                @Html.ActionLink("By Item", "index", "HisProfileReqs", new { area = "HIS10", RptType = 3, status = 1 }, new { @class = "btn btn-default" })
             </p>
         </div>
 
@@ -116,6 +118,21 @@
                 <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
             </div>
         }
+
+        if (ViewBag.PageType == "THERAPHY")
+        {
+            <div class="col-md-4">
+                <h2>Tasks</h2>
+                <p>Requests/tasks under my account</p>
+                <p>
+                    @Html.ActionLink("All Requests", "TheraphyTasks", "HisProfileReqs", new { area = "HIS10", RptType = 1, status = 0 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("By Schedule", "TheraphyTasks", "HisProfileReqs", new { area = "HIS10", RptType = 2, status = 1 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("By Item", "TheraphyTasks", "HisProfileReqs", new { area = "HIS10", RptType = 3, status = 1 }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+
+        }
+
 
     }
 

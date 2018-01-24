@@ -20,8 +20,16 @@ namespace LIS.v10.Areas.HIS10.Controllers
             if (Session["CURRENT_INCHARGE_ID"] == null)
                 return RedirectToAction("ListInCharge");
 
-            ViewBag.CurrentIncharge = (int)Session["CURRENT_INCHARGE_ID"];
-            var hisProfileIncharges = db.HisProfileIncharges.Include(h => h.HisProfile).Include(h => h.HisIncharge);
+            int TmpId = (int)Session["CURRENT_INCHARGE_ID"];
+            ViewBag.CurrentIncharge = TmpId;
+
+            HisIncharge profile = db.HisIncharges.Find(TmpId);
+            //if (tmpdata == null) 
+
+            ViewBag.InChargeDetail = profile.Id + " - " + profile.Name;
+
+            var hisProfileIncharges = db.HisProfileIncharges.Include(h => h.HisProfile).Include(h => h.HisIncharge)
+                .Where(d=>d.HisInchargeId==TmpId);
             return View(hisProfileIncharges.ToList());
         }
 
@@ -30,6 +38,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
             var list = db.HisIncharges;
             return View(list);
         }
+
         public ActionResult SelectIncharge(int? id)
         {
             Session["CURRENT_INCHARGE_ID"] = (int)id;

@@ -188,7 +188,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
-    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="HisCategories">
     <Key>
@@ -1053,7 +1053,7 @@
           <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
           <NavigationProperty Name="HisProfileDetails" Relationship="His10DB.HisProfileHisProfileDetails" FromRole="HisProfile" ToRole="HisProfileDetails" />
           <NavigationProperty Name="HisPhysicianProfiles" Relationship="His10DB.HisProfileHisPhysicianProfile" FromRole="HisProfile" ToRole="HisPhysicianProfile" />
-          <Property Name="AccntUserId" Type="String" Nullable="false" />
+          <Property Name="AccntUserId" Type="String" Nullable="true" />
           <NavigationProperty Name="HisProfileGroups" Relationship="His10DB.HisProfileHisProfileGroup" FromRole="HisProfile" ToRole="HisProfileGroup" />
           <NavigationProperty Name="HisProfileIncharges" Relationship="His10DB.HisProfileHisProfileIncharge" FromRole="HisProfile" ToRole="HisProfileIncharge" />
           <NavigationProperty Name="HisProfileReqs" Relationship="His10DB.HisProfileHisProfileReq" FromRole="HisProfile" ToRole="HisProfileReq" />

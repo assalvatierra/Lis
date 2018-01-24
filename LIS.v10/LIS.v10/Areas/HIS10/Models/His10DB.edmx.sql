@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/10/2018 16:46:10
+-- Date Created: 01/19/2018 10:13:05
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -86,6 +86,36 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_HisPhysicianHisPhysicianClinic]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisPhysicianClinics] DROP CONSTRAINT [FK_HisPhysicianHisPhysicianClinic];
 GO
+IF OBJECT_ID(N'[dbo].[FK_HisProfileHisProfileGroup]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileGroups] DROP CONSTRAINT [FK_HisProfileHisProfileGroup];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisGroupingHisProfileGroup]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileGroups] DROP CONSTRAINT [FK_HisGroupingHisProfileGroup];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisProfileHisProfileIncharge]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileIncharges] DROP CONSTRAINT [FK_HisProfileHisProfileIncharge];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisInchargeHisProfileIncharge]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileIncharges] DROP CONSTRAINT [FK_HisInchargeHisProfileIncharge];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisProfileHisProfileReq]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileReqs] DROP CONSTRAINT [FK_HisProfileHisProfileReq];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisRequestHisProfileReq]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileReqs] DROP CONSTRAINT [FK_HisRequestHisProfileReq];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisTemplateRequestHisTemplateReqItems]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisTemplateReqItems1] DROP CONSTRAINT [FK_HisTemplateRequestHisTemplateReqItems];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisRequestHisTemplateReqItems]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisTemplateReqItems1] DROP CONSTRAINT [FK_HisRequestHisTemplateReqItems];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisReqCategoryHisReqCat]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisReqCats] DROP CONSTRAINT [FK_HisReqCategoryHisReqCat];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisRequestHisReqCat]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisReqCats] DROP CONSTRAINT [FK_HisRequestHisReqCat];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -154,6 +184,36 @@ GO
 IF OBJECT_ID(N'[dbo].[HisPhysicianClinics]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HisPhysicianClinics];
 GO
+IF OBJECT_ID(N'[dbo].[HisGroupings]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisGroupings];
+GO
+IF OBJECT_ID(N'[dbo].[HisProfileGroups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisProfileGroups];
+GO
+IF OBJECT_ID(N'[dbo].[HisIncharges]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisIncharges];
+GO
+IF OBJECT_ID(N'[dbo].[HisProfileIncharges]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisProfileIncharges];
+GO
+IF OBJECT_ID(N'[dbo].[HisRequests]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisRequests];
+GO
+IF OBJECT_ID(N'[dbo].[HisProfileReqs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisProfileReqs];
+GO
+IF OBJECT_ID(N'[dbo].[HisTemplateRequests]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisTemplateRequests];
+GO
+IF OBJECT_ID(N'[dbo].[HisTemplateReqItems1]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisTemplateReqItems1];
+GO
+IF OBJECT_ID(N'[dbo].[HisReqCategories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisReqCategories];
+GO
+IF OBJECT_ID(N'[dbo].[HisReqCats]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisReqCats];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -175,7 +235,7 @@ CREATE TABLE [dbo].[HisProfiles] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(100)  NOT NULL,
     [Remarks] nvarchar(200)  NULL,
-    [AccntUserId] nvarchar(max)  NOT NULL
+    [AccntUserId] nvarchar(max)  NULL
 );
 GO
 

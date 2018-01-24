@@ -183,7 +183,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
-    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="HisCategories">
     <Key>

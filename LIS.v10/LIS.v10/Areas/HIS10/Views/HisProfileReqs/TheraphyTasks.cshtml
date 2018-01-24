@@ -1,0 +1,62 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisProfileReq>
+
+@{
+    ViewBag.Title = "TheraphyTasks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Theraphy Tasks</h2>
+
+<table class="table">
+
+@foreach (var item in Model)
+{
+
+    <tr>
+        <td style="width:10%;">
+            <img src="~/Content/placeholder-image.jpg" height="50" />
+        </td>
+        <td>
+            <span style="font: bold 14px calibre, verdana;">
+                @item.HisProfile.Name
+            </span>
+            <span style="font-size:smaller">
+                <br />@Html.DisplayFor(modelItem => item.HisRequest.Title)
+                <br />@item.Remarks
+            </span>
+        </td>
+        <td>
+            <span style="font-size:smaller">
+                Requested:@Html.DisplayFor(modelItem => item.dtRequested)
+                <br />Scheduled:@Html.DisplayFor(modelItem => item.dtSchedule)
+                <br />Performed:@Html.DisplayFor(modelItem => item.dtPerformed)
+            </span>
+
+        </td>
+        <td>
+            @if (item.dtPerformed == null)
+            {
+                <p>
+                    @Html.ActionLink("Mark it Done", "TaskDone", new { id = item.Id }, new { @class = "btn btn-default" })
+                </p>
+            }
+
+            @if (item.dtPerformed != null)
+            {
+                <p>
+                    @Html.ActionLink("Mark it Undone", "TaskUndone", new { id = item.Id }, new { @class = "btn btn-default" })
+                </p>
+            }
+
+        </td>
+    </tr>
+
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("View All", "TheraphyTasks", new { RptType = 1, status = 0 }) |
+    @Html.ActionLink("Pending Schedules", "TheraphyTasks", new { RptType = 2, status = 1 }) |
+    @Html.ActionLink("Pending Items", "TheraphyTasks", new { RptType = 3, status = 1 })
+</p>
