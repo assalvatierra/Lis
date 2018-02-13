@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/19/2018 10:13:05
--- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
+-- Date Created: 02/12/2018 10:58:24
+-- Generated from EDMX file: C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -511,6 +511,28 @@ CREATE TABLE [dbo].[HisReqCats] (
 );
 GO
 
+-- Creating table 'HisNotifications'
+CREATE TABLE [dbo].[HisNotifications] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [RecType] nvarchar(10)  NOT NULL,
+    [Recipient] nvarchar(30)  NOT NULL,
+    [Message] nvarchar(255)  NOT NULL,
+    [DtSending] datetime  NOT NULL,
+    [RefId] int  NULL,
+    [RefTable] nvarchar(40)  NULL
+);
+GO
+
+-- Creating table 'HisNotificationLogs'
+CREATE TABLE [dbo].[HisNotificationLogs] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisNotificationId] int  NOT NULL,
+    [DtSending] datetime  NOT NULL,
+    [Status] nvarchar(10)  NOT NULL,
+    [Remarks] nvarchar(200)  NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -698,6 +720,18 @@ GO
 -- Creating primary key on [Id] in table 'HisReqCats'
 ALTER TABLE [dbo].[HisReqCats]
 ADD CONSTRAINT [PK_HisReqCats]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisNotifications'
+ALTER TABLE [dbo].[HisNotifications]
+ADD CONSTRAINT [PK_HisNotifications]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisNotificationLogs'
+ALTER TABLE [dbo].[HisNotificationLogs]
+ADD CONSTRAINT [PK_HisNotificationLogs]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -1198,6 +1232,21 @@ GO
 CREATE INDEX [IX_FK_HisRequestHisReqCat]
 ON [dbo].[HisReqCats]
     ([HisRequestId]);
+GO
+
+-- Creating foreign key on [HisNotificationId] in table 'HisNotificationLogs'
+ALTER TABLE [dbo].[HisNotificationLogs]
+ADD CONSTRAINT [FK_HisNotificationHisNotificationLog]
+    FOREIGN KEY ([HisNotificationId])
+    REFERENCES [dbo].[HisNotifications]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisNotificationHisNotificationLog'
+CREATE INDEX [IX_FK_HisNotificationHisNotificationLog]
+ON [dbo].[HisNotificationLogs]
+    ([HisNotificationId]);
 GO
 
 -- --------------------------------------------------

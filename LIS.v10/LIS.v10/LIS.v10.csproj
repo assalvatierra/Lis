@@ -252,6 +252,7 @@
     <Compile Include="Areas\HIS10\Controllers\HisResultFieldsController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisResultsController.cs" />
     <Compile Include="Areas\HIS10\HIS10AreaRegistration.cs" />
+    <Compile Include="Areas\HIS10\Models\DBClasses.cs" />
     <Compile Include="Areas\HIS10\Models\His10DB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -292,6 +293,12 @@
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Models\HisInstrument.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisNotification.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisNotificationLog.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Areas\HIS10\Models\HisOperator.cs">
@@ -607,6 +614,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Tasks101.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

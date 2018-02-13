@@ -324,5 +324,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HisNotifications">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisNotification)">
+        <MappingFragment StoreEntitySet="HisNotifications">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RecType" ColumnName="RecType" />
+          <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="DtSending" ColumnName="DtSending" />
+          <ScalarProperty Name="RefId" ColumnName="RefId" />
+          <ScalarProperty Name="RefTable" ColumnName="RefTable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisNotificationLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisNotificationLog)">
+        <MappingFragment StoreEntitySet="HisNotificationLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisNotificationId" ColumnName="HisNotificationId" />
+          <ScalarProperty Name="DtSending" ColumnName="DtSending" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

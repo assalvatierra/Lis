@@ -164,6 +164,12 @@
       <End Role="HisRequest" EntitySet="HisRequests" />
       <End Role="HisReqCat" EntitySet="HisReqCats" />
     </AssociationSet>
+    <EntitySet Name="HisNotifications" EntityType="His10DB.HisNotification" />
+    <EntitySet Name="HisNotificationLogs" EntityType="His10DB.HisNotificationLog" />
+    <AssociationSet Name="HisNotificationHisNotificationLog" Association="His10DB.HisNotificationHisNotificationLog">
+      <End Role="HisNotification" EntitySet="HisNotifications" />
+      <End Role="HisNotificationLog" EntitySet="HisNotificationLogs" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntity">
     <Key>
@@ -916,6 +922,42 @@
       </Principal>
       <Dependent Role="HisReqCat">
         <PropertyRef Name="HisRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HisNotification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RecType" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="Recipient" Type="String" Nullable="false" MaxLength="30" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="255" />
+    <Property Name="DtSending" Type="DateTime" Nullable="false" />
+    <Property Name="RefId" Type="Int32" Nullable="true" />
+    <Property Name="RefTable" Type="String" Nullable="true" MaxLength="40" />
+    <NavigationProperty Name="HisNotificationLogs" Relationship="His10DB.HisNotificationHisNotificationLog" FromRole="HisNotification" ToRole="HisNotificationLog" />
+  </EntityType>
+  <EntityType Name="HisNotificationLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HisNotificationId" Type="Int32" Nullable="false" />
+    <Property Name="DtSending" Type="DateTime" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" />
+    <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
+    <NavigationProperty Name="HisNotification" Relationship="His10DB.HisNotificationHisNotificationLog" FromRole="HisNotificationLog" ToRole="HisNotification" />
+  </EntityType>
+  <Association Name="HisNotificationHisNotificationLog">
+    <End Type="His10DB.HisNotification" Role="HisNotification" Multiplicity="1" />
+    <End Type="His10DB.HisNotificationLog" Role="HisNotificationLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisNotification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisNotificationLog">
+        <PropertyRef Name="HisNotificationId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
