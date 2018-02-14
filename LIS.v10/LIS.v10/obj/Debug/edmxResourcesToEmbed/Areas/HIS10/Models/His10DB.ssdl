@@ -32,6 +32,8 @@
     <EntitySet Name="HisTemplateReqItems1" EntityType="His10DB.Store.HisTemplateReqItems1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisReqCategories" EntityType="His10DB.Store.HisReqCategories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisReqCats" EntityType="His10DB.Store.HisReqCats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisNotifications" EntityType="His10DB.Store.HisNotifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisNotificationLogs" EntityType="His10DB.Store.HisNotificationLogs" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
       <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
@@ -163,6 +165,10 @@
     <AssociationSet Name="HisRequestHisReqCat" Association="His10DB.Store.HisRequestHisReqCat">
       <End Role="HisRequest" EntitySet="HisRequests" />
       <End Role="HisReqCat" EntitySet="HisReqCats" />
+    </AssociationSet>
+    <AssociationSet Name="HisNotificationHisNotificationLog" Association="His10DB.Store.HisNotificationHisNotificationLog">
+      <End Role="HisNotification" EntitySet="HisNotifications" />
+      <End Role="HisNotificationLog" EntitySet="HisNotificationLogs" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntities">
@@ -456,6 +462,28 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HisReqCategoryId" Type="int" Nullable="false" />
     <Property Name="HisRequestId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisNotifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecType" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Recipient" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Message" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="DtSending" Type="datetime" Nullable="false" />
+    <Property Name="RefId" Type="int" Nullable="true" />
+    <Property Name="RefTable" Type="nvarchar" Nullable="true" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="HisNotificationLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisNotificationId" Type="int" Nullable="false" />
+    <Property Name="DtSending" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -850,6 +878,18 @@
       </Principal>
       <Dependent Role="HisReqCat">
         <PropertyRef Name="HisRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisNotificationHisNotificationLog">
+    <End Role="HisNotification" Type="His10DB.Store.HisNotifications" Multiplicity="1" />
+    <End Role="HisNotificationLog" Type="His10DB.Store.HisNotificationLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisNotification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisNotificationLog">
+        <PropertyRef Name="HisNotificationId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

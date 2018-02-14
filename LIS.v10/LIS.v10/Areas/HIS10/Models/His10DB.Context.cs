@@ -56,5 +56,7 @@ namespace LIS.v10.Areas.HIS10.Models
         public virtual DbSet<HisTemplateReqItems> HisTemplateReqItems1 { get; set; }
         public virtual DbSet<HisReqCategory> HisReqCategories { get; set; }
         public virtual DbSet<HisReqCat> HisReqCats { get; set; }
+        public virtual DbSet<HisNotification> HisNotifications { get; set; }
+        public virtual DbSet<HisNotificationLog> HisNotificationLogs { get; set; }
     }
 }
