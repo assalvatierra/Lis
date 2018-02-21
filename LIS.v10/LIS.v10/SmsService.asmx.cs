@@ -136,6 +136,7 @@ namespace LIS.v10
 
         }
 
+       
         //get list of unsent items 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -151,6 +152,24 @@ namespace LIS.v10
             Context.Response.Clear();
             Context.Response.ContentType = "application/json";
             Context.Response.Write(JsonConvert.SerializeObject(ds, Newtonsoft.Json.Formatting.Indented));
+        }
+
+        [WebMethod]
+        public void addNotification(string recType, string recipient, string message, string dtSending)
+        {
+            string response = "success";
+
+            string sql = "INSERT INTO [dbo].[HisNotifications] "+
+                "([RecType],[Recipient],[Message],[DtSending],[RefId],[RefTable]) "+
+                "VALUES('"+recType+"','"+recipient+"','"+message+"','"+ dtSending +"',0,'0') ";
+
+            SqlDataAdapter da = new SqlDataAdapter(sql, ConfigurationManager.ConnectionStrings["SmsConnection"].ToString());
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);    //execute sqlAdapter
+
+            Context.Response.Clear();
+            Context.Response.Write(response);
         }
     }
 }
