@@ -35,8 +35,7 @@ namespace LIS.v10.Controllers
             if (appInfo_desc != null) ViewBag.AppDescription = appInfo_desc.Data;
             if (appInfo_ver != null) ViewBag.AppVersion = appInfo_ver.Data;
             if (appInfo_rem != null) ViewBag.AppRemarks = appInfo_rem.Data;
-
-
+            
             // check for the user type (doctor, patient, medtech )
             ViewBag.PageLabel = "Laboratory List";
 

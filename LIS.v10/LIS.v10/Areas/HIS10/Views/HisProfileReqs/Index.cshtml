@@ -37,11 +37,14 @@
             </span>
 
         </td>
-        <td>
+        <td valign="top">
+            <span>Notification</span>
+            <br />@Html.ActionLink("Generate", "Create","HisNotifications")
 
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-
         </td>
     </tr>
 

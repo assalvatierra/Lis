@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisNotificationLog>
+
+
+@* edit by jahdiel *@
+<h4 class="itemheader">Low Level Items</h4>
+<div class="panel panel-default">
+    <table class="table table-listing">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.DtSending)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Remarks)
+                </th>
+                <th>
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DtSending)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remarks)
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+</div>
+
+<br />

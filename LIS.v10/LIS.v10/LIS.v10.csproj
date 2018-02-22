@@ -242,6 +242,8 @@
     <Compile Include="Areas\HIS10\Controllers\HisEntitiesController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisInchargesController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisInstrumentsController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisNotificationLogsController.cs" />
+    <Compile Include="Areas\HIS10\Controllers\HisNotificationsController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisOperatorsController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisOrdersController.cs" />
     <Compile Include="Areas\HIS10\Controllers\HisOrderTypesController.cs" />
@@ -295,8 +297,12 @@
     <Compile Include="Areas\HIS10\Models\HisInstrument.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Areas\HIS10\Models\HisNotification.cs" />
-    <Compile Include="Areas\HIS10\Models\HisNotificationLog.cs" />
+    <Compile Include="Areas\HIS10\Models\HisNotification.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\HIS10\Models\HisNotificationLog.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\HIS10\Models\HisOperator.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
@@ -595,6 +601,17 @@
     <Content Include="obj\Release\Package\PackageTmp\Scripts\modernizr-2.6.2.js" />
     <Content Include="obj\Release\Package\PackageTmp\Scripts\respond.js" />
     <Content Include="obj\Release\Package\PackageTmp\Scripts\respond.min.js" />
+    <Content Include="Areas\HIS10\Views\HisNotifications\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotifications\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotifications\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotifications\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotifications\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotificationLogs\Create.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotificationLogs\Delete.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotificationLogs\Details.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotificationLogs\Edit.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotificationLogs\Index.cshtml" />
+    <Content Include="Areas\HIS10\Views\HisNotifications\PartialView_LowLevelItems.cshtml" />
     <None Include="obj\Release\Package\PackageTmp\Scripts\_references.js" />
     <Content Include="obj\Release\TempPE\Areas.Core.Models.CoreDB.cs.dll" />
     <Content Include="obj\Release\TempPE\Areas.Core.Models.CoreDB.Designer.cs.dll" />
