@@ -54,7 +54,7 @@ IF OBJECT_ID(N'[dbo].[FK_HisResultFieldHisResult]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisResults] DROP CONSTRAINT [FK_HisResultFieldHisResult];
 GO
 IF OBJECT_ID(N'[dbo].[FK_HisResultFieldHisInsResultRange]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HisResultRanges] DROP CONSTRAINT [FK_HisResultFieldHisInsResultRange];
+    ALTER TABLE [dbo].[HisResultRanges] DROP CONSTRAINT [FK_HisResultFieldHisInsResulhistRange];
 GO
 IF OBJECT_ID(N'[dbo].[FK_HisOrderHisOrderRemarks]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisOrderRemarks] DROP CONSTRAINT [FK_HisOrderHisOrderRemarks];

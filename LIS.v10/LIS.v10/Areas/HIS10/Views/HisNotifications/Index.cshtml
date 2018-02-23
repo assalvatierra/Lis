@@ -1,0 +1,68 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisNotification>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RecType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Recipient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DtSending)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefTable)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recipient)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DtSending)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RefId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RefTable)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+

@@ -70,8 +70,8 @@
         <EntityTypeShape EntityType="His10DB.HisReqCat" Width="1.5" PointX="26.875" PointY="3.375" />
         <AssociationConnector Association="His10DB.HisReqCategoryHisReqCat" />
         <AssociationConnector Association="His10DB.HisRequestHisReqCat" />
-        <EntityTypeShape EntityType="His10DB.HisNotification" Width="1.5" PointX="28" PointY="0.5" />
-        <EntityTypeShape EntityType="His10DB.HisNotificationLog" Width="1.5" PointX="29.875" PointY="0.5" />
+        <EntityTypeShape EntityType="His10DB.HisNotification" Width="2" PointX="27.5" PointY="0.5" />
+        <EntityTypeShape EntityType="His10DB.HisNotificationLog" Width="1.5" PointX="30.125" PointY="0.625" />
         <AssociationConnector Association="His10DB.HisNotificationHisNotificationLog" />
       </Diagram>
     </edmx:Diagrams>
