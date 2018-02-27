@@ -48,3 +48,7 @@ Temporary Items
 *.dll
 *.pdb
 *.dll
+LIS.v10/LIS.v10/bin/LIS.v10.dll
+*.dll
+LIS.v10/LIS.v10/bin/LIS.v10.pdb
+*.pdb

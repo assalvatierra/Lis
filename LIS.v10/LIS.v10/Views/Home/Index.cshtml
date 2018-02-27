@@ -40,7 +40,8 @@
     }
     else
     {
-        if (ViewBag.PageType == "ADMIN")
+        if (ViewBag.PageType == "ADMIN" 
+            && (ViewBag.AppCode == "AC2018") )
         {
             <div class="col-md-4">
                 <h2>Admin</h2>
@@ -53,7 +54,8 @@
             </div>
         }
 
-        if (ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN")
+        if (ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN"
+            && (ViewBag.AppCode == "LAB2018" ) )
         {
             <div class="col-md-4">
                 <h2>Profiles</h2>
@@ -64,7 +66,8 @@
             </div>
         }
 
-        if (ViewBag.PageType == "DOCTOR")
+        if (ViewBag.PageType == "DOCTOR"
+            && (ViewBag.AppCode == "LAB2018" || ViewBag.AppCode == "AC2018"))
         {
             <div class="col-md-4">
                 <h2>Doctor's Profile</h2>
@@ -75,7 +78,8 @@
             </div>
         }
 
-        if (ViewBag.PageType == "PATIENT")
+        if (ViewBag.PageType == "PATIENT"
+            && (ViewBag.AppCode == "LAB2018"))
         {
             <div class="col-md-4">
                 <h2>Patient's Profile</h2>
@@ -86,31 +90,47 @@
             </div>
         }
 
-        <div class="col-md-4">
-            <h2>Laboratory</h2>
-            <p>Laboratory Status</p>
-            <p>
-                @Html.ActionLink("Orders", "index", "HisOrders", new { area = "HIS10" }, new { @class = "btn btn-default" })
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Units/Items</h2>
-            <p>Units and Items handled by account</p>
-            <p>
-                @Html.ActionLink("Units/Items", "index", "HisProfileIncharges", new { area = "HIS10" }, new { @class = "btn btn-default" })
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h2>Requests</h2>
-            <p>Requests and Schedules</p>
-            <p>
-                @Html.ActionLink("All Requests", "index", "HisProfileReqs", new { area = "HIS10", RptType=1, status = 0 }, new { @class = "btn btn-default" })
-                @Html.ActionLink("By Schedule", "index", "HisProfileReqs", new { area = "HIS10", RptType = 2, status = 1 }, new { @class = "btn btn-default" })
-                @Html.ActionLink("By Item", "index", "HisProfileReqs", new { area = "HIS10", RptType = 3, status = 1 }, new { @class = "btn btn-default" })
-            </p>
-        </div>
 
-        if (ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN")
+        if ( (ViewBag.PageType == "ADMIN" || ViewBag.PageType == "DOCTOR")
+            && (ViewBag.AppCode == "LAB2018"))
+        {
+            <div class="col-md-4">
+                <h2>Laboratory</h2>
+                <p>Laboratory Status</p>
+                <p>
+                    @Html.ActionLink("Orders", "index", "HisOrders", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+        if ( (ViewBag.PageType == "ADMIN" || ViewBag.PageType == "DOCTOR")
+            && (ViewBag.AppCode == "AC2018"))
+        {
+            <div class="col-md-4">
+                <h2>Units/Items</h2>
+                <p>Units and Items handled by account</p>
+                <p>
+                    @Html.ActionLink("Units/Items", "index", "HisProfileIncharges", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+        if ( (ViewBag.PageType == "ADMIN" || ViewBag.PageType == "DOCTOR")
+            && (ViewBag.AppCode == "AC2018"))
+        {
+            <div class="col-md-4">
+                <h2>Requests</h2>
+                <p>Requests and Schedules</p>
+                <p>
+                    @Html.ActionLink("All Requests", "index", "HisProfileReqs", new { area = "HIS10", RptType = 1, status = 0 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("By Schedule", "index", "HisProfileReqs", new { area = "HIS10", RptType = 2, status = 1 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("By Item", "index", "HisProfileReqs", new { area = "HIS10", RptType = 3, status = 1 }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+        if ((ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN")
+            && (ViewBag.AppCode == "AC2018") )
         {
             <div class="col-md-4">
                 <h2>Reports</h2>

@@ -26,6 +26,7 @@ namespace LIS.v10.Controllers
             Models.AppInformation appInfo_desc = db.AppInformations.Where(d => d.Key == "DESC").FirstOrDefault();
             Models.AppInformation appInfo_ver = db.AppInformations.Where(d => d.Key == "VER").FirstOrDefault();
             Models.AppInformation appInfo_rem = db.AppInformations.Where(d => d.Key == "REMARKS").FirstOrDefault();
+            Models.AppInformation appInfo_appcode = db.AppInformations.Where(d => d.Key == "APPCODE").FirstOrDefault();
 
             ViewBag.AppName = "Default App";
             ViewBag.AppDescription = "Laboratory Information System";
@@ -35,7 +36,8 @@ namespace LIS.v10.Controllers
             if (appInfo_desc != null) ViewBag.AppDescription = appInfo_desc.Data;
             if (appInfo_ver != null) ViewBag.AppVersion = appInfo_ver.Data;
             if (appInfo_rem != null) ViewBag.AppRemarks = appInfo_rem.Data;
-            
+            if (appInfo_appcode != null) ViewBag.AppCode = appInfo_appcode.Data;
+
             // check for the user type (doctor, patient, medtech )
             ViewBag.PageLabel = "Laboratory List";
 
