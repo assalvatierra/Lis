@@ -54,18 +54,6 @@
             </div>
         }
 
-        if (ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN"
-            && (ViewBag.AppCode == "LAB2018" ) )
-        {
-            <div class="col-md-4">
-                <h2>Profiles</h2>
-                <p>List of Patients</p>
-                <p>
-                    @Html.ActionLink("Profiles", "index", "HisProfiles", new { area = "HIS10" }, new { @class = "btn btn-default" })
-                </p>
-            </div>
-        }
-
         if (ViewBag.PageType == "DOCTOR"
             && (ViewBag.AppCode == "LAB2018" || ViewBag.AppCode == "AC2018"))
         {
@@ -78,8 +66,22 @@
             </div>
         }
 
-        if (ViewBag.PageType == "PATIENT"
-            && (ViewBag.AppCode == "LAB2018"))
+
+        if ((ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN" || ViewBag.PageType == "DOCTOR")
+            && (ViewBag.AppCode == "LAB2018") || ViewBag.AppCode == "AC2018")
+        {
+            <div class="col-md-4">
+                <h2>Patient's Profile</h2>
+                <p>List of Patients/Items</p>
+                <p>
+                    @Html.ActionLink("Profiles", "index", "HisProfiles", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+
+        if ( ViewBag.PageType == "PATIENT" 
+            && (ViewBag.AppCode == "LAB2018" || ViewBag.AppCode == "AC2018"))
         {
             <div class="col-md-4">
                 <h2>Patient's Profile</h2>
@@ -107,10 +109,10 @@
             && (ViewBag.AppCode == "AC2018"))
         {
             <div class="col-md-4">
-                <h2>Units/Items</h2>
-                <p>Units and Items handled by account</p>
+                <h2>Patient/Item Therapist</h2>
+                <p>Patients/Items handled by therapist</p>
                 <p>
-                    @Html.ActionLink("Units/Items", "index", "HisProfileIncharges", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Patient Therapist", "index", "HisProfileIncharges", new { area = "HIS10" }, new { @class = "btn btn-default" })
                 </p>
             </div>
         }
