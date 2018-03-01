@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/12/2018 10:58:24
--- Generated from EDMX file: C:\Data\ABEL\Projects\GitHubApps\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
+-- Date Created: 03/01/2018 13:32:13
+-- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -54,7 +54,7 @@ IF OBJECT_ID(N'[dbo].[FK_HisResultFieldHisResult]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisResults] DROP CONSTRAINT [FK_HisResultFieldHisResult];
 GO
 IF OBJECT_ID(N'[dbo].[FK_HisResultFieldHisInsResultRange]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HisResultRanges] DROP CONSTRAINT [FK_HisResultFieldHisInsResulhistRange];
+    ALTER TABLE [dbo].[HisResultRanges] DROP CONSTRAINT [FK_HisResultFieldHisInsResultRange];
 GO
 IF OBJECT_ID(N'[dbo].[FK_HisOrderHisOrderRemarks]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisOrderRemarks] DROP CONSTRAINT [FK_HisOrderHisOrderRemarks];
@@ -115,6 +115,9 @@ IF OBJECT_ID(N'[dbo].[FK_HisReqCategoryHisReqCat]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_HisRequestHisReqCat]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisReqCats] DROP CONSTRAINT [FK_HisRequestHisReqCat];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisNotificationHisNotificationLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisNotificationLogs] DROP CONSTRAINT [FK_HisNotificationHisNotificationLog];
 GO
 
 -- --------------------------------------------------
@@ -213,6 +216,12 @@ IF OBJECT_ID(N'[dbo].[HisReqCategories]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[HisReqCats]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HisReqCats];
+GO
+IF OBJECT_ID(N'[dbo].[HisNotifications]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisNotifications];
+GO
+IF OBJECT_ID(N'[dbo].[HisNotificationLogs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisNotificationLogs];
 GO
 
 -- --------------------------------------------------

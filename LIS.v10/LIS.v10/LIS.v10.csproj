@@ -872,7 +872,7 @@
     <Content Include="obj\Release\TransformWebConfig\assist\Web.config" />
     <Content Include="obj\Release\TransformWebConfig\original\Web.config" />
     <Content Include="obj\Release\TransformWebConfig\transformed\Web.config" />
-    <None Include="Properties\PublishProfiles\ZeeIt2017.pubxml" />
+    <None Include="Properties\PublishProfiles\Lis2018.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

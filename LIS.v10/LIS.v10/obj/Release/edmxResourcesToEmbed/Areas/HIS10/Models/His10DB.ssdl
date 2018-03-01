@@ -18,6 +18,22 @@
     <EntitySet Name="HisPhysicianProfiles" EntityType="His10DB.Store.HisPhysicianProfiles" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisOperators" EntityType="His10DB.Store.HisOperators" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisEntOperators" EntityType="His10DB.Store.HisEntOperators" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisEntAdmins" EntityType="His10DB.Store.HisEntAdmins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisSpecializations" EntityType="His10DB.Store.HisSpecializations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisPhysicianSpecializations" EntityType="His10DB.Store.HisPhysicianSpecializations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisPhysicianClinics" EntityType="His10DB.Store.HisPhysicianClinics" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisGroupings" EntityType="His10DB.Store.HisGroupings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisProfileGroups" EntityType="His10DB.Store.HisProfileGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisIncharges" EntityType="His10DB.Store.HisIncharges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisProfileIncharges" EntityType="His10DB.Store.HisProfileIncharges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisRequests" EntityType="His10DB.Store.HisRequests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisProfileReqs" EntityType="His10DB.Store.HisProfileReqs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisTemplateRequests" EntityType="His10DB.Store.HisTemplateRequests" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisTemplateReqItems1" EntityType="His10DB.Store.HisTemplateReqItems1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisReqCategories" EntityType="His10DB.Store.HisReqCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisReqCats" EntityType="His10DB.Store.HisReqCats" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisNotifications" EntityType="His10DB.Store.HisNotifications" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisNotificationLogs" EntityType="His10DB.Store.HisNotificationLogs" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
       <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
@@ -94,6 +110,66 @@
       <End Role="HisEntity" EntitySet="HisEntities" />
       <End Role="HisEntOperator" EntitySet="HisEntOperators" />
     </AssociationSet>
+    <AssociationSet Name="HisEntityHisEntAdmin" Association="His10DB.Store.HisEntityHisEntAdmin">
+      <End Role="HisEntity" EntitySet="HisEntities" />
+      <End Role="HisEntAdmin" EntitySet="HisEntAdmins" />
+    </AssociationSet>
+    <AssociationSet Name="HisSpecializationHisPhysicianSpecialization" Association="His10DB.Store.HisSpecializationHisPhysicianSpecialization">
+      <End Role="HisSpecialization" EntitySet="HisSpecializations" />
+      <End Role="HisPhysicianSpecialization" EntitySet="HisPhysicianSpecializations" />
+    </AssociationSet>
+    <AssociationSet Name="HisPhysicianHisPhysicianSpecialization" Association="His10DB.Store.HisPhysicianHisPhysicianSpecialization">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisPhysicianSpecialization" EntitySet="HisPhysicianSpecializations" />
+    </AssociationSet>
+    <AssociationSet Name="HisPhysicianHisPhysicianClinic" Association="His10DB.Store.HisPhysicianHisPhysicianClinic">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisPhysicianClinic" EntitySet="HisPhysicianClinics" />
+    </AssociationSet>
+    <AssociationSet Name="HisProfileHisProfileGroup" Association="His10DB.Store.HisProfileHisProfileGroup">
+      <End Role="HisProfile" EntitySet="HisProfiles" />
+      <End Role="HisProfileGroup" EntitySet="HisProfileGroups" />
+    </AssociationSet>
+    <AssociationSet Name="HisGroupingHisProfileGroup" Association="His10DB.Store.HisGroupingHisProfileGroup">
+      <End Role="HisGrouping" EntitySet="HisGroupings" />
+      <End Role="HisProfileGroup" EntitySet="HisProfileGroups" />
+    </AssociationSet>
+    <AssociationSet Name="HisProfileHisProfileIncharge" Association="His10DB.Store.HisProfileHisProfileIncharge">
+      <End Role="HisProfile" EntitySet="HisProfiles" />
+      <End Role="HisProfileIncharge" EntitySet="HisProfileIncharges" />
+    </AssociationSet>
+    <AssociationSet Name="HisInchargeHisProfileIncharge" Association="His10DB.Store.HisInchargeHisProfileIncharge">
+      <End Role="HisIncharge" EntitySet="HisIncharges" />
+      <End Role="HisProfileIncharge" EntitySet="HisProfileIncharges" />
+    </AssociationSet>
+    <AssociationSet Name="HisProfileHisProfileReq" Association="His10DB.Store.HisProfileHisProfileReq">
+      <End Role="HisProfile" EntitySet="HisProfiles" />
+      <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
+    </AssociationSet>
+    <AssociationSet Name="HisRequestHisProfileReq" Association="His10DB.Store.HisRequestHisProfileReq">
+      <End Role="HisRequest" EntitySet="HisRequests" />
+      <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
+    </AssociationSet>
+    <AssociationSet Name="HisTemplateRequestHisTemplateReqItems" Association="His10DB.Store.HisTemplateRequestHisTemplateReqItems">
+      <End Role="HisTemplateRequest" EntitySet="HisTemplateRequests" />
+      <End Role="HisTemplateReqItems" EntitySet="HisTemplateReqItems1" />
+    </AssociationSet>
+    <AssociationSet Name="HisRequestHisTemplateReqItems" Association="His10DB.Store.HisRequestHisTemplateReqItems">
+      <End Role="HisRequest" EntitySet="HisRequests" />
+      <End Role="HisTemplateReqItems" EntitySet="HisTemplateReqItems1" />
+    </AssociationSet>
+    <AssociationSet Name="HisReqCategoryHisReqCat" Association="His10DB.Store.HisReqCategoryHisReqCat">
+      <End Role="HisReqCategory" EntitySet="HisReqCategories" />
+      <End Role="HisReqCat" EntitySet="HisReqCats" />
+    </AssociationSet>
+    <AssociationSet Name="HisRequestHisReqCat" Association="His10DB.Store.HisRequestHisReqCat">
+      <End Role="HisRequest" EntitySet="HisRequests" />
+      <End Role="HisReqCat" EntitySet="HisReqCats" />
+    </AssociationSet>
+    <AssociationSet Name="HisNotificationHisNotificationLog" Association="His10DB.Store.HisNotificationHisNotificationLog">
+      <End Role="HisNotification" EntitySet="HisNotifications" />
+      <End Role="HisNotificationLog" EntitySet="HisNotificationLogs" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntities">
     <Key>
@@ -103,6 +179,8 @@
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
     <Property Name="userGroupId" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="Contact" Type="nvarchar" Nullable="true" MaxLength="180" />
   </EntityType>
   <EntityType Name="HisProfiles">
     <Key>
@@ -111,7 +189,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
-    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="HisCategories">
     <Key>
@@ -262,6 +340,150 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HisOperatorId" Type="int" Nullable="false" />
     <Property Name="HisEntityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisEntAdmins">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisEntityId" Type="int" Nullable="false" />
+    <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisSpecializations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Code" Type="nvarchar" Nullable="true" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="HisPhysicianSpecializations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisSpecializationId" Type="int" Nullable="false" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisPhysicianClinics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+    <Property Name="Location" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Days" Type="nvarchar" Nullable="false" MaxLength="120" />
+    <Property Name="Time" Type="nvarchar" Nullable="false" MaxLength="120" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="Telephone" Type="nvarchar" Nullable="true" MaxLength="120" />
+  </EntityType>
+  <EntityType Name="HisGroupings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HisProfileGroups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisProfileId" Type="int" Nullable="false" />
+    <Property Name="HisGroupingId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisIncharges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="AccntUserId" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HisProfileIncharges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisProfileId" Type="int" Nullable="false" />
+    <Property Name="HisInchargeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisRequests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HisProfileReqs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisProfileId" Type="int" Nullable="false" />
+    <Property Name="HisRequestId" Type="int" Nullable="false" />
+    <Property Name="dtRequested" Type="datetime" Nullable="true" />
+    <Property Name="dtSchedule" Type="datetime" Nullable="true" />
+    <Property Name="dtPerformed" Type="datetime" Nullable="true" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HisTemplateRequests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="HisTemplateReqItems1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisTemplateRequestId" Type="int" Nullable="false" />
+    <Property Name="HisRequestId" Type="int" Nullable="false" />
+    <Property Name="Sort" Type="int" Nullable="false" />
+    <Property Name="RefDay" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisReqCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="80" />
+  </EntityType>
+  <EntityType Name="HisReqCats">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisReqCategoryId" Type="int" Nullable="false" />
+    <Property Name="HisRequestId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HisNotifications">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecType" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Recipient" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Message" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="DtSending" Type="datetime" Nullable="false" />
+    <Property Name="RefId" Type="int" Nullable="true" />
+    <Property Name="RefTable" Type="nvarchar" Nullable="true" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="HisNotificationLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisNotificationId" Type="int" Nullable="false" />
+    <Property Name="DtSending" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -488,6 +710,186 @@
       </Principal>
       <Dependent Role="HisEntOperator">
         <PropertyRef Name="HisEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisEntityHisEntAdmin">
+    <End Role="HisEntity" Type="His10DB.Store.HisEntities" Multiplicity="1" />
+    <End Role="HisEntAdmin" Type="His10DB.Store.HisEntAdmins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisEntity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisEntAdmin">
+        <PropertyRef Name="HisEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisSpecializationHisPhysicianSpecialization">
+    <End Role="HisSpecialization" Type="His10DB.Store.HisSpecializations" Multiplicity="1" />
+    <End Role="HisPhysicianSpecialization" Type="His10DB.Store.HisPhysicianSpecializations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisSpecialization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianSpecialization">
+        <PropertyRef Name="HisSpecializationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisPhysicianHisPhysicianSpecialization">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisPhysicianSpecialization" Type="His10DB.Store.HisPhysicianSpecializations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianSpecialization">
+        <PropertyRef Name="HisPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisPhysicianHisPhysicianClinic">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisPhysicianClinic" Type="His10DB.Store.HisPhysicianClinics" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisPhysicianClinic">
+        <PropertyRef Name="HisPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisProfileHisProfileGroup">
+    <End Role="HisProfile" Type="His10DB.Store.HisProfiles" Multiplicity="1" />
+    <End Role="HisProfileGroup" Type="His10DB.Store.HisProfileGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileGroup">
+        <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisGroupingHisProfileGroup">
+    <End Role="HisGrouping" Type="His10DB.Store.HisGroupings" Multiplicity="1" />
+    <End Role="HisProfileGroup" Type="His10DB.Store.HisProfileGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisGrouping">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileGroup">
+        <PropertyRef Name="HisGroupingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisProfileHisProfileIncharge">
+    <End Role="HisProfile" Type="His10DB.Store.HisProfiles" Multiplicity="1" />
+    <End Role="HisProfileIncharge" Type="His10DB.Store.HisProfileIncharges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileIncharge">
+        <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisInchargeHisProfileIncharge">
+    <End Role="HisIncharge" Type="His10DB.Store.HisIncharges" Multiplicity="1" />
+    <End Role="HisProfileIncharge" Type="His10DB.Store.HisProfileIncharges" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisIncharge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileIncharge">
+        <PropertyRef Name="HisInchargeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisProfileHisProfileReq">
+    <End Role="HisProfile" Type="His10DB.Store.HisProfiles" Multiplicity="1" />
+    <End Role="HisProfileReq" Type="His10DB.Store.HisProfileReqs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileReq">
+        <PropertyRef Name="HisProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisRequestHisProfileReq">
+    <End Role="HisRequest" Type="His10DB.Store.HisRequests" Multiplicity="1" />
+    <End Role="HisProfileReq" Type="His10DB.Store.HisProfileReqs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileReq">
+        <PropertyRef Name="HisRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisTemplateRequestHisTemplateReqItems">
+    <End Role="HisTemplateRequest" Type="His10DB.Store.HisTemplateRequests" Multiplicity="1" />
+    <End Role="HisTemplateReqItems" Type="His10DB.Store.HisTemplateReqItems1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisTemplateRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisTemplateReqItems">
+        <PropertyRef Name="HisTemplateRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisRequestHisTemplateReqItems">
+    <End Role="HisRequest" Type="His10DB.Store.HisRequests" Multiplicity="1" />
+    <End Role="HisTemplateReqItems" Type="His10DB.Store.HisTemplateReqItems1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisTemplateReqItems">
+        <PropertyRef Name="HisRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisReqCategoryHisReqCat">
+    <End Role="HisReqCategory" Type="His10DB.Store.HisReqCategories" Multiplicity="1" />
+    <End Role="HisReqCat" Type="His10DB.Store.HisReqCats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisReqCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisReqCat">
+        <PropertyRef Name="HisReqCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisRequestHisReqCat">
+    <End Role="HisRequest" Type="His10DB.Store.HisRequests" Multiplicity="1" />
+    <End Role="HisReqCat" Type="His10DB.Store.HisReqCats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisRequest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisReqCat">
+        <PropertyRef Name="HisRequestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisNotificationHisNotificationLog">
+    <End Role="HisNotification" Type="His10DB.Store.HisNotifications" Multiplicity="1" />
+    <End Role="HisNotificationLog" Type="His10DB.Store.HisNotificationLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisNotification">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisNotificationLog">
+        <PropertyRef Name="HisNotificationId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
