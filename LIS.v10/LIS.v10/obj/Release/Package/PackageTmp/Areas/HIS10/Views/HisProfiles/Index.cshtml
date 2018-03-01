@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisProfile>
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Patient Profiles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="width:10%;">
+            <img src="~/Content/placeholder-image.jpg" height="50" />
+        </td>
+        <td>
+            <span style="font: bold 14px calibre, verdana;">
+                @item.Name
+            </span>
+            <span style="font-size:smaller">
+                <br />@item.Remarks
+            </span>
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Create Login", "CreateLogin", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Back to Main", "Index", "Home", new { area = "" }, "")
+</p>

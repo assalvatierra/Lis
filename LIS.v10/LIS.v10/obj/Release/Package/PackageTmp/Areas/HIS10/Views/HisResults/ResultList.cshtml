@@ -1,0 +1,103 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisResult>
+
+@{
+    ViewBag.Title = "ResultList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    LIS.v10.Areas.HIS10.Models.HisOrder order = (LIS.v10.Areas.HIS10.Models.HisOrder) ViewBag.Order;
+}
+
+<h2>Request Details</h2>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            SpecimenId
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Physician
+        </th>
+        <th>
+            Instrument
+        </th>
+        
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(orderItem => order.HisProfile.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(orderItem => order.SpecimenId)
+        </td>
+        <td>
+            @Html.DisplayFor(orderItem => order.HisOrderType.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(orderItem => order.HisPhysician.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(orderItem => order.HisInstrument.Name)
+        </td>
+</table>
+
+<h2>Test Result</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HisResultField.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HisOrder.SpecimenId)
+        </th>
+        <th>
+            Result
+        </th>
+        <th colspan="2">Normal Range</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HisResultField.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HisOrder.SpecimenId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HisResultField.minValue) - 
+                @Html.DisplayFor(modelItem => item.HisResultField.maxValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HisResultField.Uom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Add more test", "Create")
+</p>
+<p>
+    @Html.ActionLink("Back to Order List","index","HisOrders")
+</p>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisSpecialization>
+
+@{
+    ViewBag.Title = "AddSpecialization";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Specialization</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.ActionLink(">> Add Specialization", "UseSpecialization", new { SpecId = item.Id, physicianId = ViewBag.PhysicianId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisPhysician>
+
+@{
+    ViewBag.Title = "Physician";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Physicians</h2>
+
+<p>
+    @Html.ActionLink("Add New", "AddPhysician")
+</p>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="width:10%;">
+                <img src="~/Content/placeholder-image.jpg" height="100" />
+            </td>
+            <td>
+                <span style="font: bold 14px calibre, verdana;">
+                    @item.Name
+                </span>
+                <span style="font-size:smaller">
+                    <br />@item.Remarks
+                </span>
+
+                @foreach (var spec in item.HisPhysicianSpecializations)
+                {
+                    <span style="font-size:smaller">
+                        &nbsp; @spec.HisSpecialization.Code
+                    </span>
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    <p>
+        @Html.ActionLink("Back to Hospital List", "index", "HisEntities", new { area = "HIS10" }, null)
+    </p>
+</div>

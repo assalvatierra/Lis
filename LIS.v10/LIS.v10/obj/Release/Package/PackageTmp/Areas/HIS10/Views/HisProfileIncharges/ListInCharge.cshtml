@@ -1,0 +1,32 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisIncharge>
+
+@{
+    ViewBag.Title = "ListInCharge";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Select Therapist</h2>
+
+<table class="table">
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <span style="font: bold 14px calibre, verdana;">
+                @item.Name
+            </span>
+            <span style="font-size:smaller">
+                <br />@item.Remarks
+            </span>
+        </td>
+        <td>
+            @Html.ActionLink("Select", "SelectIncharge", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)
+</p>

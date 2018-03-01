@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "SearchPhysicianPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search Physician</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label class="control-label col-md-2">search</label>
+            <div class="col-md-10">
+                <input class="form-control text-box single-line" id="search" type="text" name="search" />
+            </div>
+        </div>
+        <div>
+            <input type="button" id="btnsearch" name="btnsearch" value="Search" class="btn btn-default" />
+        </div>
+
+        <div>
+            <p style="font:bold 12px arial, verdana">Search Results</p>
+            <span id="SearchResult" name="SearchResult">
+                @ViewBag.Search
+            </span>
+        </div>
+    </div>
+
+}
+
+
+
+
+@section scripts {
+    <script type="text/javascript">
+
+        $("#btnsearch").click(function test() {
+
+            //alert("test");
+            var searchword = $("#search").val();
+            var sResult = "";
+
+            $.ajax({
+                type: "POST",
+                url: "/HisPhysicians/SearchPhysician",
+                data: '{search:"' + searchword + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $.each(response, function (key, data) {
+                        sResult += "<br /> " + data.name + " <a href='/HIS10/HisPhysicians/SearchUseItem/"+ data.id +"'>use</a>";
+                    })
+
+                    if(sResult=="")
+                    {
+                        sResult = "no Physician matches your criteria : " + searchword;
+                    }
+
+                    $("#SearchResult").html(sResult);
+
+                },
+                failure: function (response) {
+                    alert("Unable to process your request: " + response.message);
+                },
+                error: function (response) {
+                    alert("Error has occured at the server. "  + response.message);
+                }
+            });
+
+
+        });
+
+    </script>
+
+}

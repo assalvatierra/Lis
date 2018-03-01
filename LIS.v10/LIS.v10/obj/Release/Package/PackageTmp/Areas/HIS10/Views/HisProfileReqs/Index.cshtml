@@ -1,0 +1,65 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisProfileReq>
+
+@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Requests</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+
+@foreach (var item in Model)
+{
+
+
+    <tr>
+        <td style="width:10%;">
+            <img src="~/Content/placeholder-image.jpg" height="50" />
+        </td>
+        <td valign="top">
+            <span style="font: bold 14px calibre, verdana;">
+                @item.HisProfile.Name
+            </span>
+            <span style="font-size:smaller">
+                <br />@Html.DisplayFor(modelItem => item.HisRequest.Title)
+                <br />@item.Remarks
+            </span>
+        </td>
+        <td valign="top">
+            <span style="font-size:smaller">
+                Requested:@Html.DisplayFor(modelItem => item.dtRequested)
+                <br />Scheduled:@Html.DisplayFor(modelItem => item.dtSchedule)
+                <br />Performed:@Html.DisplayFor(modelItem => item.dtPerformed)
+            </span>
+
+        </td>
+        <td valign="top">
+            <span>Notification</span>
+            <br />@Html.ActionLink("Generate", "Create","HisNotifications")
+
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+
+}
+
+</table>
+<p>
+    @Html.ActionLink("View All", "Index", new { RptType = 1, status = 0 }) |
+    @Html.ActionLink("Pending Schedules", "Index", new { RptType = 2, status = 1 }) |
+    @Html.ActionLink("Pending Items", "Index", new { RptType = 3, status = 2 })
+</p>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)
+</p>

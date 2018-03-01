@@ -1,0 +1,74 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisCategory>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int entid = ViewBag.EntId;
+    var entCats = ViewBag.entCat;
+}
+
+<h2>Categories</h2>
+
+<table class="table">
+
+@foreach (var item in Model) {
+    bool isChecked = false;
+    if (entCats.Contains(item.Id)) { isChecked = true; }
+
+    <tr>
+        <td style="width:2em;">
+            @Html.CheckBox(item.Id.ToString(), isChecked, new { id=item.Id.ToString(), @class="_chkItem" })
+        </td>
+        <td>
+            <span style="font: bold 12px calibre, verdana;">
+                @Html.DisplayFor(modelItem => item.Name)
+            </span>
+            <br />
+            <span style="font-size:smaller">
+                @Html.DisplayFor(modelItem => item.Remarks)
+            </span>
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to Details", "Edit", new { id = entid })
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+
+        $("._chkItem").click(function test() {
+
+            var catid = $(this).prop('id');
+            var check = $(this).prop('checked');
+
+            $.ajax({
+                type: "POST",
+                url: "/HisEntities/UpdateCategory",
+                data: '{catid:' + catid + ', entityid: '+ @entid +', sVal:"' + check + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+
+                    //alert("Hello: " + response.message + " .\code: " + response.code);
+                },
+                failure: function (response) {
+                    alert("Unable to process your request: " + response.message);
+                },
+                error: function (response) {
+                    alert("Error has occured at the server. "  + response.message);
+                }
+            });
+
+
+
+
+        });
+
+    </script>
+
+}

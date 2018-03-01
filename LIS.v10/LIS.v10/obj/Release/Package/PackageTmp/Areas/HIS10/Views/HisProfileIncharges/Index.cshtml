@@ -1,0 +1,53 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisProfileIncharge>
+
+@{
+    ViewBag.Title = "In-Charge";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int InChargeId = (int)ViewBag.CurrentIncharge;
+}
+
+<p>
+    <br />
+</p>
+
+<p>
+    Current in charge: 
+    <span style="font:bold 14px arial, verdana"> @ViewBag.InChargeDetail</span>
+    <br />@Html.ActionLink("Change Theraphist", "ListInCharge")
+</p>
+
+
+<h2>Items</h2>
+
+<table class="table">
+
+@foreach (var item in Model)
+{
+
+    <tr>
+        <td style="width:10%;">
+            <img src="~/Content/placeholder-image.jpg" height="50" />
+        </td>
+        <td>
+            <span style="font: bold 14px calibre, verdana;">
+                @item.HisProfile.Name
+            </span>
+            <span style="font-size:smaller">
+                <br />@item.HisProfile.Remarks
+            </span>
+            <p>
+                @Html.ActionLink("Remove", "Delete", new { id = item.Id })
+            </p>
+        </td>
+    </tr>
+
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Add Unit/Item", "ListItem", new { id = InChargeId }) | @Html.ActionLink("Add Group", "ListGroup", new { id = InChargeId })
+</p>
+<p>
+    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, null )
+</p>

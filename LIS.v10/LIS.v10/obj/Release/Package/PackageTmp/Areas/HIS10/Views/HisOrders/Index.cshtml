@@ -1,0 +1,118 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Controllers.HisOrdersController.cOrderList>
+
+@{
+    ViewBag.Title = "Laboratory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<LIS.v10.Areas.HIS10.Controllers.HisOrdersController.cOrderList>
+        oStatus = (List<LIS.v10.Areas.HIS10.Controllers.HisOrdersController.cOrderList>)ViewBag.orderList;
+
+}
+
+<h2>@ViewBag.PageLabel</h2>
+
+@if (ViewBag.PageType == "MEDTECH")
+{
+    <p>
+        @Html.ActionLink("Create New Request", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Completed
+        </th>
+        @if (ViewBag.PageType != "PATIENT")
+        {
+        <th>
+            Patient
+        </th>
+        }
+        <th>
+            @Html.DisplayNameFor(model => model.Order.SpecimenId)
+        </th>
+        <td>
+            Request
+        </td>
+        <td>
+            Processed
+        </td>
+        <td>
+            Released
+        </td>
+        <th>
+            Order
+        </th>
+        @if (ViewBag.PageType != "DOCTOR")
+        {
+        <th>
+            Physician
+        </th>
+        }
+        <th>
+            Instrument
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.Processed%
+        </td>
+        @if (ViewBag.PageType != "PATIENT")
+        {
+        <td style="white-space:nowrap;">
+            @Html.DisplayFor(modelItem => item.Order.HisProfile.Name)
+        </td>
+        }
+        <td style="white-space:nowrap;">
+            @Html.DisplayFor(modelItem => item.Order.SpecimenId)
+        </td>
+        <td style="white-space:nowrap;font-size:x-small;">
+            @Html.DisplayFor(modelItem => item.Order.dtRequest)
+        </td>
+        <td style="white-space:nowrap;font-size:x-small;">
+            @Html.DisplayFor(modelItem => item.Order.dtProcessed)
+        </td>
+        <td style="white-space:nowrap;font-size:x-small;">
+            @Html.DisplayFor(modelItem => item.Order.dtReleased)
+        </td>
+        <td style="white-space:nowrap;">
+            @Html.DisplayFor(modelItem => item.Order.HisOrderType.Description)
+        </td>
+        @if (ViewBag.PageType != "DOCTOR")
+        {
+            <td style="white-space:nowrap;">
+                @Html.DisplayFor(modelItem => item.Order.HisPhysician.Name)
+            </td>
+        }
+        <td style="white-space:nowrap;">
+            @Html.DisplayFor(modelItem => item.Order.HisInstrument.Name)
+        </td>
+        <td style="white-space:nowrap;">
+            @if (ViewBag.PageType == "MEDTECH")
+            {
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Order.Id }) |
+                    @Html.ActionLink("Test Data", "ResultList", new { id = item.Order.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Order.Id })
+                </p>
+            }
+            @if (ViewBag.PageType == "DOCTOR" || ViewBag.PageType == "PATIENT")
+            {
+                <p>
+                    @Html.ActionLink("View Result", "ResultView", new { id = item.Order.Id })
+                </p>
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Back to Main", "Index", "Home", new { area = "" }, "")
+</p>
+

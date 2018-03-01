@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "System Admin Page";
+}
+
+<div class="jumbotron">
+    <h2>System Admin Panel</h2>
+    <p class="lead">Welcome Administrator</p>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>User Admin</h2>
+        <p>
+            Users and Groups Administration
+        </p>
+        <p>
+            @Html.ActionLink("User", "Index", "users", new { area = "core" },new { @class = "btn btn-default" })
+            @Html.ActionLink("Groups", "Index", "userGroups", new { area = "core" }, new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Hospital Admin</h2>
+        <p>Add more Hospitals, Instruments, Physicians</p>
+        <p>
+            @Html.ActionLink("Hospitals","Index", "HisEntities", new { area = "HIS10" }, new {@class = "btn btn-default" })
+            @Html.ActionLink("Instruments", "Index", "HisInstruments", new { area = "HIS10" }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Physicians", "Index", "HisPhysicians", new { area = "HIS10" }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Operators", "Index", "HisOperators", new { area = "HIS10" }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Theraphist", "Index", "HisIncharges", new { area = "HIS10" }, new { @class = "btn btn-default" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Other settings</h2>
+        <p>Masterfiles and settings</p>
+        @Html.ActionLink("Test Types", "Index", "HisOrderTypes", new { area = "HIS10" }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Lab Test", "Index", "HisResultFields", new { area = "HIS10" }, new { @class = "btn btn-default" })
+   
+     </div>
+</div>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisEntity>
+
+@{
+    ViewBag.Title = "Entity List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Entity List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+@foreach (var item in Model) {
+    <tr>
+        <td style="width:10%;">
+            <img src="~/Content/placeholder-image.jpg" height="100;"/>
+        </td>
+        <td>
+            <span style="font: bold 14px calibre, verdana;">
+                @item.Name
+            </span>
+            <span style="font-size:smaller">
+                <br />@item.Address
+                <br />@item.Contact
+                <br />@item.Remarks
+            </span>
+            <p>
+                @Html.ActionLink("Details", "Edit", new { id = item.Id }) | 
+                @Html.ActionLink("Physicians", "EntityPhysicianList", new { id = item.Id }) | 
+                @Html.ActionLink("Instruments", "EntityInstrumentList", new { id = item.Id }) | 
+                @Html.ActionLink("Operators", "EntityOperatorList", new { id = item.Id })
+            </p>
+        </td>
+    </tr>
+}
+</table>
+
+<div>
+    <p>
+        @Html.ActionLink("Back to Admin Panel", "index", "SystemAdmin", new { area = "Core" }, null )
+    </p>
+</div>
+
+

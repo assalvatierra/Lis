@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>@ViewBag.AppName</h1>
+    <p class="lead">@ViewBag.AppDescription</p>
+    <p>@ViewBag.AppVersion</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="col-md-4">
+            <h2>About</h2>
+            <p>
+                About this web application
+            </p>
+            <p>
+                @Html.ActionLink("About", "about", "", new { area = "" }, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Contact</h2>
+            <p>
+                Contact Us
+            </p>
+            <p>
+                @Html.ActionLink("Contact", "contact", "", new { area = "" }, new { @class = "btn btn-default" })
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h2>Login</h2>
+            <p>
+                @Html.ActionLink("Login", "login", "Account", new { area = "" }, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    }
+    else
+    {
+        if (ViewBag.PageType == "ADMIN" 
+            && (ViewBag.AppCode == "AC2018") )
+        {
+            <div class="col-md-4">
+                <h2>Admin</h2>
+                <p>
+                    System Administration by Root Account Only
+                </p>
+                <p>
+                    @Html.ActionLink("Admin Panel", "index", "SystemAdmin", new { area = "Core" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+        if (ViewBag.PageType == "DOCTOR"
+            && (ViewBag.AppCode == "LAB2018" || ViewBag.AppCode == "AC2018"))
+        {
+            <div class="col-md-4">
+                <h2>Doctor's Profile</h2>
+                <p>Define Doctor information and clinic schedules</p>
+                <p>
+                    @Html.ActionLink("Profile", "profile", "HisPhysicians", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+
+        if ((ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN" || ViewBag.PageType == "DOCTOR")
+            && (ViewBag.AppCode == "LAB2018") || ViewBag.AppCode == "AC2018")
+        {
+            <div class="col-md-4">
+                <h2>Patient's Profile</h2>
+                <p>List of Patients/Items</p>
+                <p>
+                    @Html.ActionLink("Profiles", "index", "HisProfiles", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+
+        if ( ViewBag.PageType == "PATIENT" 
+            && (ViewBag.AppCode == "LAB2018" || ViewBag.AppCode == "AC2018"))
+        {
+            <div class="col-md-4">
+                <h2>Patient's Profile</h2>
+                <p>Define patient information and appointments</p>
+                <p>
+                    @Html.ActionLink("Profiles", "Patient", "HisProfiles", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+
+        if ( (ViewBag.PageType == "ADMIN" || ViewBag.PageType == "DOCTOR")
+            && (ViewBag.AppCode == "LAB2018"))
+        {
+            <div class="col-md-4">
+                <h2>Laboratory</h2>
+                <p>Laboratory Status</p>
+                <p>
+                    @Html.ActionLink("Orders", "index", "HisOrders", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+        if ( (ViewBag.PageType == "ADMIN" || ViewBag.PageType == "DOCTOR")
+            && (ViewBag.AppCode == "AC2018"))
+        {
+            <div class="col-md-4">
+                <h2>Patient/Item Therapist</h2>
+                <p>Patients/Items handled by therapist</p>
+                <p>
+                    @Html.ActionLink("Patient Therapist", "index", "HisProfileIncharges", new { area = "HIS10" }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+        if ( (ViewBag.PageType == "ADMIN" || ViewBag.PageType == "DOCTOR")
+            && (ViewBag.AppCode == "AC2018"))
+        {
+            <div class="col-md-4">
+                <h2>Requests</h2>
+                <p>Requests and Schedules</p>
+                <p>
+                    @Html.ActionLink("All Requests", "index", "HisProfileReqs", new { area = "HIS10", RptType = 1, status = 0 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("By Schedule", "index", "HisProfileReqs", new { area = "HIS10", RptType = 2, status = 1 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("By Item", "index", "HisProfileReqs", new { area = "HIS10", RptType = 3, status = 1 }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+        }
+
+        if ((ViewBag.PageType == "MEDTECH" || ViewBag.PageType == "ADMIN")
+            && (ViewBag.AppCode == "AC2018") )
+        {
+            <div class="col-md-4">
+                <h2>Reports</h2>
+                <p>Reporting tools for the system. to be develop as per needed</p>
+                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            </div>
+        }
+
+        if (ViewBag.PageType == "THERAPHY")
+        {
+            <div class="col-md-4">
+                <h2>Tasks</h2>
+                <p>Requests/tasks under my account</p>
+                <p>
+                    @Html.ActionLink("All Requests", "TheraphyTasks", "HisProfileReqs", new { area = "HIS10", RptType = 1, status = 0 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("By Schedule", "TheraphyTasks", "HisProfileReqs", new { area = "HIS10", RptType = 2, status = 1 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("By Item", "TheraphyTasks", "HisProfileReqs", new { area = "HIS10", RptType = 3, status = 1 }, new { @class = "btn btn-default" })
+                </p>
+            </div>
+
+        }
+
+
+    }
+
+
+
+</div>

@@ -1,0 +1,111 @@
+﻿@model LIS.v10.Areas.HIS10.Models.HisPhysician
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<LIS.v10.Areas.HIS10.Models.HisPhysicianSpecialization> specs =
+        (List<LIS.v10.Areas.HIS10.Models.HisPhysicianSpecialization>)ViewBag.Specs;
+    List<LIS.v10.Areas.HIS10.Models.HisPhysicianClinic> clinics =
+        (List<LIS.v10.Areas.HIS10.Models.HisPhysicianClinic>)ViewBag.Clinics;
+
+
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>HisPhysician</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccntUserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AccntUserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AccntUserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="form-group">
+    <label class="control-label col-md-2">
+        Specialization
+    </label>
+    <div class="col-md-10">
+        <table>
+            
+                @foreach (var item in specs)
+                {
+                    <tr>
+                    <td>@item.HisSpecialization.Desc</td>
+                    <td>
+                        @Html.ActionLink("Remove", "RemoveSpecialization", new { SpecId = item.HisSpecializationId, physicianId = item.HisPhysicianId })
+                    </td>
+                    </tr>
+                }
+            
+        </table>
+        @Html.ActionLink("Add Specialization", "ListSpecialization", new { id = Model.Id })
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-md-2">
+        Clinic
+    </label>
+    <div class="col-md-10">
+        <table>
+
+            @foreach (var item in clinics)
+            {
+                <tr>
+                    <td>@item.Location</td>
+                    <td>@item.Telephone</td>
+                    <td>@item.Days</td>
+                    <td>@item.Time</td>
+                    <td>@item.Remarks</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditClinic", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "DeleteClinic", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+        @Html.ActionLink("Add Clinic", "AddClinic", new { id = Model.Id })
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

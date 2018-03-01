@@ -1,0 +1,70 @@
+﻿@model LIS.v10.Areas.HIS10.Models.HisNotification
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HisNotification</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RecType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Recipient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Recipient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DtSending)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DtSending)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RefId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RefId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RefTable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RefTable)
+        </dd>
+
+    </dl>
+</div>
+
+@{Html.RenderPartial("PartialView_LowLevelItems", (List<LIS.v10.Areas.HIS10.Models.HisNotificationLog>)ViewBag.getNotificationLogs);}
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

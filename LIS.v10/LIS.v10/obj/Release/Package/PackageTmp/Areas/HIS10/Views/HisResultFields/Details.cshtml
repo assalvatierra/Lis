@@ -1,0 +1,51 @@
+﻿@model LIS.v10.Areas.HIS10.Models.HisResultField
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HisResultField</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeqNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HisOrderType.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HisOrderType.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

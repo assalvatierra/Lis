@@ -1,0 +1,80 @@
+﻿@model IEnumerable<LIS.v10.Areas.HIS10.Models.HisResultField>
+
+@{
+    ViewBag.Title = "Result Fields";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    LIS.v10.Areas.HIS10.Models.HisOrderType orderType = new LIS.v10.Areas.HIS10.Models.HisOrderType();
+    if (ViewBag.orderType != null)
+    {
+        orderType = (LIS.v10.Areas.HIS10.Models.HisOrderType)ViewBag.orderType;
+    }
+
+}
+
+@if(ViewBag.orderType!=null)
+{
+    <h2>Order Type</h2>
+    <p>
+        orderType: @orderType.Description
+    </p>
+}
+
+<h2>Lab Test Items</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>
+        <th>
+            Normal Range
+        </th>
+        <th>
+            Measurement
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeqNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HisOrderType.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minValue) -
+            @Html.DisplayFor(modelItem => item.maxValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Uom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeqNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HisOrderType.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
