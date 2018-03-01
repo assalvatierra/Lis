@@ -18,8 +18,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RecType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RecType, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.RecType, new { htmlAttributes = new { @class = "form-control", @Value = "Client" } })
                 @Html.ValidationMessageFor(model => model.RecType, "", new { @class = "text-danger" })
+                
             </div>
         </div>
 
@@ -50,15 +51,16 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RefId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RefId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.RefId, new { htmlAttributes = new { @class = "form-control" , @Value = @ViewBag.RefId } })
                 @Html.ValidationMessageFor(model => model.RefId, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.RefTable, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RefTable, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.RefTable, new { htmlAttributes = new { @class = "form-control", @Value = "HisProfileReqs" } })
                 @Html.ValidationMessageFor(model => model.RefTable, "", new { @class = "text-danger" })
             </div>
         </div>

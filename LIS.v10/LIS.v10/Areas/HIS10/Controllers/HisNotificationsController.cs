@@ -42,9 +42,26 @@ namespace LIS.v10.Areas.HIS10.Controllers
         }
 
         // GET: HIS10/HisNotifications/Create
-        public ActionResult Create()
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult Create(int? id)
         {
-            return View();
+            ViewBag.RefId = id.ToString();
+
+            Models.HisRequest req = db.HisRequests.Find((int)id);
+
+            Models.HisNotification temp = new HisNotification();
+            temp.Message = "test" + id;
+            temp.DtSending = DateTime.Now;
+            temp.RefId = id;
+            temp.RecType = "Client";
+            temp.RefTable = "HisProfileReqs";
+            
+            return View(temp);
+
         }
 
         // POST: HIS10/HisNotifications/Create

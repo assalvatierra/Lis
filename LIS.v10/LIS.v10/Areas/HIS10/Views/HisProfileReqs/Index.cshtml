@@ -38,8 +38,16 @@
 
         </td>
         <td valign="top">
-            <span>Notification</span>
-            <br />@Html.ActionLink("Generate", "Create","HisNotifications")
+            <span>Notification </span>
+            @if (@Html.Action("hasNotif", new { id = item.Id }).ToString() == "0")
+            {
+                <br />@Html.ActionLink("Generate", "Create", "HisNotifications", new { id = item.HisRequestId }, null)
+
+            }
+            else
+            {
+                <br />@Html.ActionLink("View", "Details", "HisNotifications", new { id = item.Id },null)
+            }
 
         </td>
         <td>

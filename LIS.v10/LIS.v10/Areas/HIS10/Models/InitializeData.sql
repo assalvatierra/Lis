@@ -31,4 +31,17 @@ values ('Test 101','General Test checkup'),
 ('Ther 101','Theraphy 101')
 
 
+insert into HisProfiles ([Name],[Remarks],[AccntUserId])
+values
+	('Patient1','None','1'),
+	('Patient2','None','2'),
+	('Patient3','None','3');
+
+insert into HisProfileReqs ([HisProfileId],[HisRequestId],[dtRequested],[dtSchedule],[dtPerformed],[Remarks])
+values (1,1,'3/1/2018 10:00:00','3/1/2018 10:36:00','3/1/2018 10:36:00','none'),
+	    (2,1,'3/1/2018 10:00:00','3/1/2018 10:36:00','3/1/2018 10:36:00','none');
+
+insert into HisNotifications ([RecType],[Recipient],[Message],[DtSending],[RefId],[RefTable])
+values
+	('Client','09279016517','Test Message','',1,'HisProfileReqs');
 

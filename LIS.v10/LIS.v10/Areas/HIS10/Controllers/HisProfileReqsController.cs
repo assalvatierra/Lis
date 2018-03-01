@@ -213,5 +213,15 @@ namespace LIS.v10.Areas.HIS10.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        public string hasNotif(int? id)
+        {
+            var data = db.HisNotifications.Where(s => s.RefId == id).Select(s => s.Id).FirstOrDefault();
+            string message = "id: " +id.ToString() +" data:"+data.ToString();
+            return data.ToString();
+            //return db1.getData(id);
+        }
+
     }
 }
