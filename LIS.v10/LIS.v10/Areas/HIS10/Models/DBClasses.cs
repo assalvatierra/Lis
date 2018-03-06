@@ -30,7 +30,8 @@ namespace LIS.v10.Areas.HIS10.Models
 
     public class DBClasses
     {
-        private Models.His10DBContainer db = new His10DBContainer();
+        public Models.His10DBContainer db = new His10DBContainer();
+
         public List<SmsNotificationItem> getList()
         {
             List<SmsNotificationItem> hisrequests = db.HisRequests
@@ -53,6 +54,8 @@ namespace LIS.v10.Areas.HIS10.Models
             return msg;
         }
 
+        
+
         public SmsNotificationMsg getClientMessage(int id)
         {
             HisRequest request = db.HisRequests.Find(id);
@@ -70,22 +73,48 @@ namespace LIS.v10.Areas.HIS10.Models
             return 1;
         }
 
-        public List<HisNotificationLog> getNotificationLogs(int? id)
+
+        //added by jahdiel
+        public HisNotificationLog getNotificationLogs(int? id)
         {
-            string sSQL = @"
-                SELECT TOP 1000 [Id]
-                      ,[HisNotificationId]
-                      ,[DtSending]
-                      ,[Status]
-                      ,[Remarks]
-                  FROM [aspnet-LIS.v10-20170509105835].[dbo].[HisNotificationLogs]";
+            return db.HisNotificationLogs.Find(id);
+        }
 
-            var list = db.Database.SqlQuery<HisNotificationLog>(sSQL);
 
-            if (id != null && id > 0)
-                return list.Where(d => d.HisNotificationId == (int)id).ToList();
+        public List<HisNotificationLog> getNotificationLogs()
+        {
+            return db.HisNotificationLogs.ToList();
+            
+        }
 
-            return list.ToList();
+        public List<HisNotification> getNotifList()
+        {
+
+            var data = db.HisNotifications.Select(s => new {
+                s.Id,
+                s.RecType,
+                s.Recipient,
+                s.Message,
+                s.DtSending
+            });
+
+            return db.HisNotifications.ToList();
+        }
+
+        public List<HisNotification> getAdminNotif()
+        {
+            return db.HisNotifications.Where(d => d.RecType == "Admin").ToList();
+        }
+
+        public List<HisNotification> getClientNotif()
+        {
+            return db.HisNotifications.Where(d => d.RecType == "Client").ToList();
+        }
+
+        public void insertNewLog(HisNotificationLog newNotifLog)
+        {
+            db.HisNotificationLogs.Add(newNotifLog);
+            db.SaveChanges();
         }
     }
 }

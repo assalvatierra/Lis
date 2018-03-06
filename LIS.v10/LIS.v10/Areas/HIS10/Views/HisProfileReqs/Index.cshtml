@@ -41,7 +41,7 @@
             <span>Notification </span>
             @if (@Html.Action("hasNotif", new { id = item.Id }).ToString() == "0")
             {
-                <br />@Html.ActionLink("Generate", "Create", "HisNotifications", new { id = item.HisRequestId }, null)
+                <br />@Html.ActionLink("Generate", "Create", "HisNotifications", new { id = item.Id }, null)
 
             }
             else

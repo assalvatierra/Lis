@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
-
+using LIS.v10.Areas.HIS10.Models;
 namespace LIS.v10
 {
     /// <summary>
@@ -23,6 +23,9 @@ namespace LIS.v10
     public class SmsService1 : System.Web.Services.WebService
     {
 
+        public His10DBContainer db = new His10DBContainer();
+        public DBClasses db1 = new DBClasses();
+
         [WebMethod]
         public string HelloWorld()
         {
@@ -34,16 +37,37 @@ namespace LIS.v10
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void getDetails()
         {
-            string sql = "SELECT [Id],[RecType],[Recipient],[Message],[DtSending] FROM dbo.HisNotifications";
+            string sql = "SELECT TOP 1000 [Id],[RecType],[Recipient],[Message],[DtSending]  FROM [aspnet-LIS.v10-20170509105835].[dbo].[HisNotifications]";
             SqlDataAdapter da = new SqlDataAdapter(sql, ConfigurationManager.ConnectionStrings["SmsConnection"].ToString());
             DataSet ds = new DataSet();
-            da.Fill(ds);
-            
+
+            da.Fill(ds);    //execute sqlAdapter
+
             Context.Response.Clear();
             Context.Response.ContentType = "application/json";
             Context.Response.Write(JsonConvert.SerializeObject(ds, Newtonsoft.Json.Formatting.Indented));
 
         }
+
+
+        //get notifications log
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void getList()
+        {
+
+            string sql = "SELECT TOP 1000 [Id],[HisNotificationId],[DtSending],[Status],[Remarks] FROM [aspnet-LIS.v10-20170509105835].[dbo].[HisNotificationLogs]";
+            SqlDataAdapter da = new SqlDataAdapter(sql, ConfigurationManager.ConnectionStrings["SmsConnection"].ToString());
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);    //execute sqlAdapter
+
+            Context.Response.Clear();
+            Context.Response.ContentType = "application/json";
+            Context.Response.Write(JsonConvert.SerializeObject(ds, Newtonsoft.Json.Formatting.Indented));
+
+        }
+
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -116,23 +140,6 @@ namespace LIS.v10
 
             Context.Response.Clear();
             Context.Response.Write(response);
-
-        }
-
-        //get notifications log
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void getList()
-        {
-
-            string sql = "SELECT TOP 1000 [Id],[HisNotificationId],[DtSending],[Status],[Remarks] FROM [aspnet-LIS.v10-20170509105835].[dbo].[HisNotificationLogs]";
-            SqlDataAdapter da = new SqlDataAdapter(sql, ConfigurationManager.ConnectionStrings["SmsConnection"].ToString());
-
-            DataSet ds = new DataSet();
-            da.Fill(ds);    //execute sqlAdapter
-            Context.Response.Clear();
-            Context.Response.ContentType = "application/json";
-            Context.Response.Write(JsonConvert.SerializeObject(ds, Newtonsoft.Json.Formatting.Indented));
 
         }
 
