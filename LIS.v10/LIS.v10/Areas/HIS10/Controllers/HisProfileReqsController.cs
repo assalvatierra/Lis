@@ -222,6 +222,6 @@ namespace LIS.v10.Areas.HIS10.Controllers
             return data.ToString();
             //return db1.getData(id);
         }
-
+        
     }
 }

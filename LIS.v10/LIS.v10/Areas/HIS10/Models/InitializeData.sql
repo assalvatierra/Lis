@@ -38,8 +38,8 @@ values
 	('Patient3','None','3');
 
 insert into HisProfileReqs ([HisProfileId],[HisRequestId],[dtRequested],[dtSchedule],[dtPerformed],[Remarks])
-values (1,1,'3/1/2018 10:00:00','3/1/2018 10:36:00','3/1/2018 10:36:00','none'),
-	    (2,1,'3/1/2018 10:00:00','3/1/2018 10:36:00','3/1/2018 10:36:00','none');
+values (1,1,'3/1/2018 10:00:00','3/6/2018 10:36:00','3/6/2018 10:36:00','none'),
+	    (2,1,NULL,NULL,NULL,'none');
 
 insert into HisNotifications ([RecType],[Recipient],[Message],[DtSending],[RefId],[RefTable])
 values

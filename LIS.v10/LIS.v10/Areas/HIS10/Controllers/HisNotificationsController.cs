@@ -59,9 +59,8 @@ namespace LIS.v10.Areas.HIS10.Controllers
             temp.RefId = id;
             temp.RecType = "Client";
             temp.RefTable = "HisProfileReqs";
-            
-            return View(temp);
 
+            return View(temp);
         }
 
         // POST: HIS10/HisNotifications/Create
@@ -74,8 +73,16 @@ namespace LIS.v10.Areas.HIS10.Controllers
             if (ModelState.IsValid)
             {
                 db.HisNotifications.Add(hisNotification);
+                
+
+                Models.HisProfileReq request = db.HisProfileReqs.Find(hisNotification.RefId);
+                request.dtRequested = DateTime.Now;
+                request.dtSchedule = hisNotification.DtSending;
+                
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                //HIS10/HisProfileReqs?RptType=1&status=0
+                return RedirectToAction("Details", "HisNotifications", new { id = hisNotification.Id });
             }
 
             return View(hisNotification);
@@ -106,6 +113,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(hisNotification).State = EntityState.Modified;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
