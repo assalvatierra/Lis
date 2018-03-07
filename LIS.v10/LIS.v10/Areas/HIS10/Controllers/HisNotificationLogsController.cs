@@ -17,7 +17,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
         // GET: HIS10/HisNotificationLogs
         public ActionResult Index()
         {
-            var hisNotificationLogs = db.HisNotificationLogs.Include(h => h.HisNotification);
+            var hisNotificationLogs = db.HisNotificationLogs.Include(h => h.HisNotificationRecipient);
             return View(hisNotificationLogs.ToList());
         }
 
@@ -57,7 +57,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HisNotificationId = new SelectList(db.HisNotifications, "Id", "RecType", hisNotificationLog.HisNotificationId);
+            ViewBag.HisNotificationId = new SelectList(db.HisNotifications, "Id", "RecType", hisNotificationLog.HisNotificationRecipientId);
             return View(hisNotificationLog);
         }
 
@@ -73,7 +73,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HisNotificationId = new SelectList(db.HisNotifications, "Id", "RecType", hisNotificationLog.HisNotificationId);
+            ViewBag.HisNotificationId = new SelectList(db.HisNotifications, "Id", "RecType", hisNotificationLog.HisNotificationRecipientId);
             return View(hisNotificationLog);
         }
 
@@ -90,7 +90,7 @@ namespace LIS.v10.Areas.HIS10.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.HisNotificationId = new SelectList(db.HisNotifications, "Id", "RecType", hisNotificationLog.HisNotificationId);
+            ViewBag.HisNotificationId = new SelectList(db.HisNotifications, "Id", "RecType", hisNotificationLog.HisNotificationRecipientId);
             return View(hisNotificationLog);
         }
 

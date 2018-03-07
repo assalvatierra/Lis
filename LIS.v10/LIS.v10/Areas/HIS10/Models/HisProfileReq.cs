@@ -21,8 +21,12 @@ namespace LIS.v10.Areas.HIS10.Models
         public Nullable<System.DateTime> dtSchedule { get; set; }
         public Nullable<System.DateTime> dtPerformed { get; set; }
         public string Remarks { get; set; }
+        public int HisPhysicianId { get; set; }
+        public int HisInchargeId { get; set; }
     
         public virtual HisProfile HisProfile { get; set; }
         public virtual HisRequest HisRequest { get; set; }
+        public virtual HisPhysician HisPhysician { get; set; }
+        public virtual HisIncharge HisIncharge { get; set; }
     }
 }

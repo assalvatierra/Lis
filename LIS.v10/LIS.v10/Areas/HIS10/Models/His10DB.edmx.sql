@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/01/2018 13:32:13
+-- Date Created: 03/07/2018 09:12:18
 -- Generated from EDMX file: D:\Data\Real\Apps\GitHub\Lis\LIS.v10\LIS.v10\Areas\HIS10\Models\His10DB.edmx
 -- --------------------------------------------------
 
@@ -116,8 +116,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_HisRequestHisReqCat]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HisReqCats] DROP CONSTRAINT [FK_HisRequestHisReqCat];
 GO
-IF OBJECT_ID(N'[dbo].[FK_HisNotificationHisNotificationLog]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[HisNotificationLogs] DROP CONSTRAINT [FK_HisNotificationHisNotificationLog];
+IF OBJECT_ID(N'[dbo].[FK_HisNotificationHisNotificationRecipient]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisNotificationRecipients] DROP CONSTRAINT [FK_HisNotificationHisNotificationRecipient];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisNotificationRecipientHisNotificationLog]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisNotificationLogs] DROP CONSTRAINT [FK_HisNotificationRecipientHisNotificationLog];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisPhysicianHisProfileReq]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileReqs] DROP CONSTRAINT [FK_HisPhysicianHisProfileReq];
+GO
+IF OBJECT_ID(N'[dbo].[FK_HisInchargeHisProfileReq]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[HisProfileReqs] DROP CONSTRAINT [FK_HisInchargeHisProfileReq];
 GO
 
 -- --------------------------------------------------
@@ -223,6 +232,9 @@ GO
 IF OBJECT_ID(N'[dbo].[HisNotificationLogs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HisNotificationLogs];
 GO
+IF OBJECT_ID(N'[dbo].[HisNotificationRecipients]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[HisNotificationRecipients];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -244,7 +256,8 @@ CREATE TABLE [dbo].[HisProfiles] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(100)  NOT NULL,
     [Remarks] nvarchar(200)  NULL,
-    [AccntUserId] nvarchar(max)  NULL
+    [AccntUserId] nvarchar(max)  NULL,
+    [ContactInfo] nvarchar(30)  NULL
 );
 GO
 
@@ -292,7 +305,8 @@ CREATE TABLE [dbo].[HisPhysicians] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(200)  NOT NULL,
     [Remarks] nvarchar(200)  NULL,
-    [AccntUserId] nvarchar(max)  NULL
+    [AccntUserId] nvarchar(max)  NULL,
+    [ContactInfo] nvarchar(30)  NULL
 );
 GO
 
@@ -455,7 +469,8 @@ CREATE TABLE [dbo].[HisIncharges] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(80)  NOT NULL,
     [Remarks] nvarchar(250)  NULL,
-    [AccntUserId] nvarchar(50)  NULL
+    [AccntUserId] nvarchar(50)  NULL,
+    [ContactInfo] nvarchar(30)  NULL
 );
 GO
 
@@ -483,7 +498,9 @@ CREATE TABLE [dbo].[HisProfileReqs] (
     [dtRequested] datetime  NULL,
     [dtSchedule] datetime  NULL,
     [dtPerformed] datetime  NULL,
-    [Remarks] nvarchar(250)  NULL
+    [Remarks] nvarchar(250)  NULL,
+    [HisPhysicianId] int  NOT NULL,
+    [HisInchargeId] int  NOT NULL
 );
 GO
 
@@ -535,10 +552,18 @@ GO
 -- Creating table 'HisNotificationLogs'
 CREATE TABLE [dbo].[HisNotificationLogs] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [HisNotificationId] int  NOT NULL,
+    [HisNotificationRecipientId] int  NOT NULL,
     [DtSending] datetime  NOT NULL,
     [Status] nvarchar(10)  NOT NULL,
     [Remarks] nvarchar(200)  NULL
+);
+GO
+
+-- Creating table 'HisNotificationRecipients'
+CREATE TABLE [dbo].[HisNotificationRecipients] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [HisNotificationId] int  NOT NULL,
+    [ContactInfo] nvarchar(30)  NOT NULL
 );
 GO
 
@@ -741,6 +766,12 @@ GO
 -- Creating primary key on [Id] in table 'HisNotificationLogs'
 ALTER TABLE [dbo].[HisNotificationLogs]
 ADD CONSTRAINT [PK_HisNotificationLogs]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'HisNotificationRecipients'
+ALTER TABLE [dbo].[HisNotificationRecipients]
+ADD CONSTRAINT [PK_HisNotificationRecipients]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -1243,19 +1274,64 @@ ON [dbo].[HisReqCats]
     ([HisRequestId]);
 GO
 
--- Creating foreign key on [HisNotificationId] in table 'HisNotificationLogs'
-ALTER TABLE [dbo].[HisNotificationLogs]
-ADD CONSTRAINT [FK_HisNotificationHisNotificationLog]
+-- Creating foreign key on [HisNotificationId] in table 'HisNotificationRecipients'
+ALTER TABLE [dbo].[HisNotificationRecipients]
+ADD CONSTRAINT [FK_HisNotificationHisNotificationRecipient]
     FOREIGN KEY ([HisNotificationId])
     REFERENCES [dbo].[HisNotifications]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_HisNotificationHisNotificationLog'
-CREATE INDEX [IX_FK_HisNotificationHisNotificationLog]
-ON [dbo].[HisNotificationLogs]
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisNotificationHisNotificationRecipient'
+CREATE INDEX [IX_FK_HisNotificationHisNotificationRecipient]
+ON [dbo].[HisNotificationRecipients]
     ([HisNotificationId]);
+GO
+
+-- Creating foreign key on [HisNotificationRecipientId] in table 'HisNotificationLogs'
+ALTER TABLE [dbo].[HisNotificationLogs]
+ADD CONSTRAINT [FK_HisNotificationRecipientHisNotificationLog]
+    FOREIGN KEY ([HisNotificationRecipientId])
+    REFERENCES [dbo].[HisNotificationRecipients]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisNotificationRecipientHisNotificationLog'
+CREATE INDEX [IX_FK_HisNotificationRecipientHisNotificationLog]
+ON [dbo].[HisNotificationLogs]
+    ([HisNotificationRecipientId]);
+GO
+
+-- Creating foreign key on [HisPhysicianId] in table 'HisProfileReqs'
+ALTER TABLE [dbo].[HisProfileReqs]
+ADD CONSTRAINT [FK_HisPhysicianHisProfileReq]
+    FOREIGN KEY ([HisPhysicianId])
+    REFERENCES [dbo].[HisPhysicians]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisPhysicianHisProfileReq'
+CREATE INDEX [IX_FK_HisPhysicianHisProfileReq]
+ON [dbo].[HisProfileReqs]
+    ([HisPhysicianId]);
+GO
+
+-- Creating foreign key on [HisInchargeId] in table 'HisProfileReqs'
+ALTER TABLE [dbo].[HisProfileReqs]
+ADD CONSTRAINT [FK_HisInchargeHisProfileReq]
+    FOREIGN KEY ([HisInchargeId])
+    REFERENCES [dbo].[HisIncharges]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_HisInchargeHisProfileReq'
+CREATE INDEX [IX_FK_HisInchargeHisProfileReq]
+ON [dbo].[HisProfileReqs]
+    ([HisInchargeId]);
 GO
 
 -- --------------------------------------------------

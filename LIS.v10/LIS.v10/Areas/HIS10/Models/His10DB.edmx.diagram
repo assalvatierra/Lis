@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfe074423cf5494dbae538c3c271abc3" Name="Diagram1" ZoomLevel="67" >
+      <Diagram DiagramId="bfe074423cf5494dbae538c3c271abc3" Name="Diagram1" ZoomLevel="88" >
         <EntityTypeShape EntityType="His10DB.HisEntity" Width="1.5" PointX="3.625" PointY="0.625" />
         <EntityTypeShape EntityType="His10DB.HisProfile" Width="1.5" PointX="13.5" PointY="0.75" />
         <EntityTypeShape EntityType="His10DB.HisCategory" Width="1.5" PointX="0.625" PointY="0.5" />
@@ -32,7 +32,7 @@
         <AssociationConnector Association="His10DB.HisResultFieldHisInsResultRange" />
         <EntityTypeShape EntityType="His10DB.HisOrderRemarks" Width="1.5" PointX="13.5" PointY="9.75" />
         <AssociationConnector Association="His10DB.HisOrderHisOrderRemarks" />
-        <EntityTypeShape EntityType="His10DB.HisProfileDetails" Width="1.5" PointX="16" PointY="4.125" />
+        <EntityTypeShape EntityType="His10DB.HisProfileDetails" Width="1.5" PointX="16" PointY="4.5" />
         <AssociationConnector Association="His10DB.HisProfileHisProfileDetails" />
         <EntityTypeShape EntityType="His10DB.HisPhysicianProfile" Width="1.5" PointX="10.625" PointY="1.75" />
         <AssociationConnector Association="His10DB.HisPhysicianHisPhysicianProfile" />
@@ -58,21 +58,25 @@
         <EntityTypeShape EntityType="His10DB.HisProfileIncharge" Width="1.5" PointX="22.25" PointY="1" />
         <AssociationConnector Association="His10DB.HisProfileHisProfileIncharge" />
         <AssociationConnector Association="His10DB.HisInchargeHisProfileIncharge" />
-        <EntityTypeShape EntityType="His10DB.HisRequest" Width="1.5" PointX="24.625" PointY="3.375" />
+        <EntityTypeShape EntityType="His10DB.HisRequest" Width="1.5" PointX="25" PointY="4.5" />
         <EntityTypeShape EntityType="His10DB.HisProfileReq" Width="1.5" PointX="22.25" PointY="3.25" />
         <AssociationConnector Association="His10DB.HisProfileHisProfileReq" />
         <AssociationConnector Association="His10DB.HisRequestHisProfileReq" />
-        <EntityTypeShape EntityType="His10DB.HisTemplateRequest" Width="1.5" PointX="26.875" PointY="6" />
-        <EntityTypeShape EntityType="His10DB.HisTemplateReqItems" Width="1.5" PointX="24.625" PointY="6" />
+        <EntityTypeShape EntityType="His10DB.HisTemplateRequest" Width="1.5" PointX="27.25" PointY="7.125" />
+        <EntityTypeShape EntityType="His10DB.HisTemplateReqItems" Width="1.5" PointX="25" PointY="7.125" />
         <AssociationConnector Association="His10DB.HisTemplateRequestHisTemplateReqItems" />
         <AssociationConnector Association="His10DB.HisRequestHisTemplateReqItems" />
-        <EntityTypeShape EntityType="His10DB.HisReqCategory" Width="1.5" PointX="29.375" PointY="3.375" />
-        <EntityTypeShape EntityType="His10DB.HisReqCat" Width="1.5" PointX="26.875" PointY="3.375" />
+        <EntityTypeShape EntityType="His10DB.HisReqCategory" Width="1.5" PointX="29.375" PointY="5" />
+        <EntityTypeShape EntityType="His10DB.HisReqCat" Width="1.5" PointX="27.25" PointY="4.5" />
         <AssociationConnector Association="His10DB.HisReqCategoryHisReqCat" />
         <AssociationConnector Association="His10DB.HisRequestHisReqCat" />
         <EntityTypeShape EntityType="His10DB.HisNotification" Width="2" PointX="27.5" PointY="0.5" />
-        <EntityTypeShape EntityType="His10DB.HisNotificationLog" Width="1.5" PointX="30.125" PointY="0.625" />
-        <AssociationConnector Association="His10DB.HisNotificationHisNotificationLog" />
+        <EntityTypeShape EntityType="His10DB.HisNotificationLog" Width="1.5" PointX="32.25" PointY="0.75" />
+        <EntityTypeShape EntityType="His10DB.HisNotificationRecipient" Width="1.5" PointX="30.125" PointY="0.75" />
+        <AssociationConnector Association="His10DB.HisNotificationHisNotificationRecipient" />
+        <AssociationConnector Association="His10DB.HisNotificationRecipientHisNotificationLog" />
+        <AssociationConnector Association="His10DB.HisPhysicianHisProfileReq" />
+        <AssociationConnector Association="His10DB.HisInchargeHisProfileReq" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

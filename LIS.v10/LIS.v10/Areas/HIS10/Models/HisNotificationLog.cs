@@ -15,11 +15,11 @@ namespace LIS.v10.Areas.HIS10.Models
     public partial class HisNotificationLog
     {
         public int Id { get; set; }
-        public int HisNotificationId { get; set; }
+        public int HisNotificationRecipientId { get; set; }
         public System.DateTime DtSending { get; set; }
         public string Status { get; set; }
         public string Remarks { get; set; }
     
-        public virtual HisNotification HisNotification { get; set; }
+        public virtual HisNotificationRecipient HisNotificationRecipient { get; set; }
     }
 }

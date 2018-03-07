@@ -303,6 +303,9 @@
     <Compile Include="Areas\HIS10\Models\HisNotificationLog.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Areas\HIS10\Models\HisNotificationRecipient.cs">
+      <DependentUpon>His10DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Areas\HIS10\Models\HisOperator.cs">
       <DependentUpon>His10DB.tt</DependentUpon>
     </Compile>

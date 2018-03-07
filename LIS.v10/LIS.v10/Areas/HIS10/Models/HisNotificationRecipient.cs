@@ -12,24 +12,20 @@ namespace LIS.v10.Areas.HIS10.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class HisIncharge
+    public partial class HisNotificationRecipient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HisIncharge()
+        public HisNotificationRecipient()
         {
-            this.HisProfileIncharges = new HashSet<HisProfileIncharge>();
-            this.HisProfileReqs = new HashSet<HisProfileReq>();
+            this.HisNotificationLogs = new HashSet<HisNotificationLog>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Remarks { get; set; }
-        public string AccntUserId { get; set; }
+        public int HisNotificationId { get; set; }
         public string ContactInfo { get; set; }
     
+        public virtual HisNotification HisNotification { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HisProfileIncharge> HisProfileIncharges { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HisProfileReq> HisProfileReqs { get; set; }
+        public virtual ICollection<HisNotificationLog> HisNotificationLogs { get; set; }
     }
 }

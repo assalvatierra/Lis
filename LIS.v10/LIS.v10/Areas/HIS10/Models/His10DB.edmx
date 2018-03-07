@@ -39,6 +39,7 @@
     <EntitySet Name="HisReqCats" EntityType="His10DB.Store.HisReqCats" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisNotifications" EntityType="His10DB.Store.HisNotifications" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="HisNotificationLogs" EntityType="His10DB.Store.HisNotificationLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HisNotificationRecipients" EntityType="His10DB.Store.HisNotificationRecipients" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="HisPhysicianHisEntPhysician" Association="His10DB.Store.HisPhysicianHisEntPhysician">
       <End Role="HisPhysician" EntitySet="HisPhysicians" />
       <End Role="HisEntPhysician" EntitySet="HisEntPhysicians" />
@@ -171,9 +172,21 @@
       <End Role="HisRequest" EntitySet="HisRequests" />
       <End Role="HisReqCat" EntitySet="HisReqCats" />
     </AssociationSet>
-    <AssociationSet Name="HisNotificationHisNotificationLog" Association="His10DB.Store.HisNotificationHisNotificationLog">
+    <AssociationSet Name="HisNotificationHisNotificationRecipient" Association="His10DB.Store.HisNotificationHisNotificationRecipient">
       <End Role="HisNotification" EntitySet="HisNotifications" />
+      <End Role="HisNotificationRecipient" EntitySet="HisNotificationRecipients" />
+    </AssociationSet>
+    <AssociationSet Name="HisNotificationRecipientHisNotificationLog" Association="His10DB.Store.HisNotificationRecipientHisNotificationLog">
+      <End Role="HisNotificationRecipient" EntitySet="HisNotificationRecipients" />
       <End Role="HisNotificationLog" EntitySet="HisNotificationLogs" />
+    </AssociationSet>
+    <AssociationSet Name="HisPhysicianHisProfileReq" Association="His10DB.Store.HisPhysicianHisProfileReq">
+      <End Role="HisPhysician" EntitySet="HisPhysicians" />
+      <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
+    </AssociationSet>
+    <AssociationSet Name="HisInchargeHisProfileReq" Association="His10DB.Store.HisInchargeHisProfileReq">
+      <End Role="HisIncharge" EntitySet="HisIncharges" />
+      <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="HisEntities">
@@ -195,6 +208,7 @@
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
     <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ContactInfo" Type="nvarchar" Nullable="true" MaxLength="30" />
   </EntityType>
   <EntityType Name="HisCategories">
     <Key>
@@ -243,6 +257,7 @@
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
     <Property Name="AccntUserId" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ContactInfo" Type="nvarchar" Nullable="true" MaxLength="30" />
   </EntityType>
   <EntityType Name="HisEntPhysicians">
     <Key>
@@ -406,6 +421,7 @@
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="80" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
     <Property Name="AccntUserId" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ContactInfo" Type="nvarchar" Nullable="true" MaxLength="30" />
   </EntityType>
   <EntityType Name="HisProfileIncharges">
     <Key>
@@ -434,6 +450,8 @@
     <Property Name="dtSchedule" Type="datetime" Nullable="true" />
     <Property Name="dtPerformed" Type="datetime" Nullable="true" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="250" />
+    <Property Name="HisPhysicianId" Type="int" Nullable="false" />
+    <Property Name="HisInchargeId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="HisTemplateRequests">
     <Key>
@@ -485,10 +503,18 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="HisNotificationId" Type="int" Nullable="false" />
+    <Property Name="HisNotificationRecipientId" Type="int" Nullable="false" />
     <Property Name="DtSending" Type="datetime" Nullable="false" />
     <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="10" />
     <Property Name="Remarks" Type="nvarchar" Nullable="true" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="HisNotificationRecipients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HisNotificationId" Type="int" Nullable="false" />
+    <Property Name="ContactInfo" Type="nvarchar" Nullable="false" MaxLength="30" />
   </EntityType>
   <Association Name="HisPhysicianHisEntPhysician">
     <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
@@ -886,15 +912,51 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="HisNotificationHisNotificationLog">
+  <Association Name="HisNotificationHisNotificationRecipient">
     <End Role="HisNotification" Type="His10DB.Store.HisNotifications" Multiplicity="1" />
-    <End Role="HisNotificationLog" Type="His10DB.Store.HisNotificationLogs" Multiplicity="*" />
+    <End Role="HisNotificationRecipient" Type="His10DB.Store.HisNotificationRecipients" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="HisNotification">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="HisNotificationLog">
+      <Dependent Role="HisNotificationRecipient">
         <PropertyRef Name="HisNotificationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisNotificationRecipientHisNotificationLog">
+    <End Role="HisNotificationRecipient" Type="His10DB.Store.HisNotificationRecipients" Multiplicity="1" />
+    <End Role="HisNotificationLog" Type="His10DB.Store.HisNotificationLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisNotificationRecipient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisNotificationLog">
+        <PropertyRef Name="HisNotificationRecipientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisPhysicianHisProfileReq">
+    <End Role="HisPhysician" Type="His10DB.Store.HisPhysicians" Multiplicity="1" />
+    <End Role="HisProfileReq" Type="His10DB.Store.HisProfileReqs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisPhysician">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileReq">
+        <PropertyRef Name="HisPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HisInchargeHisProfileReq">
+    <End Role="HisIncharge" Type="His10DB.Store.HisIncharges" Multiplicity="1" />
+    <End Role="HisProfileReq" Type="His10DB.Store.HisProfileReqs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HisIncharge">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="HisProfileReq">
+        <PropertyRef Name="HisInchargeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1068,9 +1130,22 @@
           </AssociationSet>
           <EntitySet Name="HisNotifications" EntityType="His10DB.HisNotification" />
           <EntitySet Name="HisNotificationLogs" EntityType="His10DB.HisNotificationLog" />
-          <AssociationSet Name="HisNotificationHisNotificationLog" Association="His10DB.HisNotificationHisNotificationLog">
+          <EntitySet Name="HisNotificationRecipients" EntityType="His10DB.HisNotificationRecipient" />
+          <AssociationSet Name="HisNotificationHisNotificationRecipient" Association="His10DB.HisNotificationHisNotificationRecipient">
             <End Role="HisNotification" EntitySet="HisNotifications" />
+            <End Role="HisNotificationRecipient" EntitySet="HisNotificationRecipients" />
+          </AssociationSet>
+          <AssociationSet Name="HisNotificationRecipientHisNotificationLog" Association="His10DB.HisNotificationRecipientHisNotificationLog">
+            <End Role="HisNotificationRecipient" EntitySet="HisNotificationRecipients" />
             <End Role="HisNotificationLog" EntitySet="HisNotificationLogs" />
+          </AssociationSet>
+          <AssociationSet Name="HisPhysicianHisProfileReq" Association="His10DB.HisPhysicianHisProfileReq">
+            <End Role="HisPhysician" EntitySet="HisPhysicians" />
+            <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
+          </AssociationSet>
+          <AssociationSet Name="HisInchargeHisProfileReq" Association="His10DB.HisInchargeHisProfileReq">
+            <End Role="HisIncharge" EntitySet="HisIncharges" />
+            <End Role="HisProfileReq" EntitySet="HisProfileReqs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="HisEntity">
@@ -1103,6 +1178,7 @@
           <NavigationProperty Name="HisProfileGroups" Relationship="His10DB.HisProfileHisProfileGroup" FromRole="HisProfile" ToRole="HisProfileGroup" />
           <NavigationProperty Name="HisProfileIncharges" Relationship="His10DB.HisProfileHisProfileIncharge" FromRole="HisProfile" ToRole="HisProfileIncharge" />
           <NavigationProperty Name="HisProfileReqs" Relationship="His10DB.HisProfileHisProfileReq" FromRole="HisProfile" ToRole="HisProfileReq" />
+          <Property Name="ContactInfo" Type="String" Nullable="true" MaxLength="30" />
         </EntityType>
         <EntityType Name="HisCategory">
           <Key>
@@ -1167,6 +1243,8 @@
           <Property Name="AccntUserId" Type="String" Nullable="true" />
           <NavigationProperty Name="HisPhysicianSpecializations" Relationship="His10DB.HisPhysicianHisPhysicianSpecialization" FromRole="HisPhysician" ToRole="HisPhysicianSpecialization" />
           <NavigationProperty Name="HisPhysicianClinics" Relationship="His10DB.HisPhysicianHisPhysicianClinic" FromRole="HisPhysician" ToRole="HisPhysicianClinic" />
+          <Property Name="ContactInfo" Type="String" Nullable="true" MaxLength="30" />
+          <NavigationProperty Name="HisProfileReqs" Relationship="His10DB.HisPhysicianHisProfileReq" FromRole="HisPhysician" ToRole="HisProfileReq" />
         </EntityType>
         <EntityType Name="HisEntPhysician">
           <Key>
@@ -1656,6 +1734,8 @@
           <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
           <Property Name="AccntUserId" Type="String" Nullable="true" MaxLength="50" />
           <NavigationProperty Name="HisProfileIncharges" Relationship="His10DB.HisInchargeHisProfileIncharge" FromRole="HisIncharge" ToRole="HisProfileIncharge" />
+          <Property Name="ContactInfo" Type="String" Nullable="true" MaxLength="30" />
+          <NavigationProperty Name="HisProfileReqs" Relationship="His10DB.HisInchargeHisProfileReq" FromRole="HisIncharge" ToRole="HisProfileReq" />
         </EntityType>
         <EntityType Name="HisProfileIncharge">
           <Key>
@@ -1715,6 +1795,10 @@
           <Property Name="dtSchedule" Type="DateTime" Nullable="true" />
           <Property Name="dtPerformed" Type="DateTime" Nullable="true" />
           <Property Name="Remarks" Type="String" Nullable="true" MaxLength="250" />
+          <NavigationProperty Name="HisPhysician" Relationship="His10DB.HisPhysicianHisProfileReq" FromRole="HisProfileReq" ToRole="HisPhysician" />
+          <Property Name="HisPhysicianId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HisIncharge" Relationship="His10DB.HisInchargeHisProfileReq" FromRole="HisProfileReq" ToRole="HisIncharge" />
+          <Property Name="HisInchargeId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="HisProfileHisProfileReq">
           <End Type="His10DB.HisProfile" Role="HisProfile" Multiplicity="1" />
@@ -1838,28 +1922,74 @@
           <Property Name="DtSending" Type="DateTime" Nullable="false" />
           <Property Name="RefId" Type="Int32" Nullable="true" />
           <Property Name="RefTable" Type="String" Nullable="true" MaxLength="40" />
-          <NavigationProperty Name="HisNotificationLogs" Relationship="His10DB.HisNotificationHisNotificationLog" FromRole="HisNotification" ToRole="HisNotificationLog" />
+          <NavigationProperty Name="HisNotificationRecipients" Relationship="His10DB.HisNotificationHisNotificationRecipient" FromRole="HisNotification" ToRole="HisNotificationRecipient" />
         </EntityType>
         <EntityType Name="HisNotificationLog">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="HisNotificationId" Type="Int32" Nullable="false" />
+          <Property Name="HisNotificationRecipientId" Type="Int32" Nullable="false" />
           <Property Name="DtSending" Type="DateTime" Nullable="false" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="10" />
           <Property Name="Remarks" Type="String" Nullable="true" MaxLength="200" />
-          <NavigationProperty Name="HisNotification" Relationship="His10DB.HisNotificationHisNotificationLog" FromRole="HisNotificationLog" ToRole="HisNotification" />
+          <NavigationProperty Name="HisNotificationRecipient" Relationship="His10DB.HisNotificationRecipientHisNotificationLog" FromRole="HisNotificationLog" ToRole="HisNotificationRecipient" />
         </EntityType>
-        <Association Name="HisNotificationHisNotificationLog">
+        <EntityType Name="HisNotificationRecipient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="HisNotification" Relationship="His10DB.HisNotificationHisNotificationRecipient" FromRole="HisNotificationRecipient" ToRole="HisNotification" />
+          <Property Name="HisNotificationId" Type="Int32" Nullable="false" />
+          <Property Name="ContactInfo" Type="String" Nullable="false" MaxLength="30" />
+          <NavigationProperty Name="HisNotificationLogs" Relationship="His10DB.HisNotificationRecipientHisNotificationLog" FromRole="HisNotificationRecipient" ToRole="HisNotificationLog" />
+        </EntityType>
+        <Association Name="HisNotificationHisNotificationRecipient">
           <End Type="His10DB.HisNotification" Role="HisNotification" Multiplicity="1" />
-          <End Type="His10DB.HisNotificationLog" Role="HisNotificationLog" Multiplicity="*" />
+          <End Type="His10DB.HisNotificationRecipient" Role="HisNotificationRecipient" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HisNotification">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="HisNotificationLog">
+            <Dependent Role="HisNotificationRecipient">
               <PropertyRef Name="HisNotificationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisNotificationRecipientHisNotificationLog">
+          <End Type="His10DB.HisNotificationRecipient" Role="HisNotificationRecipient" Multiplicity="1" />
+          <End Type="His10DB.HisNotificationLog" Role="HisNotificationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisNotificationRecipient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisNotificationLog">
+              <PropertyRef Name="HisNotificationRecipientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisPhysicianHisProfileReq">
+          <End Type="His10DB.HisPhysician" Role="HisPhysician" Multiplicity="1" />
+          <End Type="His10DB.HisProfileReq" Role="HisProfileReq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisPhysician">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileReq">
+              <PropertyRef Name="HisPhysicianId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HisInchargeHisProfileReq">
+          <End Type="His10DB.HisIncharge" Role="HisIncharge" Multiplicity="1" />
+          <End Type="His10DB.HisProfileReq" Role="HisProfileReq" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HisIncharge">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HisProfileReq">
+              <PropertyRef Name="HisInchargeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1888,6 +2018,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
           <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
+          <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1941,6 +2072,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
           <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
+          <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2121,6 +2253,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
           <ScalarProperty Name="AccntUserId" ColumnName="AccntUserId" />
+          <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2152,6 +2285,8 @@
           <ScalarProperty Name="dtSchedule" ColumnName="dtSchedule" />
           <ScalarProperty Name="dtPerformed" ColumnName="dtPerformed" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="HisPhysicianId" ColumnName="HisPhysicianId" />
+          <ScalarProperty Name="HisInchargeId" ColumnName="HisInchargeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -2209,10 +2344,19 @@
       <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisNotificationLog)">
         <MappingFragment StoreEntitySet="HisNotificationLogs">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="HisNotificationId" ColumnName="HisNotificationId" />
+          <ScalarProperty Name="HisNotificationRecipientId" ColumnName="HisNotificationRecipientId" />
           <ScalarProperty Name="DtSending" ColumnName="DtSending" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HisNotificationRecipients">
+      <EntityTypeMapping TypeName="IsTypeOf(His10DB.HisNotificationRecipient)">
+        <MappingFragment StoreEntitySet="HisNotificationRecipients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="HisNotificationId" ColumnName="HisNotificationId" />
+          <ScalarProperty Name="ContactInfo" ColumnName="ContactInfo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

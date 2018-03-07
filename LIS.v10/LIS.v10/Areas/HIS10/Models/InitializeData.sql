@@ -1,14 +1,14 @@
 ﻿insert into HisEntities([Name],[Remarks],[userGroupId])
-values('Kwak Medical Center','Testing',1);
+values('Matina Animal Center','Testing',1);
 
 insert into HisInstruments([HisEntityId],[Name],[InsCode],[Description],[Specification],[Remarks],[Status])
 values(1,'InsA101','101-22','Code Test Machine','V220 A2 P1200W','testin101','ACT'),
 		(1,'InsB201','201-23','Acid Test Machine','V220 A2 P1500W','testin221','ACT'),
 		(1,'ACER032','AC0-42','Computer Machine','V220 A2 P550W','ACER-PC','ACT');
 
-insert into HisPhysicians([Name],[Remarks])
-values('Dr Ning Kwak','Testing'),
-('Dra Pak Kwak','Hehehe');
+insert into HisPhysicians([Name],[Remarks],[ContactInfo])
+values('Dr Aga Mulach','Testing','09954508517'),
+('Dr Juan','Hehehe','09954508517');
 
 insert into HisOrderTypes([Description],[Remarks])
 values('BugTest','Testing202'),
@@ -31,15 +31,21 @@ values ('Test 101','General Test checkup'),
 ('Ther 101','Theraphy 101')
 
 
-insert into HisProfiles ([Name],[Remarks],[AccntUserId])
+insert into HisProfiles ([Name],[Remarks],[AccntUserId],[ContactInfo])
 values
-	('Patient1','None','1'),
-	('Patient2','None','2'),
-	('Patient3','None','3');
+	('Batch0301A','None','1','09193812657'),
+	('Batch0301B','None','2','09193812657'),
+	('Batch0301C','None','3','09193812657');
 
-insert into HisProfileReqs ([HisProfileId],[HisRequestId],[dtRequested],[dtSchedule],[dtPerformed],[Remarks])
-values (1,1,'3/1/2018 10:00:00','3/6/2018 10:36:00','3/6/2018 10:36:00','none'),
-	    (2,1,NULL,NULL,NULL,'none');
+insert into HisIncharges ([Name],[Remarks],[ContactInfo])
+values
+('Freddie Roach','Trainer/consultant','09954508517'),
+('Chot Reyes','Coach','09954508517'),
+('Yeng Guiao','Trainer','09193812657');
+
+insert into HisProfileReqs ([HisProfileId],[HisRequestId],[dtRequested],[dtSchedule],[dtPerformed],[Remarks], [HisPhysicianId],[HisInchargeId])
+values (1,1,'3/1/2018 10:00:00','3/6/2018 10:36:00','3/6/2018 10:36:00','Initial',1,1),
+	    (2,1,NULL,NULL,NULL,'Initial (sample)',1,1);
 
 insert into HisNotifications ([RecType],[Recipient],[Message],[DtSending],[RefId],[RefTable])
 values
